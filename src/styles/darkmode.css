@@ -1,0 +1,9 @@
+/* :root {
+  --color-background: var(--color-off-white-background);
+  --color-text: rgba(0, 0, 0, 0.87),
+}
+
+:root[data-theme="dark"] {
+  --color-background: var(--color-off-black-background);
+  --color-text: rgba(255, 255, 255, 0.87);
+} */

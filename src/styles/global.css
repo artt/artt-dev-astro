@@ -1,0 +1,23 @@
+@import "fonts.css";
+@import "definitions.css";
+/* @import "darkmode.css"; */
+
+:root {
+  --color-background: var(--color-off-white-background);
+}
+
+:root[data-theme="dark"] {
+  --color-background: var(--color-off-black-background);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+h1 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  font-size: 1.5rem;
+}

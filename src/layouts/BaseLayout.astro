@@ -1,0 +1,25 @@
+---
+import DayNight from '../components/DayNight.astro';
+const { pageTitle } = Astro.props;
+
+import '../styles/global.css';
+
+---
+<html lang="en" style={{
+  // '--color-background': '#1a202c',
+}}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <script is:inline src="/noflash.js" />
+    <DayNight />
+    <h1>{pageTitle}</h1>
+    <slot />
+  </body>
+</html>
+<script src="../scripts/darkmode.js" />

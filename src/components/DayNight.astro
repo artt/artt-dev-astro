@@ -1,0 +1,14 @@
+---
+---
+<div id="daynight">
+  Switch
+</div>
+<script>
+  const daynight = document.getElementById('daynight');
+  daynight?.addEventListener('click', () => {
+    // toggle data-theme attribute
+    document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    // save to localStorage
+    localStorage.setItem('theme', document.documentElement.getAttribute('data-theme') || 'light');
+  });
+</script>
