@@ -1,0 +1,15 @@
+@import "definitions";
+
+:root {
+ 
+  @each $prop in $properties {
+    --color-#{$prop}: #{map-get(map-get($themes, "light"), '#{$prop}')};
+  }
+
+  &[data-theme="dark"] {
+    @each $prop in $properties {
+      --color-#{$prop}: #{map-get(map-get($themes, "dark"), '#{$prop}')};
+    }
+  }
+
+}

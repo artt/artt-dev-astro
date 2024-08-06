@@ -1,14 +1,13 @@
 @import "fonts.css";
-@import "definitions.css";
-/* @import "darkmode.css"; */
+@import "darkmode";
 
 :root {
-  --color-background: var(--color-off-white-background);
+  --font-body: "Bai Jamjuree", "Mulish", Sans-serif;
+  --font-heading: "Athiti", Sans-serif;
+  --font-en: "Mulish", Sans-serif;
+  --font-mono: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
 }
 
-:root[data-theme="dark"] {
-  --color-background: var(--color-off-black-background);
-}
 
 body {
   font-family: var(--font-body);
