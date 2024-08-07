@@ -1,13 +1,13 @@
 ---
-import DayNight from '../components/DayNight.astro';
+import DayNight from '@components/DayNight.astro';
+import Header from '@components/Header.astro';
+
 const { pageTitle } = Astro.props;
 
 import '../styles/global.scss';
 
 ---
-<html lang="en" style={{
-  // '--color-background': '#1a202c',
-}}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
@@ -17,6 +17,7 @@ import '../styles/global.scss';
   </head>
   <body>
     <script is:inline src="/noflash.js" />
+    <Header />
     <DayNight />
     <h1>{pageTitle}</h1>
     <slot />
