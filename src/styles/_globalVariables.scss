@@ -1,0 +1,19 @@
+:root {
+  --font-body: "Bai Jamjuree", "Mulish", Sans-serif;
+  --font-heading: "Athiti", Sans-serif;
+  --font-en: "Mulish", Sans-serif;
+  --font-mono: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+
+  --width-content: 1200px;
+
+  --time-short: 300ms;
+  --time-long: 500ms;
+  
+  --width-margin: 1rem;
+  --height-navbar: 2.75rem;
+  @media (min-width: 768px) {
+    --width-margin: 2.25rem;
+    --height-navbar: 4rem;
+  }
+
+}

@@ -1,0 +1,23 @@
+---
+// Custom element to render a link
+// Could include target="_blank" rel="noopener noreferrer" for external links,
+// or bilingual support for links
+
+interface Props {
+  to: string;
+  class?: string;
+}
+
+let { to, class: className, ...rest } = Astro.props;
+// if href includes trailing slash, remove it
+to = to === "/" ? to : to.replace(/\/$/, '');
+
+// determine if the link is active by URL
+
+const pathname = Astro.url.pathname
+const isActive = pathname.startsWith(to) || pathname.startsWith(`/en${to}`)
+
+---
+<a href={to} class:list={[className, {active: isActive}]} {...rest}>
+  <slot />
+</a>

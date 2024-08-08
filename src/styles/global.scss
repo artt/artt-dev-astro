@@ -1,13 +1,9 @@
+@import "globalVariables";
 @import "fonts.css";
 @import "darkmode";
-@import "code";
+// @import "code";
 
-:root {
-  --font-body: "Bai Jamjuree", "Mulish", Sans-serif;
-  --font-heading: "Athiti", Sans-serif;
-  --font-en: "Mulish", Sans-serif;
-  --font-mono: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
-}
+
 
 body {
   font-family: var(--font-body);
@@ -15,175 +11,16 @@ body {
   color: var(--color-text);
 }
 
+.cap-width {
+  box-sizing: border-box;
+  max-width: var(--width-content);
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--width-margin);
+}
 
-
-// $scroll-margin: calc(var(--navbar-height) + 1rem);
-
-// $primary-10: color-mix(in srgb, var(--primary-color) 10%, var(--background-color));
-// $secondary-50: color-mix(in srgb, var(--secondary-color) 40%, var(--background-color));
-// $secondary-text: color-mix(in srgb, var(--secondary-color) 20%, var(--text-color));
-
-// :root {
-//   line-height: 1.5;
-//   scroll-behavior: smooth;
-// }
-
-// a {
-//   color: inherit;
-//   text-decoration: none;
-//   transition: filter $time-short;
-//   &:hover:not(.nodecoration) {
-//     filter: opacity(0.7);
-//   }
-//   #content :not(h1, h2, h3, h4, h5, h6) > &:not(.nodecoration) {
-//     background-image: linear-gradient(rgba(black, 0) 50%, $secondary-50 50%);
-//     background-size: auto 140%;
-//     transition: background-position-y $time-short;
-//     &:hover {
-//       filter: none;
-//       background-position-y: 120%;	
-//     }
-//   }
-//   // remove effect for things we don't need
-//   #content .js-plotly-plot & {
-//     background-image: none;
-//   }
-// }
-
-// blockquote {
-//   // border: 1px solid;
-//   z-index: -1;
-//   position: relative;
-//   border-left: 0.5rem solid;
-//   border-color: var(--primary-color);
-//   background-color: $primary-10;
-//   padding: 1rem 1rem;
-//   margin: 1.5rem 0;
-//   border-radius: 4px 1rem 1rem 4px;
-//   box-shadow: $shadow;
-//   > *:first-child {
-//     margin-top: 0;
-//   }
-//   > *:last-child {
-//     margin-bottom: 0;
-//   }
-//   @each $type, $color in $alert-colors {
-//     &.alert-#{$type} {
-//       border-left-color: var(#{$color});
-//       background-color: color-mix(in srgb, var(#{$color}) 10%, var(--background-color));
-//       .alert-title {
-//         color: var(#{$color});
-//         fill: var(#{$color});
-//         font-family: var(--font-heading);
-//         font-size: $alert-size;
-//         font-weight: bold;
-//         vertical-align: middle;
-//         ~ p {
-//           margin-top: 0.5rem;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @for $i from 2 through 6 {
-//   h#{$i} {
-//     color: var(--heading-color);
-//     font-family: var(--font-heading);
-//     $h-sizes: 1.5rem 1.3rem 1.2rem 1.1rem 1.05rem;
-//     $tmp: nth($h-sizes, $i - 1);
-//     font-size: $tmp;
-//     line-height: $tmp;
-//     margin-top: 1.2*$tmp;
-//     margin-bottom: 0.8*$tmp;
-//     @media (min-width: $screen-mid) {
-//       $h-sizes: 2rem 1.6rem 1.3rem 1.15rem 1.1rem;
-//       $tmp: nth($h-sizes, $i - 1);
-//       font-size: $tmp;
-//       line-height: $tmp;
-//       margin-top: 1.2*$tmp;
-//       margin-bottom: 0.8*$tmp;
-//     }
-//     // .anchor svg {
-//     // 	visibility: hidden;
-//     // }
-//     // &:hover .anchor svg,
-//     // & .anchor:focus svg {
-//     // 	visibility: visible;
-//     // }
-//   }
-// }
-
-// h2 {
-//   border-bottom: 1px solid;
-//   border-bottom-color: var(--heading-color);
-//   text-shadow: -1px -1px 0 var(--background-color), 1px -1px 0 var(--background-color), -1px 1px 0 var(--background-color), 1px 1px 0 var(--background-color);
-// }
-
-// h3 {
-//   color: var(--secondary-color);
-// }
-
-// @for $i from 5 through 6 {
-//   h#{$i} {
-//     color: var(--muted-heading-color);
-//     font-family: var(--font-body);
-//     font-weight: bold;
-//   }
-// }
-
-// .footnotes {
-//   border-top: 1px solid var(--text-color);
-//   margin-top: 3rem;
-//   font-size: 0.8rem;
-// }
-
-// #footnote-label {
-//   display: none;
-// }
-
-// * {
-//   scroll-margin-top: $scroll-margin;
-// }
-
-// strong {
-//   color: $secondary-text;
-// }
-
-// .math {
-//   max-width: 100%;
-//   overflow-y: auto;
-// }
-
-// .katex {
-//   font-size: 1em;
-// }
-
-// .kbd-container {
-//   margin: 0 0.2rem;
-// }
-
-// kbd {
-//   background-color: var(--neutral-color-20);
-//   border: 1px solid var(--text-color);
-//   border-radius: 4px;
-//   color: var(--text-color);
-//   font-family: var(--font-mono);
-//   font-size: 0.9rem;
-//   padding: 1px 6px;
-// }
-
-// .os-scrollbar {
-//   --os-handle-bg: var(--text-color);
-//   --os-handle-bg-hover: var(--text-color);
-//   --os-handle-bg-active: var(--text-color);
-// }
-// .os-scrollbar-handle {
-//   opacity: 0.4;
-//   &:hover {
-//     opacity: 0.8;
-//   }
-// }
-
-// // TODO: overlay scrollbar for code blocks, etc.
-// // https://kingsora.github.io/OverlayScrollbars/
+.spacer {
+  flex: 1 0 auto;
+}
