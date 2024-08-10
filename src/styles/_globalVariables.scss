@@ -1,3 +1,5 @@
+@import "definitions";
+
 :root {
   --font-body: "Bai Jamjuree", "Mulish", Sans-serif;
   --font-heading: "Athiti", Sans-serif;
@@ -8,10 +10,12 @@
 
   --time-short: 300ms;
   --time-long: 500ms;
+
+  --icon-size: 21px;
   
   --width-margin: 1rem;
   --height-navbar: 2.75rem;
-  @media (min-width: 768px) {
+  @media (min-width: $screen-mid) {
     --width-margin: 2.25rem;
     --height-navbar: 4rem;
   }

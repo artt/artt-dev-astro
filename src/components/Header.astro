@@ -1,5 +1,7 @@
 ---
 import Link from '@components/Link.astro'
+import DayNight from '@components/DayNight.astro';
+import Hamburger from './Hamburger.astro';
 
 const navLinks = [
   { href: '/blog', text: 'Blog' },
@@ -9,8 +11,12 @@ const navLinks = [
 ---
 
 <style lang="scss">
+
+  @import '@styles/definitions';
+  
   header {
     height: var(--height-navbar);
+    min-height: var(--height-navbar);
     width: 100vw;
     position: absolute;
     z-index: 100;
@@ -18,59 +24,72 @@ const navLinks = [
     border-bottom: 1px solid var(--color-secondary);
     box-shadow: 0 0 10px 1px rgba(black, 0.1);
   }
-  nav a {
-    // display: none;
-    position: relative;
-    align-items: center;
-    padding: 0 0.75rem;
-    height: 100%;
-    opacity: 0.7;
-    color: var(--color-secondary);
-    display: flex;
-    transition: opacity var(--time-short), font-weight var(--time-short);
-    filter: none;
-    &:hover {
-      opacity: 1;
-      font-weight: 600;
-      &::after {
-        height: 4px;
-        width: 100%;
-      }
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 0px;
-      width: 100%;
-      display: block;
-      background-color: var(--color-secondary);
-      transition: height var(--time-short);
-    }
-    &.active {
-      opacity: 1;
-      font-weight: 600;
+
+  #navbar nav {
+    a {
+      position: relative;
+      align-items: center;
+      padding: 0 0.75rem;
+      height: 100%;
+      opacity: 0.7;
       color: var(--color-secondary);
-      box-sizing: border-box;
+      display: flex;
+      transition: opacity var(--time-short), font-weight var(--time-short);
+      filter: none;
       &:hover {
-        filter: none;
+        opacity: 1;
+        font-weight: 600;
+        &::after {
+          height: 4px;
+          width: 100%;
+        }
       }
       &::after {
-        height: 4px;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0px;
+        width: 100%;
+        display: block;
+        background-color: var(--color-secondary);
+        transition: height var(--time-short);
+      }
+      &.active {
+        opacity: 1;
+        font-weight: 600;
+        color: var(--color-secondary);
+        box-sizing: border-box;
+        &:hover {
+          filter: none;
+        }
+        &::after {
+          height: 4px;
+        }
       }
     }
   }
+
+
 </style>
 
-<header class="relative flex">
-  <div class="absolute cap-width flex items-center h-[--height-navbar] md:self-end md:h-3/5">
-    <Link to="/" class="text-xl">artt.dev</Link>
-    <div class="spacer" />
-    <nav class="flex h-full">
-      {navLinks.map(({ href, text }) => (
-        <Link to={href}>{text}</Link>
-      ))}
-    </nav>
+<header>
+  <div id="navbar" class="relative flex h-full">
+    <div class="absolute cap-width flex items-center h-[--height-navbar] md:self-end md:h-3/5">
+      <Link to="/" class="text-xl">artt.dev</Link>
+      <div class="spacer" />
+      <nav class="flex h-full hide-on-mobile">
+        {navLinks.map(({ href, text }) => (
+          <Link to={href}>{text}</Link>
+        ))}
+      </nav>
+      <DayNight />
+      <Hamburger />
+    </div>
   </div>
+  <nav id="menu" class="hide-on-desktop">
+    {navLinks.map(({ href, text }) => (
+      <Link to={href}>{text}</Link>
+    ))}
+  </nav>
 </header>

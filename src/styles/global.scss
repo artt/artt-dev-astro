@@ -18,9 +18,38 @@ body {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 var(--width-margin);
+  padding-left: var(--width-margin);
+  padding-right: var(--width-margin);
 }
 
 .spacer {
   flex: 1 0 auto;
+}
+
+.hide-on-desktop {
+  display: flex;
+  @media screen and (min-width: $screen-mid) {
+    display: none;
+  }
+}
+
+.hide-on-mobile {
+  display: none;
+  @media screen and (min-width: $screen-mid) {
+    display: flex;
+  }
+}
+
+.hide-on-desktop-block {
+  display: block;
+  @media screen and (min-width: $screen-mid) {
+    display: none;
+  }
+}
+
+.hide-on-mobile-block {
+  display: none;
+  @media screen and (min-width: $screen-mid) {
+    display: block;
+  }
 }
