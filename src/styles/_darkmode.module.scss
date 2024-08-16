@@ -1,0 +1,20 @@
+@import "darkmode";
+
+:export {
+  arttBlue: $artt-blue;
+  arttOrange: $artt-orange;
+  offWhiteBackground: $off-white-background;
+  offBlackBackground: $off-black-background;
+
+  colorTypes: $properties;
+
+  // these are actually exported in camelCase
+  @each $prop in $properties {
+    light--color-#{$prop}: #{map-get(map-get($themes, "light"), '#{$prop}')};
+  }
+
+  @each $prop in $properties {
+    dark--color-#{$prop}: #{map-get(map-get($themes, "dark"), '#{$prop}')};
+  }
+
+}
