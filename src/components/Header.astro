@@ -12,17 +12,32 @@ const navLinks = [
 
 <style lang="scss">
 
-  @import '@styles/definitions';
-  
   header {
-    height: var(--height-navbar);
-    min-height: var(--height-navbar);
     width: 100vw;
     position: absolute;
-    z-index: 100;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--color-secondary);
     box-shadow: 0 0 10px 1px rgba(black, 0.1);
+    transition: height var(--time-long);
+    overflow: hidden;
+  }
+
+  #component-menu-backdrop {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(from var(--color-background-contrast) r g b / 50%);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity var(--time-long);
+    z-index: 10;
+    pointer-events: none;
+    body.menu-open & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 
   #navbar nav {
@@ -70,12 +85,21 @@ const navLinks = [
     }
   }
 
+  #component-menu {
+    height: 0;
+    transition: height var(--time-long);
+    body.menu-open & {
+      height: 200px;
+    }
+  }
+
 
 </style>
 
-<header>
-  <div id="navbar" class="relative flex h-full">
-    <div class="absolute cap-width flex items-center h-[--height-navbar] md:self-end md:h-3/5">
+  <div id="component-menu-backdrop" />
+  <header class="z-50">
+  <div id="navbar" class="relative flex h-[--height-navbar] z-50">
+    <div class="absolute cap-width flex items-center h-full md:self-end md:h-3/5 z-50">
       <Link to="/" class="text-xl">artt.dev</Link>
       <div class="spacer" />
       <nav class="flex h-full hide-on-mobile">
@@ -87,9 +111,9 @@ const navLinks = [
       <Hamburger />
     </div>
   </div>
-  <nav id="menu" class="hide-on-desktop">
+  <nav id="component-menu" class="hide-on-desktop-block">
     {navLinks.map(({ href, text }) => (
-      <Link to={href}>{text}</Link>
+      <Link to={href} class="block ml-6">{text}</Link>
     ))}
   </nav>
 </header>

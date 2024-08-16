@@ -3,12 +3,43 @@
 @import "darkmode";
 // @import "code";
 
+$primary-10: color-mix(in srgb, var(--color-primary) 10%, var(--color-background));
+$secondary-50: color-mix(in srgb, var(--color-secondary) 40%, var(--color-background));
+$secondary-text: color-mix(in srgb, var(--color-secondary) 20%, var(--color-text));
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
   font-family: var(--font-body);
   background-color: var(--color-background);
   color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: filter var(--time-short);
+  &:hover:not(.nodecoration) {
+    filter: opacity(0.7);
+  }
+  main :not(h1, h2, h3, h4, h5, h6) > &:not(.nodecoration) {
+    background-image: linear-gradient(rgba(black, 0) 50%, $secondary-50 50%);
+    background-size: auto 140%;
+    transition: background-position-y var(--time-short);
+    &:hover {
+      filter: none;
+      background-position-y: 120%;	
+    }
+  }
+  // remove effect for things we don't need
+  main .js-plotly-plot & {
+    background-image: none;
+  }
 }
 
 .cap-width {

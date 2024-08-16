@@ -1,25 +1,35 @@
 
 import { animate } from 'popmotion'
-import { lighten } from 'color2k'
-import { theme } from './theme'
 
-const kebabize = (str) => str.replace(/[A-Z]+(?![a-z])|[A-Z]/g, ($, ofs) => (ofs ? "-" : "") + $.toLowerCase())
+import styleDefinitions from '@styles/_darkmode.module.scss'
+
+const colorTypes = styleDefinitions.colorTypes.replaceAll('\"', "").split(',').map((x) => x.trim())
+
+const colorVariants = {
+  light: colorTypes.reduce((acc, x) => {
+    acc[`--color-${x}`] = styleDefinitions[`light--color-${x}`]
+    return acc
+  }, {}),
+  dark: colorTypes.reduce((acc, x) => {
+    acc[`--color-${x}`] = styleDefinitions[`dark--color-${x}`]
+    return acc
+  }, {}),
+}
 
 const switchTheme = (targetTheme, duration) => {
 
   if (duration === 0) {
-    Object.keys(theme[targetTheme]).forEach((key) => {
-      document.body.style.setProperty(`--color-${kebabize(key)}`, theme[targetTheme][key])
+    Object.keys(colorVariants[targetTheme]).forEach((key) => {
+      document.body.style.setProperty(key, colorVariants[targetTheme][key])
     })
   }
-
-  Object.keys(theme[targetTheme]).forEach((key) => {
+  Object.keys(colorVariants[targetTheme]).forEach((key) => {
     animate({
-      from: document.body.style.getPropertyValue(`--color-${kebabize(key)}`),
-      to: theme[targetTheme][key],
+      from: document.body.style.getPropertyValue(key),
+      to: colorVariants[targetTheme][key],
       duration: duration,
       onUpdate: (value) => {
-        document.body.style.setProperty(`--color-${kebabize(key)}`, value)
+        document.body.style.setProperty(key, value)
       }
     })
   })

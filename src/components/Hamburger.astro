@@ -61,9 +61,17 @@
 
 </style>
 
-<div class="hide-on-desktop-block">
+<div id="component-hamburger" class="hide-on-desktop-block">
   <input type="checkbox" />
   <span class="top" />
   <span class="middle" />
   <span class="bottom" />
 </div>
+
+<script>
+  const hamburger = document.getElementById('component-hamburger');
+  hamburger?.addEventListener('click', toggle);
+  function toggle() {
+    document.body.classList.toggle('menu-open');
+  }
+</script>
