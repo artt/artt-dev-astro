@@ -15,6 +15,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.12.3",
+    "astro-i18n-aut": "^0.7.0",
     "color2k": "^2.0.3",
     "fast-glob": "^3.3.2",
     "popmotion": "^11.0.5",
