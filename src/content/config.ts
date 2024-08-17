@@ -11,13 +11,13 @@ const blogCollection = defineCollection({
   }),
 })
 
-// const pageCollection = defineCollection({
-//   type: 'content',
-//   schema: z.object({
-//     title: z.string(),
-//     cover: z.string().optional(),
-//   }),
-// })
+const pageCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    cover: z.string().optional(),
+  }),
+})
 
 export const collections = {
   blog: blogCollection,

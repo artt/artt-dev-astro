@@ -25,7 +25,10 @@ export default defineConfig({
     i18n({
       locales,
       defaultLocale,
-      exclude: ["pages/api/**/*", "pages/**/\[*\]"],
+      exclude: [
+        "pages/api/**/*",
+        "pages/**/[[]*[]].astro",
+      ],
     }),
     sitemap({
       i18n: {
