@@ -4,11 +4,14 @@ import mdx from '@astrojs/mdx';
 // import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 // import sitemap from "@astrojs/sitemap";
 
+import { i18n } from "./src/scripts/artt-i18n.js"
+
 import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
 
 const locales = {th: "th-TH", en: "en-US"}
 const defaultLocale = "th"
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,6 +23,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     mdx(),
+    i18n(),
     // {
     //   name: "artt-i18n",
     //   hooks: {

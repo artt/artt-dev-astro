@@ -16,6 +16,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.12.3",
     "color2k": "^2.0.3",
+    "fast-glob": "^3.3.2",
     "popmotion": "^11.0.5",
     "remark-afm": "github:artt/remark-afm",
     "remark-directive": "^3.0.0",
