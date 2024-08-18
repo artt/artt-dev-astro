@@ -4,20 +4,21 @@
 // or bilingual support for links
 
 interface Props {
-  to: string;
+  href: string;
   class?: string;
 }
 
-let { to, class: className, ...rest } = Astro.props;
+let { href, class: className, ...rest } = Astro.props;
+console.log(href, rest)
 // if href includes trailing slash, remove it
-to = to === "/" ? to : to.replace(/\/$/, '');
+href = href === "/" ? href : href.replace(/\/$/, '');
 
 // determine if the link is active by URL
 
 const pathname = Astro.url.pathname
-const isActive = pathname.startsWith(to) || pathname.startsWith(`/en${to}`)
+const isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
 
 ---
-<a href={to} class:list={[className, {active: isActive}]} {...rest}>
+<a href={href} class:list={[className, {active: isActive}]} {...rest}>
   <slot />
 </a>

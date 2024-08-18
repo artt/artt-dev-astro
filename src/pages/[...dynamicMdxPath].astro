@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import MarkdownPostLayout from '@layouts/MarkdownPostLayout.astro';
+import Link from '@components/Link.astro';
+import { generateStaticPathFromEntry } from '@scripts/bilingual';
+
+export async function getStaticPaths() {
+
+  const blogEntries = await getCollection('blog')
+  const pageEntries = await getCollection('pages')
+  
+  const allDynamicMdxPaths: any[] = []
+  
+  blogEntries.forEach(entry => {
+    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, 'blog/'))
+  })
+
+  pageEntries.forEach(entry => {
+    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, ''))
+  })
+
+  return allDynamicMdxPaths
+
+}
+
+const { entry, redirect } = Astro.props
+
+if (redirect) {
+  return Astro.redirect(redirect)
+}
+const { Content } = await entry.render()
+
+
+
+---
+<MarkdownPostLayout frontmatter={entry.data}>
+  <Content
+
+  />
+</MarkdownPostLayout>

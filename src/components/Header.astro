@@ -100,11 +100,11 @@ const navLinks = [
   <header class="z-50">
   <div id="navbar" class="relative flex h-[--height-navbar] z-50">
     <div class="absolute cap-width flex items-center h-full md:self-end md:h-3/5 z-50">
-      <Link to="/" class="text-xl">artt.dev</Link>
+      <Link href="/" class="text-xl">artt.dev</Link>
       <div class="spacer" />
       <nav class="flex h-full hide-on-mobile">
         {navLinks.map(({ href, text }) => (
-          <Link to={href}>{text}</Link>
+          <Link href={href}>{text}</Link>
         ))}
       </nav>
       <DayNight />
@@ -113,7 +113,7 @@ const navLinks = [
   </div>
   <nav id="component-menu" class="hide-on-desktop-block">
     {navLinks.map(({ href, text }) => (
-      <Link to={href} class="block ml-6">{text}</Link>
+      <Link href={href} class="block ml-6">{text}</Link>
     ))}
   </nav>
 </header>
