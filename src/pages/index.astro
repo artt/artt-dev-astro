@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getLocale } from "astro-i18n-aut";
-const pageTitle = "กขค English";
+const pageTitle = "artt.dev";
 ---
 <BaseLayout pageTitle={pageTitle}>
-  <h2>My awesome blog subtitle</h2>
-  {getLocale(Astro.url)}
-  <p>การกระทำที่ Excellent นี้</p>
+  {getLocale(Astro.url) === "th"
+    ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
+    : <p>This is the homepage</p>
+  }
 </BaseLayout>

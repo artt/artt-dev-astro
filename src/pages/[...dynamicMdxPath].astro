@@ -35,6 +35,8 @@ const { Content } = await entry.render()
 ---
 <MarkdownPostLayout frontmatter={entry.data}>
   <Content
-
+    components={{
+      a: Link,
+    }}
   />
 </MarkdownPostLayout>
