@@ -40,6 +40,7 @@ switchTheme(document.documentElement.getAttribute("data-theme"), 0)
 
 var observer = new MutationObserver(function(mutations) {
   mutations.forEach(function(mutation) {
+    console.log(mutation)
     if (mutation.type === "attributes") {
       if (mutation.attributeName === "data-theme") {
         switchTheme(mutation.target.getAttribute("data-theme"), 500)

@@ -2,6 +2,7 @@
 import Link from '@components/Link.astro'
 import DayNight from '@components/DayNight.astro';
 import Hamburger from './Hamburger.astro';
+import LangSwitch from './LangSwitch.astro';
 
 const navLinks = [
   { href: '/blog', text: 'Blog' },
@@ -107,6 +108,7 @@ const navLinks = [
           <Link href={href}>{text}</Link>
         ))}
       </nav>
+      <LangSwitch />
       <DayNight />
       <Hamburger />
     </div>

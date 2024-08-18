@@ -1,18 +1,20 @@
 ---
 import Header from '@components/Header.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 const { pageTitle } = Astro.props;
 
 import '../styles/global.scss';
 
 ---
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <!-- <ViewTransitions /> -->
   </head>
   <body>
     <script is:inline src="/noflash.js" />
