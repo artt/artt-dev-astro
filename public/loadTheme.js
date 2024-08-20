@@ -5,10 +5,6 @@
 
 // Change these if you use something different in your hook.
 
-
-
-
-
 function setRootAttribute(targetTheme) {
   document.documentElement.setAttribute('data-theme', targetTheme)
 }
@@ -16,21 +12,19 @@ function setRootAttribute(targetTheme) {
 var preferDarkQuery = '(prefers-color-scheme: dark)';
 var mql = window.matchMedia(preferDarkQuery);
 var supportsColorSchemeQuery = mql.media === preferDarkQuery;
-var localStorageTheme = null;
+var localStorageLang = null;
 try {
-  localStorageTheme = localStorage.getItem('theme');
+  localStorageLang = localStorage.getItem('theme');
 } catch (err) {}
-var localStorageExists = localStorageTheme !== null;
+var localStorageExists = localStorageLang !== null;
 if (localStorageExists) {
-  localStorageTheme = localStorageTheme;
+  localStorageLang = localStorageLang;
 }
-
-
 
 // Determine the source of truth
 if (localStorageExists) {
   // source of truth from localStorage
-  setRootAttribute(localStorageTheme);
+  setRootAttribute(localStorageLang);
 } else if (supportsColorSchemeQuery) {
   // source of truth from system
   setRootAttribute(mql.matches ? 'dark' : 'light');
@@ -40,17 +34,3 @@ if (localStorageExists) {
   // var isDarkMode = document.documentElement.setAttribute('data-theme') === 'dark';
   localStorage.setItem('theme', document.documentElement.getAttribute('data-theme'));
 }
-
-// switchTheme(document.documentElement.getAttribute('data-theme'), 0)
-
-
-
-// // add event listener for data-theme attribute changes
-// const observer = new MutationObserver(function(mutations) {
-//   mutations.forEach(function(mutation) {
-//     if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
-//       switchTheme(document.documentElement.getAttribute('data-theme'), 300)
-//     }
-//   })
-// })
-// observer.observe(document.documentElement, { attributes: true })

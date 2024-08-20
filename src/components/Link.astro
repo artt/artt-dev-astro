@@ -3,34 +3,56 @@
 // Could include target="_blank" rel="noopener noreferrer" for external links,
 // or bilingual support for links
 
-interface Props {
-  href: string;
-  class?: string;
-}
+// interface Props {
+//   href: string;
+//   class?: string;
+// }
 
 let { href, class: className, ...rest } = Astro.props;
 
-let otherAttributes = {}
-let isActive = false
+// let otherAttributes = {}
+// let isActive = false
 
-// if link is external, then add target="_blank" and rel="noopener noreferrer"
-if (href.startsWith("http")) {
-  otherAttributes = {
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }
-}
-else {
+// // if link is external, then add target="_blank" and rel="noopener noreferrer"
+// if (href.startsWith("http")) {
+//   otherAttributes = {
+//     target: "_blank",
+//     rel: "noopener noreferrer"
+//   }
+// }
+// else {
 
-  // if href includes trailing slash, remove it
-  href = href === "/" ? href : href.replace(/\/$/, '');
+//   // if href includes trailing slash, remove it
+//   href = href === "/" ? href : href.replace(/\/$/, '');
+//   // if preferred language is English, add /en to the href
 
-  // determine if the link is active by URL
+//   // determine if the link is active by URL
 
-  const pathname = Astro.url.pathname
-  isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
+//   const pathname = Astro.url.pathname
+//   isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
 
-}
+// }
 
 ---
-<a href={href} class:list={[className, {active: isActive}]} {...rest} {...otherAttributes}><slot /></a>
+<a href={href} class:list={[className]} {...rest}><slot /></a>
+<script>
+  import { getLink, getPreferredLang } from '@scripts/lang'
+  const linkElements = document.querySelectorAll('a')
+  // loop over link elements
+  linkElements.forEach(linkElement => {
+    // if link is external, add target="_blank" and rel="noopener noreferrer"
+    if (linkElement.pathname.startsWith("http")) {
+      linkElement.setAttribute('target', '_blank')
+      linkElement.setAttribute('rel', 'noopener noreferrer')
+    }
+    else {
+      // if link is internal, add /en to the href if preferred language is English
+      linkElement.href = getLink(linkElement.pathname, getPreferredLang())
+      // if link is active, add active class
+      const pathname = window.location.pathname
+      if (pathname.startsWith(linkElement.pathname) || pathname.startsWith(`/en${linkElement.pathname}`)) {
+        linkElement.classList.add('active')
+      }
+    }
+  })
+</script>

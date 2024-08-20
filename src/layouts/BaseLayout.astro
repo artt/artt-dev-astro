@@ -1,13 +1,14 @@
 ---
 import Header from '@components/Header.astro';
 import { ViewTransitions } from 'astro:transitions';
+import { getLocale } from "astro-i18n-aut";
 
 const { pageTitle } = Astro.props;
 
 import '../styles/global.scss';
 
 ---
-<html>
+<html lang={getLocale(Astro.url)}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
@@ -17,7 +18,8 @@ import '../styles/global.scss';
     <!-- <ViewTransitions /> -->
   </head>
   <body>
-    <script is:inline src="/noflash.js" />
+    <script is:inline src="/loadTheme.js" />
+    <script is:inline src="/loadLang.js" />
     <Header />
     <main class="cap-width pt-[--height-navbar]">
       <h1>{pageTitle}</h1>

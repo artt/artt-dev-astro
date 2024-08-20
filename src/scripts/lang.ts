@@ -4,7 +4,7 @@ function removeTrailingSlash(path: string) {
   return path === "/" ? path : path.replace(/\/$/, "")
 }
 
-function getLink(to: string, lang: string) {
+export function getLink(to: string, lang: string) {
   return removeTrailingSlash((lang === "en" ? "/en" : "") + to.replace(/^\/en/, ''))
 }
 
