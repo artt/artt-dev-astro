@@ -52,8 +52,9 @@
 </div>
 
 <script>
-  import { getPreferredLang, switchLang } from '@scripts/lang'
-  const lang = getPreferredLang()
-  const langSwitch = document.getElementById('component-langswitch')
-  langSwitch?.addEventListener('click', switchLang)
+  import { switchLang } from '@scripts/lang'
+  document.addEventListener('astro:page-load', () => {
+    const langSwitch = document.getElementById('component-langswitch')
+    langSwitch?.addEventListener('click', switchLang)
+  })
 </script>

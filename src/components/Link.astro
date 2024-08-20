@@ -1,58 +1,41 @@
 ---
 // Custom element to render a link
-// Could include target="_blank" rel="noopener noreferrer" for external links,
-// or bilingual support for links
+// Need to move the language logic to client side since we need to access localStorage
+// Current understanding is that the script is run only once per page load
 
-// interface Props {
-//   href: string;
-//   class?: string;
-// }
+interface Props {
+  href: string;
+  class?: string;
+}
 
 let { href, class: className, ...rest } = Astro.props;
 
-// let otherAttributes = {}
-// let isActive = false
-
-// // if link is external, then add target="_blank" and rel="noopener noreferrer"
-// if (href.startsWith("http")) {
-//   otherAttributes = {
-//     target: "_blank",
-//     rel: "noopener noreferrer"
-//   }
-// }
-// else {
-
-//   // if href includes trailing slash, remove it
-//   href = href === "/" ? href : href.replace(/\/$/, '');
-//   // if preferred language is English, add /en to the href
-
-//   // determine if the link is active by URL
-
-//   const pathname = Astro.url.pathname
-//   isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
-
-// }
+// active is used in header
+// putting this in the <script> tag will force the script to rerun when it's reloaded
+// which will cause a flash
+// we don't want that
+const pathname = Astro.url.pathname
+const isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
 
 ---
-<a href={href} class:list={[className]} {...rest}><slot /></a>
+<a href={href} class:list={[className, {active: isActive}]} {...rest}><slot /></a>
 <script>
   import { getLink, getPreferredLang } from '@scripts/lang'
-  const linkElements = document.querySelectorAll('a')
-  // loop over link elements
-  linkElements.forEach(linkElement => {
-    // if link is external, add target="_blank" and rel="noopener noreferrer"
-    if (linkElement.pathname.startsWith("http")) {
-      linkElement.setAttribute('target', '_blank')
-      linkElement.setAttribute('rel', 'noopener noreferrer')
-    }
-    else {
-      // if link is internal, add /en to the href if preferred language is English
-      linkElement.href = getLink(linkElement.pathname, getPreferredLang())
-      // if link is active, add active class
-      const pathname = window.location.pathname
-      if (pathname.startsWith(linkElement.pathname) || pathname.startsWith(`/en${linkElement.pathname}`)) {
-        linkElement.classList.add('active')
+  document.addEventListener('astro:page-load', () => {
+
+    const linkElements = document.querySelectorAll('a')
+    // loop over link elements
+    linkElements.forEach(linkElement => {
+      // if link is external, add target="_blank" and rel="noopener noreferrer"
+      if (linkElement.pathname.startsWith("http")) {
+        linkElement.setAttribute('target', '_blank')
+        linkElement.setAttribute('rel', 'noopener noreferrer')
       }
-    }
+      else {
+        // if link is internal, add /en to the href if preferred language is English
+        linkElement.href = getLink(linkElement.pathname, getPreferredLang())
+      }
+    })
+
   })
 </script>

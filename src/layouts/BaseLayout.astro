@@ -15,11 +15,11 @@ import '../styles/global.scss';
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-    <!-- <ViewTransitions /> -->
+    <ViewTransitions />
   </head>
   <body>
-    <script is:inline src="/loadTheme.js" />
-    <script is:inline src="/loadLang.js" />
+    <script is:inline data-astro-rerun src="/loadTheme.js" />
+    <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
     <main class="cap-width pt-[--height-navbar]">
       <h1>{pageTitle}</h1>
