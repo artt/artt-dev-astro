@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { generateStaticPathFromEntry } from '@scripts/genPaths';
+import { getLocale } from "astro-i18n-aut";
+import { getCollection } from 'astro:content';
+
+const pageTitle = "Blog Posts";
+
+const blogEntries = await getCollection('blog')
+
+const allBlogs = blogEntries.map((entry) => {
+  const processedEntry = generateStaticPathFromEntry(entry, 'blog/')
+  // check the length of the processedEntry array
+  // if it's 1, then it's a bilingual page
+  // if it's 2, then it's a single language page (the other one is a redirect)
+  if (processedEntry.length === 1) {
+    // it's a bilingual page; check if the entry's language matches the current locale
+    // if the language matches, return the props; otherwise return null and wait for the correct one
+    if (processedEntry[0].props.lang === getLocale(Astro.url)) {
+      return processedEntry[0].props
+    }
+    return null
+  }
+  else {
+    return processedEntry[0].props
+  }
+})
+
+// filter out the null values and sort by entry.data.date in descending order
+const sortedBlogs = allBlogs.filter((entry) => entry !== null).sort((a, b) => {
+  return b.entry?.data.date.getTime() - a.entry?.data.date.getTime()
+})
+
+---
+<BaseLayout pageTitle={pageTitle}>
+  {getLocale(Astro.url) === "th"
+    ? <p>บล๊อกล่าสุด</p>
+    : <p>Latest blog posts</p>
+  }
+  <ul>
+    {sortedBlogs.map((entry) => (
+      <li>
+        <a href={entry.mainSlug}>{entry.entry!.data.title}</a>
+      </li>
+    ))}
+</BaseLayout>
