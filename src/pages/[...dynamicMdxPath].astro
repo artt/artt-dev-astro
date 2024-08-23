@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import MarkdownPostLayout from '@layouts/MarkdownPostLayout.astro';
-import Link from '@components/Link.astro';
+import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
+import Link from '@/components/Link.astro';
 
-import { generateStaticPathFromEntry } from '@scripts/genPaths';
+import { generateStaticPathFromEntry } from '@/scripts/genPaths';
 
 export async function getStaticPaths() {
 

@@ -1,6 +1,6 @@
 ---
-import Link from '@components/Link.astro'
-import DayNight from '@components/DayNight.astro';
+import Link from '@/components/Link.astro'
+import DayNight from '@/components/DayNight.astro';
 import Hamburger from './Hamburger.astro';
 import LangSwitch from './LangSwitch.astro';
 
@@ -41,7 +41,7 @@ const navLinks = [
     }
   }
 
-  #navbar nav {
+  #component-navbar nav {
     a {
       position: relative;
       align-items: center;
@@ -97,9 +97,10 @@ const navLinks = [
 
 </style>
 
-  <div id="component-menu-backdrop" />
-  <header id="component-header" class="z-50">
-  <div id="navbar" class="relative flex h-[--height-navbar] z-50">
+<div id="component-menu-backdrop" />
+<header id="component-header" class="z-50">
+  <div id="component-navbar-fill" class="absolute w-full h-[--height-navbar] bg-[--color-background]" />
+  <div id="component-navbar" class="relative flex h-[--height-navbar] z-50">
     <div class="absolute cap-width flex items-center h-full md:self-end md:h-3/5 z-50">
       <Link href="/" class="text-xl">artt.dev</Link>
       <div class="spacer" />
@@ -119,3 +120,4 @@ const navLinks = [
     ))}
   </nav>
 </header>
+<div id="component-navbar-placeholder" class="h-[--height-navbar]" />

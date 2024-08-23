@@ -1,8 +1,14 @@
 $screen-mid: 768px;
 $screen-large: 1024px;
+$screen-xlarge: 1280px;
+
 $side-width: 270px;
 $post-min-width: 700px;
 $post-max-width: 900px;
+
+$top-image-overlap: 100px;
+$cover-tall-ar: 1.91;
+$cover-wide-ar: 2.5;
 
 :root {
   --font-body: "Bai Jamjuree", "Mulish", Sans-serif;

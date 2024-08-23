@@ -37,6 +37,10 @@ main {
     &:not(.split) > .sidebarContainer {
       display: none;
     }
+    #component-after-body {
+      grid-row: 3 / 4;
+      grid-column: 1 / 2;
+    }
     .sidebar {
       display: block;
       position: sticky;
@@ -46,5 +50,53 @@ main {
 
   h1 {
     font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: $screen-xlarge) {
+  #component-cover-image ~ main {
+    margin-top: 0; // so that the side bar is flush with the top of the image
+    header {
+      background-color: var(--color-background);
+      z-index: 11;
+      grid-column: 1 / 2;
+      border-radius: 1rem 1rem 0 0;
+      margin: calc(-1 * var(--width-margin));
+      margin-bottom: calc(-1.5 * var(--width-margin));
+      margin-top: 0;
+      padding: var(--width-margin);
+      padding-bottom: calc(1.5 * var(--width-margin));
+    }
+    #content {
+      grid-row: 2 / 3;
+      background-color: var(--color-background);
+    }
+    .sidebarContainer {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+  }
+}
+
+#component-cover-image {
+  z-index: 1;
+  @media (min-width: $screen-xlarge) {
+    margin-bottom: -$top-image-overlap;
+  }
+  box-shadow: 0 10px 30px 2px var(--color-cover-shadow-spread), 0 2px 5px 0 var(--color-cover-shadow-focus);
+  background-color: var(--color-neutral-60);
+  img {
+    width: 100%;
+    max-width: max(80vw, 1600px);
+    margin: 0 auto;
+  }
+
+  .artDirected {
+    @media (min-width: $screen-mid) {
+      > div:first-child {
+        // for wide screen, use wide image aspect ratio
+        padding-top: calc(100% / $cover-wide-ar) !important;
+      }
+    }
   }
 }

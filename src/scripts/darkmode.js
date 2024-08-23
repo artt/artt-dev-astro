@@ -1,7 +1,7 @@
 
 import { animate } from 'popmotion'
 
-import styleDefinitions from '@styles/_darkmode.module.scss'
+import styleDefinitions from '@/styles/_darkmode.module.scss'
 
 const colorTypes = styleDefinitions.colorTypes.replaceAll('\"', "").split(',').map((x) => x.trim())
 

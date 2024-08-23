@@ -1,15 +1,17 @@
 ---
-import Header from '@components/Header.astro';
-import Footer from '@components/Footer.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import TitleBlock from '@/components/TitleBlock.astro';
 import { ViewTransitions } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
 import { Image } from 'astro:assets';
 
+import coverImage from '@/images/abstract.png';
+
 const { pageTitle } = Astro.props;
 
-import '@styles/global.scss';
-import '@styles/layout.scss';
-import TitleBlock from '@components/TitleBlock.astro';
+import '@/styles/global.scss';
+import '@/styles/layout.scss';
 
 ---
 
@@ -27,13 +29,15 @@ import TitleBlock from '@components/TitleBlock.astro';
     <script is:inline data-astro-rerun src="/loadTheme.js" />
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
-    <!-- cover -->
-    <main class="cap-width pt-[--height-navbar] split">
-      <!-- titleblock -->
+    <div id="component-cover-image">
+      <Image src={coverImage} alt="" />
+    </div>
+    <main class="cap-width split">
       <TitleBlock title="Test" subtitle="Subtitle" date="2020-01-01" />
       <div id="content">
         <slot />
       </div>
+      <div id="component-after-body">afterbody</div>
       <div>sidebar</div>
     </main>
     <div id="component-spacer" class="spacer" />
