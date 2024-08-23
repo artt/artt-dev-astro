@@ -91,9 +91,10 @@ main {
     width: 100%;
     max-width: max(80vw, 1600px);
     margin: 0 auto;
+    aspect-ratio: $cover-tall-ar;
+    object-fit: cover;
     @media (min-width: $screen-mid) {
       aspect-ratio: $cover-wide-ar;
-      object-fit: cover;
     }
   }
 
