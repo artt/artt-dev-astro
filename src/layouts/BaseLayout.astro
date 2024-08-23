@@ -1,13 +1,19 @@
 ---
 import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 import { ViewTransitions } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
+import { Image } from 'astro:assets';
 
 const { pageTitle } = Astro.props;
 
-import '../styles/global.scss';
+import '@styles/global.scss';
+import '@styles/layout.scss';
+import TitleBlock from '@components/TitleBlock.astro';
 
 ---
+
+
 <html lang={getLocale(Astro.url)}>
   <head>
     <meta charset="utf-8" />
@@ -21,10 +27,17 @@ import '../styles/global.scss';
     <script is:inline data-astro-rerun src="/loadTheme.js" />
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
-    <main class="cap-width pt-[--height-navbar]">
-      <h1>{pageTitle}</h1>
-      <slot />
+    <!-- cover -->
+    <main class="cap-width pt-[--height-navbar] split">
+      <!-- titleblock -->
+      <TitleBlock title="Test" subtitle="Subtitle" date="2020-01-01" />
+      <div id="content">
+        <slot />
+      </div>
+      <div>sidebar</div>
     </main>
+    <div id="component-spacer" class="spacer" />
+    <Footer />
   </body>
 </html>
 <script src="../scripts/darkmode.js" />

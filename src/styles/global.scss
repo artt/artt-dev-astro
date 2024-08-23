@@ -18,7 +18,6 @@ body {
   font-family: var(--font-body);
   background-color: var(--color-background);
   color: var(--color-text);
-  overflow-x: hidden;
 }
 
 a {
@@ -86,8 +85,3 @@ a {
   }
 }
 
-main {
-  h1 {
-    font-size: 3rem;
-  }
-}

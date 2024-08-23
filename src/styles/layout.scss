@@ -1,0 +1,50 @@
+@import "globalVariables";
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+
+  display: grid;
+  // https://css-tricks.com/preventing-a-grid-blowout/
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(1.5*var(--width-margin)) var(--width-margin);
+
+  // margin width for the small screen is a bit too small
+  margin-top: calc(2 * var(--width-margin));
+  @media screen and (min-width: $screen-mid) {
+    margin-top: var(--width-margin);
+  }
+
+  @media screen and (min-width: $screen-large) {
+    &.split {
+      grid-template-columns: minmax($post-min-width, $post-max-width) $side-width;
+      header {
+        grid-column: 1 / 3;
+      }
+    }
+    #content {
+      background-color: var(--color-background);
+    }
+    .afterBody {
+      grid-row: 3 / 4;
+      grid-column: 1 / 2;
+    }
+    &:not(.split) > .sidebarContainer {
+      display: none;
+    }
+    .sidebar {
+      display: block;
+      position: sticky;
+      top: 8rem;
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+}

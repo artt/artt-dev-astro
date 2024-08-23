@@ -11,7 +11,7 @@ interface Props {
 let { href, class: className, ...rest } = Astro.props;
 
 // active is used in header
-// putting this in the <script> tag will force the script to rerun when it's reloaded
+// putting this in the script tag will force the script to rerun when it's reloaded
 // which will cause a flash
 // we don't want that
 const pathname = Astro.url.pathname
