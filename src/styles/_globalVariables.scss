@@ -10,6 +10,27 @@ $top-image-overlap: 100px;
 $cover-tall-ar: 1.91;
 $cover-wide-ar: 2.5;
 
+$shadow: 0 6px 14px -3px rgba(black, .25), 0 4px 8px -4px rgba(black, .3), 0 -3px 8px -3px rgba(black, .025);
+$shadow-up: 0 -6px 14px -3px rgba(black, .15);
+
+$alert-size: 1.1rem;
+
+$alert-colors: (
+  "tip": "--x-green-color",
+  "info": "--x-grey-color",
+  "note": "--x-blue-color",
+  "warning": "--x-yellow-color",
+  "danger": "--x-red-color"
+);
+
+$category-colors: (
+  "art": "--x-yellow-color",
+  "dev": "--x-purple-color",
+  "journal": "--neutral-color-60",
+  "nerd": "--secondary-color",
+  "thoughts": "--x-green-color",
+);
+
 :root {
   --font-body: "Bai Jamjuree", "Mulish", Sans-serif;
   --font-heading: "Athiti", Sans-serif;

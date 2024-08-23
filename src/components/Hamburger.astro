@@ -69,9 +69,11 @@
 </div>
 
 <script>
-  const hamburger = document.getElementById('component-hamburger');
-  hamburger?.addEventListener('click', toggle);
-  function toggle() {
-    document.body.classList.toggle('menu-open');
-  }
+  document.addEventListener('astro:page-load', () => {
+    const hamburger = document.getElementById('component-hamburger');
+    hamburger?.addEventListener('click', toggle);
+    function toggle() {
+      document.body.classList.toggle('menu-open');
+    }
+  })
 </script>

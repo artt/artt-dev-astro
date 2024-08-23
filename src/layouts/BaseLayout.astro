@@ -8,13 +8,19 @@ import { Image } from 'astro:assets';
 
 import coverImage from '@/images/abstract.png';
 
-const { pageTitle } = Astro.props;
+interface BaseLayoutProps {
+  title: string;
+  subtitle: string;
+  date: string;
+  cover?: string;
+}
+
+const { title, subtitle, date, cover } = Astro.props;
 
 import '@/styles/global.scss';
 import '@/styles/layout.scss';
 
 ---
-
 
 <html lang={getLocale(Astro.url)}>
   <head>
@@ -22,7 +28,7 @@ import '@/styles/layout.scss';
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{title}</title>
     <ViewTransitions />
   </head>
   <body>
@@ -30,10 +36,14 @@ import '@/styles/layout.scss';
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
     <div id="component-cover-image">
-      <Image src={coverImage} alt="" />
+      <Image src={cover || coverImage} alt="" />
     </div>
     <main class="cap-width split">
-      <TitleBlock title="Test" subtitle="Subtitle" date="2020-01-01" />
+      <TitleBlock
+        title={title}
+        subtitle={subtitle}
+        date={date}
+      />
       <div id="content">
         <slot />
       </div>

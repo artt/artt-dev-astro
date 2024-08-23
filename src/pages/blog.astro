@@ -4,7 +4,7 @@ import { generateStaticPathFromEntry } from '@/scripts/genPaths';
 import { getLocale } from "astro-i18n-aut";
 import { getCollection } from 'astro:content';
 
-const pageTitle = "Blog Posts";
+const title = getLocale(Astro.url) === "th" ? "บล็อกล่าสุด" : "Latest blog posts"
 
 const blogEntries = await getCollection('blog')
 
@@ -32,11 +32,7 @@ const sortedBlogs = allBlogs.filter((entry) => entry !== null).sort((a, b) => {
 })
 
 ---
-<BaseLayout pageTitle={pageTitle}>
-  {getLocale(Astro.url) === "th"
-    ? <p>บล๊อกล่าสุด</p>
-    : <p>Latest blog posts</p>
-  }
+<BaseLayout title={title}>
   <ul>
     {sortedBlogs.map((entry) => (
       <li>

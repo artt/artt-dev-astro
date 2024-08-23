@@ -2,10 +2,10 @@ import { z, defineCollection } from 'astro:content'
 
 const blogCollection = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     date: z.date(),
-    cover: z.string(),
+    cover: image(),
     lang: z.enum(['th', 'en']).optional(),
     categories: z.array(z.string()),
     tags: z.array(z.string()),

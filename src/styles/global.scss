@@ -7,6 +7,10 @@ $primary-10: color-mix(in srgb, var(--color-primary) 10%, var(--color-background
 $secondary-50: color-mix(in srgb, var(--color-secondary) 40%, var(--color-background));
 $secondary-text: color-mix(in srgb, var(--color-secondary) 20%, var(--color-text));
 
+:root {
+  font-size: 18px;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -40,6 +44,103 @@ a {
   main .js-plotly-plot & {
     background-image: none;
   }
+}
+
+p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+blockquote {
+  // border: 1px solid;
+  // z-index: -1;
+  position: relative;
+  border-left: 0.5rem solid;
+  border-color: var(--color-primary);
+  background-color: $primary-10;
+  padding: 1rem 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px 1rem 1rem 4px;
+  box-shadow: $shadow;
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  @each $type, $color in $alert-colors {
+    &.alert-#{$type} {
+      border-left-color: var(#{$color});
+      background-color: color-mix(in srgb, var(#{$color}) 10%, var(--color-background));
+      .alert-title {
+        color: var(#{$color});
+        fill: var(#{$color});
+        font-family: var(--font-heading);
+        font-size: $alert-size;
+        font-weight: bold;
+        vertical-align: middle;
+        ~ p {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+@for $i from 2 through 6 {
+  h#{$i} {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    $h-sizes: 1.5rem 1.3rem 1.2rem 1.1rem 1.05rem;
+    $tmp: nth($h-sizes, $i - 1);
+    font-size: $tmp;
+    line-height: $tmp;
+    margin-top: 1.2*$tmp;
+    margin-bottom: 0.8*$tmp;
+    @media (min-width: $screen-mid) {
+      $h-sizes: 2rem 1.6rem 1.3rem 1.15rem 1.1rem;
+      $tmp: nth($h-sizes, $i - 1);
+      font-size: $tmp;
+      line-height: $tmp;
+      margin-top: 1.2*$tmp;
+      margin-bottom: 0.8*$tmp;
+    }
+    // .anchor svg {
+    // 	visibility: hidden;
+    // }
+    // &:hover .anchor svg,
+    // & .anchor:focus svg {
+    // 	visibility: visible;
+    // }
+  }
+}
+
+h2 {
+  border-bottom: 1px solid;
+  border-bottom-color: var(--color-heading);
+  text-shadow: -1px -1px 0 var(--color-background), 1px -1px 0 var(--color-background), -1px 1px 0 var(--color-background), 1px 1px 0 var(--color-background);
+}
+
+h3 {
+  color: var(--color-secondary);
+}
+
+@for $i from 5 through 6 {
+  h#{$i} {
+    color: var(--muted-heading-color);
+    font-family: var(--font-body);
+    font-weight: bold;
+  }
+}
+
+.footnotes {
+  border-top: 1px solid var(--text-color);
+  margin-top: 3rem;
+  font-size: 0.8rem;
+}
+
+#footnote-label {
+  display: none;
 }
 
 .cap-width {

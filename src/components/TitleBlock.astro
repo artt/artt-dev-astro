@@ -1,5 +1,8 @@
 ---
 const { title, subtitle, date } = Astro.props
+
+const d = new Date(date)
+const formattedDate = `${d.getFullYear()}⋅${d.getMonth() + 1}⋅${d.getDate()}`
 ---
 
 <style lang="scss">
@@ -11,6 +14,7 @@ const { title, subtitle, date } = Astro.props
       font-size: 2.5rem;
       font-family: var(--font-heading);
       line-height: 1.1;
+      font-weight: bold;
     }
     .subtitle{
       font-family: var(--font-heading);
@@ -26,6 +30,6 @@ const { title, subtitle, date } = Astro.props
 
 <header>
   <h1>{title}</h1>
-  <p class="subtitle">{subtitle}</p>
-  <time datetime={date}>{date}</time>
+  {subtitle && <p class="subtitle">{subtitle}</p>}
+  {date && <time datetime={date}>{formattedDate}</time>}
 </header>

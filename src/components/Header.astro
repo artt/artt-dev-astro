@@ -88,8 +88,20 @@ const navLinks = [
 
   #component-menu {
     height: 0;
-    transition: height var(--time-long);
+    transition-duration: var(--time-long);
+    &:before {
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-background);
+      opacity: 0.6;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      z-index: -1;
+    }
     body.menu-open & {
+      padding-top: 0.5rem;
       height: 200px;
     }
   }

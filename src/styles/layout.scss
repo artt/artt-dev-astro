@@ -20,6 +20,10 @@ main {
     margin-top: var(--width-margin);
   }
 
+  #content > :first-child {
+    margin-top: 0;
+  }
+
   @media screen and (min-width: $screen-large) {
     &.split {
       grid-template-columns: minmax($post-min-width, $post-max-width) $side-width;
@@ -48,9 +52,6 @@ main {
     }
   }
 
-  h1 {
-    font-size: 3rem;
-  }
 }
 
 @media screen and (min-width: $screen-xlarge) {
@@ -80,15 +81,20 @@ main {
 
 #component-cover-image {
   z-index: 1;
+  box-shadow: 0 10px 30px 2px var(--color-cover-shadow-spread), 0 2px 5px 0 var(--color-cover-shadow-focus);
+  background-color: var(--color-neutral-60);
   @media (min-width: $screen-xlarge) {
     margin-bottom: -$top-image-overlap;
   }
-  box-shadow: 0 10px 30px 2px var(--color-cover-shadow-spread), 0 2px 5px 0 var(--color-cover-shadow-focus);
-  background-color: var(--color-neutral-60);
+  
   img {
     width: 100%;
     max-width: max(80vw, 1600px);
     margin: 0 auto;
+    @media (min-width: $screen-mid) {
+      aspect-ratio: $cover-wide-ar;
+      object-fit: cover;
+    }
   }
 
   .artDirected {
