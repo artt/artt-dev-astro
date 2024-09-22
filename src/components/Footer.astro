@@ -1,6 +1,13 @@
 ---
+import Wave from '@/components/Wave.astro'
+
+const waveWidth = 2560
+const waveHeight = 120
 ---
 
 <footer>
+  <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`}>
+    <Wave />
+  </svg>
   XXX
 </footer>

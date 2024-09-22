@@ -20,7 +20,9 @@ export default defineConfig({
     format: "file",
   },
   integrations: [
-    tailwind(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
     mdx(),
     i18n({
       locales,

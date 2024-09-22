@@ -97,13 +97,4 @@ main {
       aspect-ratio: $cover-wide-ar;
     }
   }
-
-  .artDirected {
-    @media (min-width: $screen-mid) {
-      > div:first-child {
-        // for wide screen, use wide image aspect ratio
-        padding-top: calc(100% / $cover-wide-ar) !important;
-      }
-    }
-  }
 }

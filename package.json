@@ -19,6 +19,7 @@
     "color2k": "^2.0.3",
     "fast-glob": "^3.3.2",
     "popmotion": "^11.0.5",
+    "random-shapes": "^0.2.3",
     "remark-afm": "github:artt/remark-afm",
     "remark-directive": "^3.0.0",
     "sass": "^1.77.8",
