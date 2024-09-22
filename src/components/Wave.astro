@@ -1,0 +1,19 @@
+---
+import { genHLines } from "random-shapes"
+
+const waveWidth = 2560
+const waveHeight = 120
+const waveOptions = {
+  numLines: 1,
+  numControls: 3,
+  angleWindowSize: Math.PI / 8,
+}
+const waveA = genHLines(waveWidth, waveHeight, waveOptions)[0].curve + `V ${waveHeight} H 0 z`
+const waveB = genHLines(waveWidth, waveHeight, waveOptions)[0].curve + `V ${waveHeight} H 0 z`
+---
+
+<path d={waveA} />
+
+<script>
+  
+</script>
