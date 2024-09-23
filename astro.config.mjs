@@ -8,8 +8,18 @@ import sitemap from "@astrojs/sitemap";
 import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
 
-const locales = {th: "th-TH", en: "en-US"}
+import react from "@astrojs/react";
+
+// https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
+import path from "path";
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
+const locales = { th: "th-TH", en: "en-US" }
 const defaultLocale = "th"
+
 
 
 // https://astro.build/config
@@ -18,6 +28,21 @@ export default defineConfig({
   trailingSlash: "never",
   build: {
     format: "file",
+  },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler' // or "modern"
+        },
+      },
+    },
+    resolve: {
+      alias: {
+        // https://github.com/ngneat/falso/discussions/371
+        crypto: path.resolve(__dirname, "./src/emptyModule.ts"),
+      },
+    },
   },
   integrations: [
     tailwind({
@@ -39,6 +64,7 @@ export default defineConfig({
       },
       filter: filterSitemapByDefaultLocale({ defaultLocale }),
     }),
+    react()
   ],
   markdown: {
     syntaxHighlight: false,
