@@ -28,29 +28,29 @@ const Wave: React.FC<Props> = ({
   ...rest
 }) => {
   
-  const [path, setPath] = React.useState({d: getPath(), style: {}})
+  const [attributes, setAttributes] = React.useState({ d: getPath(), style: {} })
 
   function getPath() {
     return genHLines(width, height, options, override)[0].curve + pathSuffix
   }
 
-  function animatePath() {
+  function animatePath(setPath: boolean) {
     const time = duration[0] + Math.random() * (duration[1] - duration[0])
-    setPath({
-      d: genHLines(width, height, options, override)[0].curve + pathSuffix,
+    setAttributes({
+      d: getPath(),
       style: {
         transition: `d ${time}s cubic-bezier(${typeof easing === "string" ? easing : easing.join(", ")})`,
       },
     })
-    setTimeout(animatePath, time * 1000)
+    setTimeout(() => animatePath(true), time * 1000)
   }
 
   React.useEffect(() => {
-    animatePath()
+    animatePath(false)
   }, [])
 
   return (
-    <path {...path} className={className} />
+    <path {...attributes} className={className} />
   )
 }
 
