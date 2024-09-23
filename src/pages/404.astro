@@ -1,8 +1,9 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro"
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getLocale } from "astro-i18n-aut";
 
-
+const title = "404";
 ---
-<BaseLayout pageTitle="404">
-  <p>Page not found</p>
+<BaseLayout title={title}>
+  <p>Not found</p>
 </BaseLayout>
