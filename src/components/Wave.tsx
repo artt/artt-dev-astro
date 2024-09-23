@@ -1,8 +1,8 @@
 import React from "react"
 import { genHLines } from "random-shapes"
-import { log } from "node_modules/astro/dist/core/logger/core"
 
 type Props = {
+  initialSeed: string | number,
   width: number,
   height: number,
   options?: Object,
@@ -16,6 +16,7 @@ type Props = {
 }
 
 const Wave: React.FC<Props> = ({
+  initialSeed,
   width,
   height,
   options={},
@@ -28,13 +29,15 @@ const Wave: React.FC<Props> = ({
   ...rest
 }) => {
   
-  const [attributes, setAttributes] = React.useState({ d: getPath(), style: {} })
+  // need to set the initial seed to avoid complaining about props not match
+  const [attributes, setAttributes] = React.useState({ d: getPath(initialSeed), style: {} })
 
-  function getPath() {
-    return genHLines(width, height, options, override)[0].curve + pathSuffix
+  function getPath(seed?: string | number) {
+    seed = typeof seed === "number" ? seed.toString() : seed
+    return genHLines(width, height, {...options, seed: seed || ''}, override)[0].curve + pathSuffix
   }
 
-  function animatePath(setPath: boolean) {
+  function animatePath() {
     const time = duration[0] + Math.random() * (duration[1] - duration[0])
     setAttributes({
       d: getPath(),
@@ -42,11 +45,11 @@ const Wave: React.FC<Props> = ({
         transition: `d ${time}s cubic-bezier(${typeof easing === "string" ? easing : easing.join(", ")})`,
       },
     })
-    setTimeout(() => animatePath(true), time * 1000)
+    setTimeout(animatePath, time * 1000)
   }
 
   React.useEffect(() => {
-    animatePath(false)
+    animatePath()
   }, [])
 
   return (

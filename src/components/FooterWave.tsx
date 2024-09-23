@@ -15,6 +15,7 @@ export default function FooterWave() {
       {Array.from({ length: numLayers }).map((_, i) => (
         <Wave
           key={i}
+          initialSeed={i}
           width={waveWidth}
           height={waveHeight}
           options={waveOptions}
