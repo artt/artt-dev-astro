@@ -1,6 +1,7 @@
 @import "globalVariables";
 
 body {
+  margin: 0 auto;
   overflow-x: hidden;
   min-height: 100vh;
   display: flex;
@@ -88,9 +89,6 @@ main {
   }
   
   img {
-    width: 100%;
-    max-width: max(80vw, 1600px);
-    margin: 0 auto;
     aspect-ratio: $cover-tall-ar;
     object-fit: cover;
     @media (min-width: $screen-mid) {

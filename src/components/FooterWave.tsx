@@ -1,6 +1,6 @@
 import Wave from "./Wave"
 
-const waveWidth = 2560
+const waveWidth = 2400
 const waveHeight = 120
 const numLayers = 2
 const waveOptions = {
@@ -11,7 +11,7 @@ const waveOptions = {
 
 export default function FooterWave() {
   return (
-    <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`} style={{width: `${waveWidth}px`}}>
+    <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`} className="mx-auto" style={{width: `${waveWidth}px`}}>
       {Array.from({ length: numLayers }).map((_, i) => (
         <Wave
           key={i}

@@ -17,25 +17,27 @@ let { href, class: className, ...rest } = Astro.props;
 const pathname = Astro.url.pathname
 const isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
 
+const extraAttributes: { 'data-type'?: string, 'target'?: string, 'rel'?: string } = {}
+if (href.startsWith("http")) {
+  extraAttributes['data-type'] = "external"
+  extraAttributes.target = "_blank"
+  extraAttributes.rel = "noopener noreferrer"
+}
+else {
+  extraAttributes['data-type'] = "internal"
+}
+
+
 ---
 <script>
   import { getLink, getPreferredLang } from '@/scripts/lang'
   document.addEventListener('astro:page-load', () => {
-
-    const linkElements = document.querySelectorAll('a')
+    const linkElements = document.querySelectorAll('a[data-type="internal"]') as NodeListOf<HTMLAnchorElement>
     // loop over link elements
     linkElements.forEach(linkElement => {
-      // if link is external, add target="_blank" and rel="noopener noreferrer"
-      if (linkElement.pathname.startsWith("http")) {
-        linkElement.setAttribute('target', '_blank')
-        linkElement.setAttribute('rel', 'noopener noreferrer')
-      }
-      else {
-        // if link is internal, add /en to the href if preferred language is English
-        linkElement.href = getLink(linkElement.pathname, getPreferredLang())
-      }
+      // if link is internal, add /en to the href if preferred language is English
+      linkElement.href = getLink(linkElement.pathname, getPreferredLang())
     })
-
   })
 </script>
-<a href={href} class:list={[className, {active: isActive}]} {...rest}><slot /></a>
+<a href={href} class:list={[className, {active: isActive}]} {...rest} {...extraAttributes}><slot /></a>
