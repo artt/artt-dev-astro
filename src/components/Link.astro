@@ -40,4 +40,11 @@ else {
     })
   })
 </script>
-<a href={href} class:list={[className, {active: isActive}]} {...rest} {...extraAttributes}><slot /></a>
+<a
+  href={href}
+  class:list={[className, {active: isActive}]}
+  {...rest}
+  {...extraAttributes}
+>
+  <slot />
+</a>
