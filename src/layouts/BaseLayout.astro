@@ -1,6 +1,6 @@
 ---
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header/index.astro';
+import Footer from '@/components/Footer/index.astro';
 import TitleBlock from '@/components/TitleBlock.astro';
 import { ViewTransitions } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
@@ -8,14 +8,16 @@ import { Image } from 'astro:assets';
 
 import coverImage from '@/images/abstract.png';
 
-interface BaseLayoutProps {
+interface Props {
   title: string;
-  subtitle: string;
-  date: string;
+  showTitle?: boolean;
+  subtitle?: string;
+  date?: string;
   cover?: string;
+  noSplit?: boolean;
 }
 
-const { title, subtitle, date, cover } = Astro.props;
+const { title, showTitle=true, subtitle, date, cover, noSplit=false } = Astro.props;
 
 import '@/styles/tailwind.css';
 import '@/styles/global.scss';
@@ -39,12 +41,14 @@ import '@/styles/layout.scss';
     <div id="component-cover-image" class="max-width">
       <Image src={cover || coverImage} alt="" />
     </div>
-    <main class="cap-width split">
-      <TitleBlock
-        title={title}
-        subtitle={subtitle}
-        date={date}
-      />
+    <main class:list={["cap-width", {split: !noSplit}]}>
+      {showTitle &&
+        <TitleBlock
+          title={title}
+          subtitle={subtitle}
+          date={date}
+        />
+      }
       <div id="content">
         <slot />
       </div>

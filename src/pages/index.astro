@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getLocale } from "astro-i18n-aut";
+import Hero from '@/components/Hero';
 
 const title = "artt.dev";
 ---
-<BaseLayout title={title}>
+<BaseLayout title={title} noSplit showTitle={false}>
   {getLocale(Astro.url) === "th"
     ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
     : <p>This is the homepage</p>
   }
+  <Hero client:load />
 </BaseLayout>
