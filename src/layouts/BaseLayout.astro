@@ -40,6 +40,7 @@ import '@/styles/layout.scss';
     <Header />
     <div id="component-cover-image" class="max-width">
       <Image src={cover || coverImage} alt="" />
+      <!-- due to props thing -->
     </div>
     <main class:list={["cap-width", {split: !noSplit}]}>
       {showTitle &&
