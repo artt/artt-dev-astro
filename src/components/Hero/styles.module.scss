@@ -1,0 +1,78 @@
+@import "@/styles/globalVariables";
+
+// https://stackoverflow.com/a/39554003/3230090
+$hack: 500px;
+$height-small: 40vh;
+$height-large: 1000px;
+$max-height-large: 50vh;
+
+.heroSize {
+  position: relative;
+  height: $height-small;
+  @media only screen and (min-width: $screen-mid) {
+    height: $height-large;
+    max-height: $max-height-large;
+  }
+}
+
+.container {
+  font-size: 2rem;
+  overflow-x: hidden;
+  margin: -$hack 0 !important;
+  padding: $hack 0;
+  .waves {
+    width: 10000px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .top, .bottom {
+    font-size: 1.2em;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .top {
+    bottom: 50%;
+  }
+  .bottom {
+    font-size: 1em;
+    font-weight: 200;
+    bottom: unset;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    height: 4px;
+  }
+  .typewriter {
+    font-weight: 400;
+    padding-right: 0.1em;
+    border-right: 2px solid var(--text-color);
+    animation: blink 1s infinite;
+    &:global(.typing) {
+      animation: none;
+    }
+    @keyframes blink {
+      0%  { border-color: var(--text-color); }
+      49% { border-color: var(--text-color); }
+      50% { border-color: transparent; }
+      99% { border-color: transparent; }
+      100%  { border-color: var(--text-color); }
+    }
+  }
+  @media only screen and (min-width: $screen-mid) {
+    font-size: 3rem;
+    .waves {
+      top: 55%;
+    }
+    .top {
+      bottom: 50%
+    }
+    .bottom {
+      top: 55%;
+    }
+  }
+
+}

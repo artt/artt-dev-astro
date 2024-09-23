@@ -1,0 +1,135 @@
+---
+import Link from '@/components/Link.astro'
+import DayNight from '@/components/Header/DayNight.astro';
+import Hamburger from './Hamburger.astro';
+import LangSwitch from './LangSwitch.astro';
+
+const navLinks = [
+  { href: '/blog', text: 'Blog' },
+  { href: '/about', text: 'About' },
+  { href: '/contact', text: 'Contact' },
+]
+---
+
+<style lang="scss">
+
+  #component-header {
+    width: 100vw;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-secondary);
+    box-shadow: 0 0 10px 1px rgba(black, 0.1);
+    transition: height var(--time-long);
+    overflow: hidden;
+  }
+
+  #component-menu-backdrop {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(from var(--color-background-contrast) r g b / 50%);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity var(--time-long);
+    z-index: 10;
+    pointer-events: none;
+    body.menu-open & {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  #component-navbar nav {
+    a {
+      position: relative;
+      align-items: center;
+      padding: 0 0.75rem;
+      height: 100%;
+      opacity: 0.7;
+      color: var(--color-secondary);
+      display: flex;
+      transition: opacity var(--time-short), font-weight var(--time-short);
+      filter: none;
+      &:hover {
+        opacity: 1;
+        font-weight: 600;
+        &::after {
+          height: 4px;
+          width: 100%;
+        }
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0px;
+        width: 100%;
+        display: block;
+        background-color: var(--color-secondary);
+        transition: height var(--time-short);
+      }
+      &.active {
+        opacity: 1;
+        font-weight: 600;
+        color: var(--color-secondary);
+        box-sizing: border-box;
+        &:hover {
+          filter: none;
+        }
+        &::after {
+          height: 4px;
+        }
+      }
+    }
+  }
+
+  #component-menu {
+    height: 0;
+    transition-duration: var(--time-long);
+    &:before {
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-background);
+      opacity: 0.6;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '';
+      z-index: -1;
+    }
+    body.menu-open & {
+      padding-top: 0.5rem;
+      height: 200px;
+    }
+  }
+
+
+</style>
+
+<div id="component-menu-backdrop" />
+<header id="component-header" class="z-50">
+  <div class="absolute w-full h-[--height-navbar] bg-[--color-background]" />
+  <div id="component-navbar" class="relative flex h-[--height-navbar] z-50">
+    <div class="absolute cap-width flex items-center h-full md:self-end md:h-3/5 z-50">
+      <Link href="/" class="text-xl">artt.dev</Link>
+      <div class="spacer" />
+      <nav class="flex h-full hide-on-mobile">
+        {navLinks.map(({ href, text }) => (
+          <Link href={href}>{text}</Link>
+        ))}
+      </nav>
+      <LangSwitch />
+      <DayNight />
+      <Hamburger />
+    </div>
+  </div>
+  <nav id="component-menu" class="hide-on-desktop-block">
+    {navLinks.map(({ href, text }) => (
+      <Link href={href} class="block ml-6">{text}</Link>
+    ))}
+  </nav>
+</header>
+<div id="component-navbar-placeholder" class="h-[--height-navbar]" />
