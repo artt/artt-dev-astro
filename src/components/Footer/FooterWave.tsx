@@ -1,6 +1,6 @@
 import Wave from "../Wave"
 
-const waveWidth = 2400
+const waveWidth = 2560
 const waveHeight = 120
 const numLayers = 2
 const waveOptions = {

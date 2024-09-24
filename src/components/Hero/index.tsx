@@ -1,4 +1,5 @@
 import Wave from "@/components/Wave"
+import { WaveGroup } from "@/components/Wave"
 import Typewriter from "./Typewriter"
 import clsx from "clsx"
 
@@ -72,6 +73,15 @@ export default function Hero() {
     <div className={clsx(styles.heroSize, styles.container)}>
       <div className={clsx(styles.heroSize, styles.positioner)}>
         <div className={styles.waves}>
+          {/* <WaveGroup
+            numWaves={numLines * 2}
+            width={waveWidth}
+            height={waveHeight}
+            options={waveOptions}
+            override={override}
+            duration={[2, 10]}
+            otherAttributes={waveStyles.flat()}
+          /> */}
           <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`}>
             {[...Array(numLines * 2).keys()].map(i =>
               <Wave
@@ -81,12 +91,12 @@ export default function Hero() {
                 height={waveHeight}
                 options={waveOptions}
                 override={override}
-                className={styles.wave}
                 duration={[2, 10]}
                 {...waveStyles[i % 2][Math.floor(i / 2)]}
               />
             )}
           </svg>
+
         </div>
         <div className={styles.top}>
           Hello!

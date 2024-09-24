@@ -29,6 +29,10 @@ import '@/styles/layout.scss';
 
 ---
 
+<script define:vars={{coverImage}}>
+  console.log(coverImage)
+</script>
+
 <html lang={getLocale(Astro.url)}>
   <head>
     <meta charset="utf-8" />
@@ -43,8 +47,8 @@ import '@/styles/layout.scss';
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
     {!noCover &&
-      <div id="component-cover-image" class="max-width">
-        <Image src={cover || coverImage} alt="" />
+      <div id="component-cover-image" class="max-width" style={{backgroundImage: `url(${cover?.src || coverImage.src})`}}>
+        <Image src={cover || coverImage} alt="" class="mx-auto" />
         {/* due to props thing */}
       </div>
     }
