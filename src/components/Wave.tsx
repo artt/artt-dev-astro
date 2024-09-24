@@ -11,7 +11,8 @@ type Props = {
   delay?: number,
   easing?: string | number[],
   pathSuffix?: string,
-  class?: string,
+  className?: string,
+  // style?: Object,
   [x: string]: any,
 }
 
@@ -26,6 +27,7 @@ const Wave: React.FC<Props> = ({
   easing=[0.37, 0, 0.63, 1],
   pathSuffix="",
   className,
+  // style,
   ...rest
 }) => {
   
@@ -42,6 +44,7 @@ const Wave: React.FC<Props> = ({
     setAttributes({
       d: getPath(),
       style: {
+        // ...style,
         transition: `d ${time}s cubic-bezier(${typeof easing === "string" ? easing : easing.join(", ")})`,
       },
     })
@@ -53,7 +56,7 @@ const Wave: React.FC<Props> = ({
   }, [])
 
   return (
-    <path {...attributes} className={className} />
+    <path {...attributes} className={className} {...rest} />
   )
 }
 

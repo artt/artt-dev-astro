@@ -5,10 +5,13 @@ import Hero from '@/components/Hero';
 
 const title = "artt.dev";
 ---
-<BaseLayout title={title} noSplit showTitle={false}>
+<BaseLayout title={title} noSplit noCover noTitle>
+  <Hero client:load />
+  <div>Test</div>
   {getLocale(Astro.url) === "th"
     ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
     : <p>This is the homepage</p>
   }
-  <Hero client:load />
+  <p>This is the homepage</p>
+
 </BaseLayout>

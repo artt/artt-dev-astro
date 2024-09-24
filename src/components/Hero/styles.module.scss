@@ -16,10 +16,16 @@ $max-height-large: 50vh;
 }
 
 .container {
+  box-sizing: content-box;
   font-size: 2rem;
-  overflow-x: hidden;
   margin: -$hack 0 !important;
   padding: $hack 0;
+  display: flex;
+  justify-content: center;
+  .positioner {
+    width: var(--width-content);
+    overflow-y: clip;
+  }
   .waves {
     width: 10000px;
     position: absolute;

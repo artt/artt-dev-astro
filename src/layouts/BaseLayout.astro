@@ -8,16 +8,20 @@ import { Image } from 'astro:assets';
 
 import coverImage from '@/images/abstract.png';
 
-interface Props {
+// TODO
+// need to rename this to Props to get validation, etc.
+// but there seems to be a problem with cover... so let's do this for now
+interface TempProps {
   title: string;
-  showTitle?: boolean;
   subtitle?: string;
   date?: string;
   cover?: string;
+  noTitle?: boolean;
   noSplit?: boolean;
+  noCover?: boolean;
 }
 
-const { title, showTitle=true, subtitle, date, cover, noSplit=false } = Astro.props;
+const { title, subtitle, date, cover, noTitle=false, noSplit=false, noCover=false } = Astro.props;
 
 import '@/styles/tailwind.css';
 import '@/styles/global.scss';
@@ -38,12 +42,14 @@ import '@/styles/layout.scss';
     <script is:inline data-astro-rerun src="/loadTheme.js" />
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
-    <div id="component-cover-image" class="max-width">
-      <Image src={cover || coverImage} alt="" />
-      <!-- due to props thing -->
-    </div>
+    {!noCover &&
+      <div id="component-cover-image" class="max-width">
+        <Image src={cover || coverImage} alt="" />
+        {/* due to props thing */}
+      </div>
+    }
     <main class:list={["cap-width", {split: !noSplit}]}>
-      {showTitle &&
+      {!noTitle &&
         <TitleBlock
           title={title}
           subtitle={subtitle}
