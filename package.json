@@ -20,6 +20,7 @@
     "astro": "^4.12.3",
     "astro-i18n-aut": "^0.7.0",
     "color2k": "^2.0.3",
+    "fast-average-color-node": "^3.1.0",
     "fast-glob": "^3.3.2",
     "popmotion": "^11.0.5",
     "random-shapes": "^0.2.3",

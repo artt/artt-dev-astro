@@ -23,7 +23,6 @@ const switchTheme = (targetTheme, duration) => {
       document.body.style.setProperty(key, colorVariants[targetTheme][key])
     })
   }
-  console.log(targetTheme)
   Object.keys(colorVariants[targetTheme]).forEach((key) => {
     animate({
       from: document.body.style.getPropertyValue(key),

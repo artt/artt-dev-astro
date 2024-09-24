@@ -1,4 +1,7 @@
 ---
+import { getAverageColor } from 'fast-average-color-node';
+import { getImage } from "astro:assets";
+
 import Header from '@/components/Header/index.astro';
 import Footer from '@/components/Footer/index.astro';
 import TitleBlock from '@/components/TitleBlock.astro';
@@ -7,6 +10,10 @@ import { getLocale } from "astro-i18n-aut";
 import { Image } from 'astro:assets';
 
 import coverImage from '@/images/abstract.png';
+
+import '@/styles/tailwind.css';
+import '@/styles/global.scss';
+import '@/styles/layout.scss';
 
 // TODO
 // need to rename this to Props to get validation, etc.
@@ -21,17 +28,12 @@ interface TempProps {
   noCover?: boolean;
 }
 
-const { title, subtitle, date, cover, noTitle=false, noSplit=false, noCover=false } = Astro.props;
+const { title, subtitle, date, cover, xxx, noTitle=false, noSplit=false, noCover=false } = Astro.props;
 
-import '@/styles/tailwind.css';
-import '@/styles/global.scss';
-import '@/styles/layout.scss';
+const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
+
 
 ---
-
-<script define:vars={{coverImage}}>
-  console.log(coverImage)
-</script>
 
 <html lang={getLocale(Astro.url)}>
   <head>
@@ -47,7 +49,7 @@ import '@/styles/layout.scss';
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
     {!noCover &&
-      <div id="component-cover-image" class="max-width" style={{backgroundImage: `url(${cover?.src || coverImage.src})`}}>
+      <div id="component-cover-image" class="max-width" style={{ backgroundColor: coverColor }} >
         <Image src={cover || coverImage} alt="" class="mx-auto" />
         {/* due to props thing */}
       </div>

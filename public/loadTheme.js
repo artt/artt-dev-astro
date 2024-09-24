@@ -5,8 +5,6 @@
 
 // Change these if you use something different in your hook.
 
-console.log('loadTheme.js loaded');
-
 function setRootAttribute(targetTheme) {
   document.documentElement.setAttribute('data-theme', targetTheme)
 }

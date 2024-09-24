@@ -12,15 +12,15 @@ const blogCollection = defineCollection({
   }),
 })
 
-const pageCollection = defineCollection({
+const pagesCollection = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
-    cover: z.string().optional(),
+    cover: image().optional(),
   }),
 })
 
 export const collections = {
-  blog: blogCollection,
-  // page: pageCollection,
+  'blog': blogCollection,
+  'pages': pagesCollection,
 }

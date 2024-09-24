@@ -87,8 +87,6 @@ export const WaveGroup: React.FC<GroupProps> = ({
   otherAttributes,
 }) => {
 
-  console.log(otherAttributes)
-
   if (otherAttributes) {
     // check if otherAttributes is an object or an array
     if (Array.isArray(otherAttributes)) {
