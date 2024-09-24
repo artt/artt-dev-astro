@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { generateStaticPathFromEntry } from '@/scripts/genPaths';
 import { getLocale } from "astro-i18n-aut";
-import { getCollection } from 'astro:content';
+import { getCollection, type InferEntrySchema } from 'astro:content';
 
 const title = getLocale(Astro.url) === "th" ? "บล็อกล่าสุด" : "Latest blog posts"
 
@@ -28,7 +28,7 @@ const allBlogs = blogEntries.map((entry) => {
 
 // filter out the null values and sort by entry.data.date in descending order
 const sortedBlogs = allBlogs.filter((entry) => entry !== null).sort((a, b) => {
-  return b.entry?.data.date.getTime() - a.entry?.data.date.getTime()
+  return (b.entry?.data as InferEntrySchema<"blog">).date.getTime() - (a.entry?.data as InferEntrySchema<"blog">).date.getTime()
 })
 
 ---

@@ -15,23 +15,19 @@ import '@/styles/tailwind.css';
 import '@/styles/global.scss';
 import '@/styles/layout.scss';
 
-// TODO
-// need to rename this to Props to get validation, etc.
-// but there seems to be a problem with cover... so let's do this for now
-interface TempProps {
+interface Props {
   title: string;
   subtitle?: string;
   date?: string;
-  cover?: string;
+  cover?: ImageMetadata & { fsPath: string }; // a bit hacky here
   noTitle?: boolean;
   noSplit?: boolean;
   noCover?: boolean;
 }
 
-const { title, subtitle, date, cover, xxx, noTitle=false, noSplit=false, noCover=false } = Astro.props;
+const { title, subtitle, date, cover, noTitle=false, noSplit=false, noCover=false } = Astro.props;
 
 const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
-
 
 ---
 
