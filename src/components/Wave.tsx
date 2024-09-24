@@ -42,7 +42,6 @@ const Wave: React.FC<Props> = ({
     setAttributes({
       d: getPath(),
       style: {
-        // ...style,
         transition: `d ${time}s cubic-bezier(${typeof easing === "string" ? easing : easing.join(", ")})`,
       },
     })
@@ -106,6 +105,7 @@ export const WaveGroup: React.FC<GroupProps> = ({
     <svg viewBox={`0 0 ${width} ${height}`} className={"mx-auto"} style={{width: `${width}px`}}>
       {[...Array(numWaves).keys()].map(i => (
         <Wave
+          key={i}
           initialSeed={i}
           width={width}
           height={height}
