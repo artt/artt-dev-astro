@@ -73,7 +73,7 @@ export default function Hero() {
     <div className={clsx(styles.heroSize, styles.container)}>
       <div className={clsx(styles.heroSize, styles.positioner)}>
         <div className={styles.waves}>
-          {/* <WaveGroup
+          <WaveGroup
             numWaves={numLines * 2}
             width={waveWidth}
             height={waveHeight}
@@ -81,8 +81,8 @@ export default function Hero() {
             override={override}
             duration={[2, 10]}
             otherAttributes={waveStyles.flat()}
-          /> */}
-          <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`}>
+          />
+          {/* <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`}>
             {[...Array(numLines * 2).keys()].map(i =>
               <Wave
                 key={i}
@@ -95,7 +95,7 @@ export default function Hero() {
                 {...waveStyles[i % 2][Math.floor(i / 2)]}
               />
             )}
-          </svg>
+          </svg> */}
 
         </div>
         <div className={styles.top}>

@@ -24,7 +24,6 @@ $max-height-large: 50vh;
   justify-content: center;
   .positioner {
     width: var(--width-content);
-    overflow-y: clip;
   }
   .waves {
     width: 10000px;
