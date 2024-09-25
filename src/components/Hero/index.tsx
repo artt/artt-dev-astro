@@ -70,9 +70,9 @@ const waveOptions = {
 export default function Hero() {
 
   return(
-    <div className={clsx(styles.heroSize, styles.container)}>
+    <div className={clsx(styles.heroSize, styles.container, "pointer-events-none")}>
       <div className={clsx(styles.heroSize, styles.positioner)}>
-        <div className={styles.waves}>
+        <div className={clsx(styles.waves)}>
           <WaveGroup
             numWaves={numLines * 2}
             width={waveWidth}
@@ -82,27 +82,14 @@ export default function Hero() {
             duration={[2, 10]}
             otherAttributes={waveStyles.flat()}
           />
-          {/* <svg viewBox={`0 0 ${waveWidth} ${waveHeight}`}>
-            {[...Array(numLines * 2).keys()].map(i =>
-              <Wave
-                key={i}
-                initialSeed={i}
-                width={waveWidth}
-                height={waveHeight}
-                options={waveOptions}
-                override={override}
-                duration={[2, 10]}
-                {...waveStyles[i % 2][Math.floor(i / 2)]}
-              />
-            )}
-          </svg> */}
-
         </div>
-        <div className={styles.top}>
-          Hello!
-        </div>
-        <div className={styles.bottom}>
-          I’m <Typewriter className={styles.typewriter} />
+        <div className="pointer-events-auto">
+          <div className={styles.top}>
+            Hello!
+          </div>
+          <div className={styles.bottom}>
+            I’m <Typewriter className={styles.typewriter} />
+          </div>
         </div>
       </div>
     </div>

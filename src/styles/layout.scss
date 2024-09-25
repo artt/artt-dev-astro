@@ -83,9 +83,7 @@ main {
 #component-cover-image {
   z-index: 1;
   box-shadow: 0 10px 30px 2px var(--color-cover-shadow-spread), 0 2px 5px 0 var(--color-cover-shadow-focus);
-  // background-color: var(--color-neutral-60);
   background-size: 1px 1px;
-  
   
   @media (min-width: $screen-xlarge) {
     margin-bottom: -$top-image-overlap;
