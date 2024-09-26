@@ -43,7 +43,12 @@ const waveOptions = {
       <div class="flex gap-2">
         {socials.map(({ href, v, d }) => (
           <Link href={href}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="1.5rem" viewBox={`0 0 ${v} 512`} class="fill-[var(--color-text)]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1.5rem"
+              viewBox={`0 0 ${v} 512`}
+              class="fill-[var(--color-text)]"
+            >
               <path d={d} />
             </svg>
           </Link>
