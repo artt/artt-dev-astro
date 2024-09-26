@@ -21,11 +21,12 @@ interface Props {
   date?: string;
   cover?: ImageMetadata & { fsPath: string }; // a bit hacky here
   noTitle?: boolean;
+  noCap?: boolean;
   noSplit?: boolean;
   noCover?: boolean;
 }
 
-const { title, subtitle, date, cover, noTitle=false, noSplit=false, noCover=false } = Astro.props;
+const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false } = Astro.props;
 
 const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
 
@@ -50,7 +51,7 @@ const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname
         {/* due to props thing */}
       </div>
     }
-    <main class:list={["cap-width", {split: !noSplit}]}>
+    <main class:list={[{"cap-width": !noCap}, {split: !noSplit}]}>
       {!noTitle &&
         <TitleBlock
           title={title}
@@ -61,8 +62,10 @@ const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname
       <div id="content">
         <slot />
       </div>
-      <div id="component-after-body">afterbody</div>
-      <div>sidebar</div>
+      <div id="component-after-body">
+        <slot name="after-body" />
+      </div>
+      <div id="component-sidebar">sidebar</div>
     </main>
     <div id="component-spacer" class="spacer" />
     <Footer />

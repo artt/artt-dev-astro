@@ -1,0 +1,31 @@
+---
+import { WaveGroup } from "./Wave";
+
+const waveWidth = 2560
+const waveHeight = 120
+const waveOptions = {
+  numLines: 1,
+  numControls: 3,
+  angleWindowSize: Math.PI / 8,
+}
+---
+
+<section>
+  <div class="flex justify-center bg-[var(--color-background-top)]">
+    <WaveGroup
+      client:load
+      numWaves={1}
+      width={waveWidth}
+      height={waveHeight}
+      options={waveOptions}
+      pathSuffix={`V ${waveHeight} H 0 Z`}
+      duration={[10, 15]}
+      classNameSvg="shrink-0"
+      otherAttributes={{ fill: 'var(--color-background-section)' }}
+    />
+  </div>
+  <div class="bg-[--color-background-section] py-4">
+    <div class="cap-width">
+      <slot />
+    </div>
+</section>

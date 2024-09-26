@@ -67,6 +67,7 @@ type GroupProps = {
   delay?: number,
   easing?: string | number[],
   pathSuffix?: string,
+  classNameSvg?: string,                // className that applies to the svg
   className?: string,                   // className that applies for each wave
   otherAttributes?: Object | Object[],  // either a single object that applies to all waves, or an array of objects of length equal to numWaves
 }
@@ -82,6 +83,7 @@ export const WaveGroup: React.FC<GroupProps> = ({
   delay=0,
   easing=[0.37, 0, 0.63, 1],
   pathSuffix="",
+  classNameSvg,
   className,
   otherAttributes,
 }) => {
@@ -102,7 +104,7 @@ export const WaveGroup: React.FC<GroupProps> = ({
   }
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className={"mx-auto"} style={{width: `${width}px`}}>
+    <svg viewBox={`0 0 ${width} ${height}`} className={"mx-auto " + classNameSvg || ''} style={{width: `${width}px`}}>
       {[...Array(numWaves).keys()].map(i => (
         <Wave
           key={i}

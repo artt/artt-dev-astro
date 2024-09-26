@@ -98,3 +98,20 @@ main {
     }
   }
 }
+
+main:not(.split) #component-sidebar {
+  display: none;
+}
+
+section:nth-child(even) {
+  --color-background-top: var(--color-background);
+  --color-background-section: var(--color-background-alt);
+  &:last-child {
+    --background-color-section: var(--background-color);
+  }
+}
+
+section:nth-child(odd) {
+  --color-background-top: var(--color-background-alt);
+  --color-background-section: var(--color-background);
+}

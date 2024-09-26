@@ -5,31 +5,8 @@ const d = new Date(date)
 const formattedDate = `${d.getFullYear()}⋅${d.getMonth() + 1}⋅${d.getDate()}`
 ---
 
-<style lang="scss">
-
-  header {
-    position: relative;
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-family: var(--font-heading);
-      line-height: 1.1;
-      font-weight: bold;
-    }
-    .subtitle{
-      font-family: var(--font-heading);
-      margin: 0;
-      color: var(--color-secondary);
-    }
-    time {
-      font-size: 0.8rem;
-    }
-  }
-
-</style>
-
-<header>
-  <h1>{title}</h1>
-  {subtitle && <p class="subtitle">{subtitle}</p>}
-  {date && <time datetime={date}>{formattedDate}</time>}
+<header class="relative">
+  <h1 class="m-0 text-4xl font-heading font-bold">{title}</h1>
+  {subtitle && <p class="m-0 font-heading text-secondary">{subtitle}</p>}
+  {date && <time class="text-sm" datetime={date}>{formattedDate}</time>}
 </header>

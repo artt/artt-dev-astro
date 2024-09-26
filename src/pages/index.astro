@@ -2,15 +2,24 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getLocale } from "astro-i18n-aut";
 import Hero from '@/components/Hero';
+import Section from '@/components/Section.astro';
 
 const title = "artt.dev";
 ---
-<BaseLayout title={title} noSplit noCover noTitle>
+<BaseLayout title={title} noCap noSplit noCover noTitle>
   <Hero client:load />
-  <div>Test</div>
-  {getLocale(Astro.url) === "th"
-    ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
-    : <p>This is the homepage</p>
-  }
-  <p>This is the homepage</p>
+  <Section>
+    <div>Test</div>
+    {getLocale(Astro.url) === "th"
+      ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
+      : <p>This is the homepage</p>
+    }
+  </Section>
+  <Section>
+    xxx
+  </Section>
+  <Section>
+    xxx
+  </Section>
+  <Section />
 </BaseLayout>
