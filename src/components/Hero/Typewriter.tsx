@@ -25,11 +25,11 @@ export default function Typewriter({ className }: { className?: string }) {
   const maxWords = 7
 
   const firstrun = React.useRef(true)
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLSpanElement>(null)
   const letterIndex = React.useRef(0)
   const wordIndex = React.useRef(0)
   const [finalWord, setFinalWord] = React.useState("")
-  const words = React.useRef([])
+  const words = React.useRef<string[]>([])
   // const [words, setWords] = React.useState([])
 
   function shuffleWords() {

@@ -1,4 +1,3 @@
-import Wave from "@/components/Wave"
 import { WaveGroup } from "@/components/Wave"
 import Typewriter from "./Typewriter"
 import clsx from "clsx"
@@ -53,7 +52,7 @@ override.splice(6, 5,
 // TODO: make wave change colors
 // TODO: add "glistening" effect for the waves
 
-const rng = Array.from(new Array(numLines), (x, i) => i)
+const rng = Array.from(new Array(numLines), (_, i) => i)
 const stylesA = rng.map(x => {
   return {fill: "transparent", stroke: `hsl(${(Math.random()*360) + x/numLines*360}, 100%, 30%)`, strokeWidth: 1 + Math.random()*2}
 })

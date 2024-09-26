@@ -1,6 +1,5 @@
 ---
 import { getAverageColor } from 'fast-average-color-node';
-import { getImage } from "astro:assets";
 
 import Header from '@/components/Header/index.astro';
 import Footer from '@/components/Footer/index.astro';
@@ -28,7 +27,12 @@ interface Props {
 
 const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false } = Astro.props;
 
-const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
+// TODO: fix this
+let coverColor = "var(--color-background)"
+if (cover) {
+  coverColor = await getAverageColor(cover.fsPath, { algorithm: 'dominant' }).then(color => color.hex);
+}
+// const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
 
 ---
 

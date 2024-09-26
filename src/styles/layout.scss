@@ -90,6 +90,7 @@ main {
   }
   
   img {
+    width: 100%;
     max-width: max(80vw, 1600px);
     aspect-ratio: $cover-tall-ar;
     object-fit: cover;
