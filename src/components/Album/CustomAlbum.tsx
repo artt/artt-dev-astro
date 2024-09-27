@@ -35,19 +35,22 @@ const Album: React.FC<{ images: ImageMetadata[] }> = ({ images }) => {
       layout="rows"
       photos={images}
       render={{
-        photo: (_, { photo, width, height }) => (
-          <a
-            href={photo.src}
-            data-pswp-width={photo.width}
-            data-pswp-height={photo.height}
-          >
-            <img
-              src={photo.src}
-              width={width}
-              height={height}
-            />
-          </a>
-        )
+        photo: (_, { photo, width, height, index }) => {
+          return (
+            <a
+              key={index}
+              href={photo.src}
+              data-pswp-width={photo.width}
+              data-pswp-height={photo.height}
+            >
+              <img
+                src={photo.src}
+                width={width}
+                height={height}
+              />
+            </a>
+          )
+        },
       }}
     />
   )

@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
-
+import AutoImport from 'astro-auto-import';
 
 import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
@@ -48,6 +48,13 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    AutoImport({
+      imports: [
+        {
+          './src/components/Album': ['Album'],
+        },
+      ],
+    }),
     mdx(),
     i18n({
       locales,
@@ -64,7 +71,7 @@ export default defineConfig({
       },
       filter: filterSitemapByDefaultLocale({ defaultLocale }),
     }),
-    react()
+    react(),
   ],
   markdown: {
     syntaxHighlight: false,
