@@ -1,0 +1,162 @@
+@import "globalVariables";
+
+$block-padding: 0.75rem;
+$code-font-size: 0.8rem;
+$tab-width: 3px;
+$padding: 4px;
+$padding-left: 8px;
+$block-line-height: 1.5;
+
+.shiki.shiki-light {
+  animation: fade_in calc(3*var(--time-long));
+  :root[data-theme="dark"] & {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.shiki.shiki-dark {
+  animation: fade_in calc(3*var(--time-long));
+  :root[data-theme="light"] & {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes fade_in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+// regular code
+code {
+	font-family: var(--font-mono);
+	font-size: $code-font-size;
+	padding: calc($padding / 2) $padding;
+  :not(.shiki) > & {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box;
+    &::before {
+      content: '';
+      background-color: var(--color-neutral-10); //var(--code-background-color);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: $padding;
+    }
+  }
+}
+
+$annotation-colors: (
+  "add": "--x-green-color",
+  "remove": "--x-red-color",
+  "highlight": "--heading-color"
+);
+
+.shiki {
+  padding: $block-padding 0;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  background-color: var(--color-code-background);
+  font-size: $code-font-size;
+  line-height: $block-line-height;
+  overflow-x: auto;
+  code {
+    padding: 0;
+    width: max-content;
+    display: block;
+    min-width: 100%;
+  }
+  .line {
+    display: inline-block;
+    width: 100%;
+    min-height: calc($code-font-size * $block-line-height);
+    // max-height: calc($code-font-size * $block-line-height);
+    padding: 0 $block-padding;
+    padding-left: calc($block-padding + $padding-left);
+    box-sizing: border-box;
+
+    @each $type, $color in $annotation-colors {
+      &.sh--#{$type} {
+        --color: var(#{$color});
+      }
+    }
+
+    &.sh--add,
+    &.sh--remove,
+    &.sh--highlight {
+      position: relative;
+      color: var(--color);
+      border-left: $tab-width solid var(--color);
+      padding-left: calc($block-padding + $padding-left - $tab-width);
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color);
+        opacity: 0.12;
+      }
+    }
+
+    &.sh--add,
+    &.sh--remove {
+      &::after {
+        position: absolute;
+        top: 0;
+        left: $padding;
+        height: 100%;
+      }
+    }
+
+    &.sh--add::after {
+      content: '+';
+    }
+    &.sh--remove::after {
+      content: '-';
+    }
+
+    .shiki-line-empty {
+      &::after {
+        content: '\200b';
+      }
+    }
+
+  }
+
+  // tab sizes
+  tab-size: 2;
+  &.shiki-lang-python {
+    tab-size: 4;
+  }
+
+  &::-webkit-scrollbar {
+    background-color: var(--color-code-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-neutral-20);
+    border: 4px solid var(--color-code-background);
+    border-radius: 100px;
+    &:hover {
+      background-color: var(--color-neutral-40);
+    }
+  }
+
+}
+
+.sh--focus ~ .line:not(.sh--focus),
+.line:not(.sh--focus):has(~ .sh--focus) {
+  filter: blur(1.5px);
+  transition: filter var(--time-short);
+}
+/* reset blur on hover */
+.shiki:hover .line {
+  filter: blur(0);
+}

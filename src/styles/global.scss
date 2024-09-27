@@ -1,6 +1,7 @@
 @import "globalVariables";
 @import "fonts.css";
 @import "darkmode";
+@import "code";
 // @import "code";
 
 $primary-10: color-mix(in srgb, var(--color-primary) 10%, var(--color-background));

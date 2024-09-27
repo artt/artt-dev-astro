@@ -1,0 +1,255 @@
+---
+title: Using IMF's Data Services API
+date: 2023-08-03
+lang: en
+subtitle: A quick guide to using IMF's Data Services API
+cover: ./cover.jpg
+categories: [dev]
+tags:
+  - IMF
+  - API
+  - tutorial
+---
+
+I recently worked on a project that requires
+  the use of IMF's [Data Services](https://datahelp.imf.org/knowledgebase/articles/630877-data-services).
+Although the data is very good,
+  the [documentation for the API](https://datahelp.imf.org/knowledgebase/articles/667681-using-json-restful-web-service)
+  is a bit lacking.[^1]
+When [asked](https://datahelp.imf.org/knowledgebase/articles/1968408-how-to-use-the-api-python-and-r),
+  IMF staff points to [this tutorial](http://www.bd-econ.com/imfapi1.html),
+  which goes into details on how to use the API using Python.
+I thought it would be useful to have a more conceptual explanation of how the API works, so here it is.
+
+[^1]: There's another, perhaps more useful, article [here](https://datahelp.imf.org/knowledgebase/articles/2005918-api-response) which was not linked from the main page.
+
+# Find your Dataflow
+
+IMF's Data Services has a number of "dataflows" available.
+These are simply IMF's lingo for "databases".
+Examples are:
+* [Direction of Trade Statistics (DOTS)](https://data.imf.org/?sk=9D6028D4-F14A-464C-A2F2-59B2CD424B85&sId=1514498277103)
+* [International Reserves and and Foreign Currency Liquidity](https://data.imf.org/?sk=2dfb3380-3603-4d2c-90be-a04d8bbce237)
+* [International Financial Statistics](https://data.imf.org/?sk=4c514d48-b6ba-49ed-8ab9-52b0c1a0179b)
+
+To get the list of available dataflows, make a request to [the URL below](http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow):
+
+```
+http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow
+```
+
+:::note
+For the remainder of this article,
+  we'll replace the first part of the URL
+  
+```
+http://dataservices.imf.org/REST/SDMX_JSON.svc
+```
+
+with `...`. So the above URL becomes `.../Dataflow`.
+:::
+
+Let's say we're looking for data on international reserves.
+We can simply find the key word and we'll have the following:
+
+```json
+{
+  "@id": "DS-IRFCL",
+  "@version": "1.0",
+  "@agencyID": "IMF",
+  "@isFinal": "true",
+  "@xmlns": "http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure",
+  "Name": {
+    "@xml:lang": "en",
+    "#text": "International Reserves and Foreign Currency Liquidity (IRFCL)"
+  },
+  "KeyFamilyRef": {
+    // [sh!~~]
+    "KeyFamilyID": "IRFCL",
+    "KeyFamilyAgencyID": "IMF"
+  }
+},
+```
+
+Note the `KeyFamilyID` field (`IRFCL` in this case).
+This is the database ID we're looking for.
+
+# Find your Dimensions
+
+Once you have the dataflow ID, you can find out more about the data structure by looking at [`.../DataStructure/IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/DataStructure/IRFCL).
+More specifically, what we need are the dimensions of the dataset.
+Take a look in `Structure` > `KeyFamilies` > `KeyFamily` > `Components` > `Dimension` and we'll see something like this
+
+```json
+[
+  {
+    // [sh!~~]
+    "@conceptRef": "FREQ",
+    "@conceptVersion": "1.0",
+    "@conceptSchemeRef": "IRFCL",
+    "@conceptSchemeAgency": "IMF",
+    "@codelist": "CL_FREQ",
+    "@codelistVersion": "1.0",
+    "@codelistAgency": "IMF",
+    "@isFrequencyDimension": "true"
+  },
+  {
+    // [sh!~~]
+    "@conceptRef": "REF_AREA",
+    "@conceptVersion": "1.0",
+    "@conceptSchemeRef": "IRFCL",
+    "@conceptSchemeAgency": "IMF",
+    "@codelist": "CL_AREA_IRFCL",
+    "@codelistVersion": "1.0",
+    "@codelistAgency": "IMF"
+  },
+  {
+    // [sh!~~]
+    "@conceptRef": "INDICATOR",
+    "@conceptVersion": "1.0",
+    "@conceptSchemeRef": "IRFCL",
+    "@conceptSchemeAgency": "IMF",
+    "@codelist": "CL_INDICATOR_IRFCL",
+    "@codelistVersion": "1.0",
+    "@codelistAgency": "IMF"
+  },
+  {
+    // [sh!~~]
+    "@conceptRef": "REF_SECTOR",
+    "@conceptVersion": "1.0",
+    "@conceptSchemeRef": "IRFCL",
+    "@conceptSchemeAgency": "IMF",
+    "@codelist": "CL_SECTOR_IRFCL",
+    "@codelistVersion": "1.0",
+    "@codelistAgency": "IMF"
+  }
+]
+```
+
+<div id="dimensions" />
+
+This tells us that this dataset has four dimensions:
+1. `FREQ`
+2. `REF_AREA`
+3. `INDICATOR`
+4. `REF_SECTOR`
+
+# Find your CodeList
+
+For each of these dimensions (aside from `FREQ`), you can find which values are available by looking at the corresponding codelist at `.../CodeList/[@codelist]`.
+For example, you can view which indicators are in this dataset by going to [`.../CodeList/CL_INDICATOR_IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/CodeList/CL_INDICATOR_IRFCL).
+The applicable values could be found under `Structure` > `CodeLists` > `CodeList` > `Code`.
+
+```json
+[
+  {
+    "@value": "IARO_BP6_EUR",
+    "Description": {
+      "@xml:lang": "en",
+      "#text": "Assets, Reserve assets, Other reserve assets, Euro"
+    }
+  },
+  {
+    "@value": "IARO_BP6_XDC",
+    "Description": {
+      "@xml:lang": "en",
+      "#text": "Assets, Reserve assets, Other reserve assets, National Currency"
+    }
+  },
+  {
+    "@value": "IARO_BP6_USD",
+    "Description": {
+      "@xml:lang": "en",
+      "#text": "Assets, Reserve assets, Other reserve assets, US Dollars"
+    }
+  },
+  // ...
+]
+```
+
+# Get your data
+
+Now that we know the dimensions and the possible values for each dimension, we can finally get the data.
+IMF's Data Services has a method called `CompactData`.
+Here's a template:
+
+```
+.../CompactData/[@dataflow]/[@dimension1].[@dimension2].….[@dimensionN]
+```
+
+For the last part, we need to put in a code for each dimension, separated by a dot (`.`).
+The order of the dimension has to follow [the dimensions](#dimensions) found earlier.
+
+## Basic usage
+For the most basic usage (although not the most common one), specify one item per dimension.
+For example, to get a monthly data on foreign exchange reserves for Thailand whose source is the monetary authority,
+  use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH.RAFA_USD.S1X):
+
+```
+.../CompactData/IRFCL/M.TH.RAFA_USD.S1X
+                      ^ ^  ^        ^
+    Dimension         1 2  3        4
+```
+
+## More than one item in a dimension
+To add more than one code in a dimension,
+  use the plus sign (`+`) to separate each item within a dimension.
+For example, to get the aforementioned data for both Thailand and Malaysia,
+  use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH+MY.RAFA_USD.S1X):
+
+```
+.../CompactData/IRFCL/M.TH+MY.RAFA_USD.S1X
+                          ———
+```
+
+## All items in the dimension
+To include *all* codes in that dimension, don't put anything in that dimension.
+For example, to get the data for *all* countries,
+  use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M..RAFA_USD.S1X):
+
+```
+.../CompactData/IRFCL/M..RAFA_USD.S1X
+                       ——
+```
+
+:::note
+We still need to put the dot (`.`) to indicate that we're skipping that dimension.
+
+If the dimension you want to exclude is at the end, you can omit the last dot.
+In other words, `.../CompactData/IRFCL/M.TH.RAFA_USD` is equivalent to `.../CompactData/IRFCL/M.TH.RAFA_USD.`.
+:::
+
+You can, of course, combine these strategies.
+For example, to get annual data for all countries for two indicators, you use the [following URL](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD):
+
+```
+.../CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD
+```
+
+## Specifying start and end periods
+If we're only interested in data for a certain period,
+  we can specify the start and end periods using the `startPeriod` and `endPeriod` parameters.
+(We can also specify only one of them.)
+These can be in the form of `YYYY` or `YYYY-MM`.
+For example, to get the data for Thailand from July 2010 to 2012,
+  use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH.RAFA_USD?startPeriod=2010-07&endPeriod=2012):
+
+```
+.../CompactData/IRFCL/M.TH.RAFA_USD?startPeriod=2010-07&endPeriod=2012
+                                   ———————————————————————————————————
+```
+
+# Limitations
+IMF's Data Services has a rate limit of
+* 10 requests in 5 second window from one user (IP)
+* 50 requests per second overall on the application.
+
+The request should also not return more than 3000 series.
+(This limit could be found by the [`GetMaxSeriesInResult`](http://dataservices.imf.org/REST/SDMX_JSON.svc/GetMaxSeriesInResult) method.)
+
+# Wrapping up
+
+That's it!
+This should cover all the basics of using IMF's Data Services.
+There are more methods available to get things like metadata,
+  but I'll leave that for some other time.
