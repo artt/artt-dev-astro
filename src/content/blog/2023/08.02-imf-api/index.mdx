@@ -38,16 +38,17 @@ To get the list of available dataflows, make a request to [the URL below](http:/
 http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow
 ```
 
-:::note
-For the remainder of this article,
-  we'll replace the first part of the URL
-  
-```
-http://dataservices.imf.org/REST/SDMX_JSON.svc
-```
+<Block type="note">
+  For the remainder of this article,
+    we'll replace the first part of the URL
+    
+  ```
+  http://dataservices.imf.org/REST/SDMX_JSON.svc
+  ```
 
-with `...`. So the above URL becomes `.../Dataflow`.
-:::
+  with `...`. So the above URL becomes `.../Dataflow`.
+</Block>
+
 
 Let's say we're looking for data on international reserves.
 We can simply find the key word and we'll have the following:
@@ -174,7 +175,7 @@ IMF's Data Services has a method called `CompactData`.
 Here's a template:
 
 ```
-.../CompactData/[@dataflow]/[@dimension1].[@dimension2].….[@dimensionN]
+.../CompactData/[@dataflow]/[@dimension1].[@dimension2].....[@dimensionN]
 ```
 
 For the last part, we need to put in a code for each dimension, separated by a dot (`.`).
@@ -212,12 +213,12 @@ For example, to get the data for *all* countries,
                        ——
 ```
 
-:::note
+<Block type="note">
 We still need to put the dot (`.`) to indicate that we're skipping that dimension.
 
 If the dimension you want to exclude is at the end, you can omit the last dot.
 In other words, `.../CompactData/IRFCL/M.TH.RAFA_USD` is equivalent to `.../CompactData/IRFCL/M.TH.RAFA_USD.`.
-:::
+</Block>
 
 You can, of course, combine these strategies.
 For example, to get annual data for all countries for two indicators, you use the [following URL](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD):

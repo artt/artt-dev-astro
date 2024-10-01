@@ -38,9 +38,10 @@ code {
     display: inline-block;
     max-width: 100%;
     box-sizing: border-box;
+    // z-index: 0;
     &::before {
       content: '';
-      background-color: var(--color-neutral-10); //var(--code-background-color);
+      background-color: var(--color-code-background);
       position: absolute;
       top: 0;
       left: 0;
@@ -53,9 +54,9 @@ code {
 }
 
 $annotation-colors: (
-  "add": "--x-green-color",
-  "remove": "--x-red-color",
-  "highlight": "--heading-color"
+  "add": "--color-x-green",
+  "remove": "--color-x-red",
+  "highlight": "--color-heading"
 );
 
 .shiki {

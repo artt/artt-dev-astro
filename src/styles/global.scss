@@ -10,6 +10,7 @@ $secondary-text: color-mix(in srgb, var(--color-secondary) 20%, var(--color-text
 
 :root {
   font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 html {
@@ -54,7 +55,7 @@ p {
 
 blockquote {
   // border: 1px solid;
-  // z-index: -1;
+  z-index: -1;
   position: relative;
   border-left: 0.5rem solid;
   border-color: var(--color-primary);
@@ -71,6 +72,7 @@ blockquote {
   }
   @each $type, $color in $alert-colors {
     &.alert-#{$type} {
+      --alert-color: var(#{$color});
       border-left-color: var(#{$color});
       background-color: color-mix(in srgb, var(#{$color}) 10%, var(--color-background));
       .alert-title {
@@ -92,6 +94,7 @@ blockquote {
   h#{$i} {
     color: var(--color-heading);
     font-family: var(--font-heading);
+    font-weight: bold;
     $h-sizes: 1.5rem 1.3rem 1.2rem 1.1rem 1.05rem;
     $tmp: nth($h-sizes, $i - 1);
     font-size: $tmp;
@@ -193,3 +196,12 @@ h3 {
   }
 }
 
+ol, ul {
+  padding-inline-start: 40px;
+}
+ol {
+  list-style: decimal;
+}
+ul {
+  list-style: disc;
+}

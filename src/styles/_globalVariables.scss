@@ -16,11 +16,11 @@ $shadow-up: 0 -6px 14px -3px rgba(black, .15);
 $alert-size: 1.1rem;
 
 $alert-colors: (
-  "tip": "--x-green-color",
-  "info": "--x-grey-color",
-  "note": "--x-blue-color",
-  "warning": "--x-yellow-color",
-  "danger": "--x-red-color"
+  "tip": "--color-x-green",
+  "info": "--color-x-grey",
+  "note": "--color-x-blue",
+  "warning": "--color-x-yellow",
+  "danger": "--color-x-red"
 );
 
 $category-colors: (

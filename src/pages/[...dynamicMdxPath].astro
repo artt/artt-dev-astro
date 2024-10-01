@@ -2,8 +2,11 @@
 import { getCollection } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
+import AlertTitle from '@/components/AlertTitle.astro';
+import Test from '@/components/Test.astro';
 
 import { generateStaticPathFromEntry } from '@/scripts/genPaths';
+import Block from '@/components/Block.astro';
 
 export async function getStaticPaths() {
 
@@ -35,7 +38,15 @@ const { Content } = await entry.render()
 <MarkdownPostLayout frontmatter={entry.data}>
   <Content
     components={{
+      h1: "h2",
+      h2: "h3",
+      h3: "h4",
+      h4: "h5",
+      h5: "h6",
       a: Link,
+      Block,
+      AlertTitle,
+      Test,
     }}
   />
 </MarkdownPostLayout>

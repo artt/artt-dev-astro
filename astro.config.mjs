@@ -5,6 +5,9 @@ import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
 import AutoImport from 'astro-auto-import';
 
+import remarkHeadingId from "remark-custom-heading-id"
+import rehypeSlug from "rehype-slug"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
 
@@ -55,7 +58,6 @@ export default defineConfig({
         },
       ],
     }),
-    mdx(),
     i18n({
       locales,
       defaultLocale,
@@ -72,12 +74,18 @@ export default defineConfig({
       filter: filterSitemapByDefaultLocale({ defaultLocale }),
     }),
     react(),
+    mdx(),
   ],
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [
+      remarkHeadingId,
       remarkDirective,
-      remarkAfm
+      remarkAfm,
+    ],
+    rehypePlugins: [
+      rehypeSlug,
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }]
     ],
   },
 });

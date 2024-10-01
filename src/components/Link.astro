@@ -23,6 +23,9 @@ if (href.startsWith("http")) {
   extraAttributes.target = "_blank"
   extraAttributes.rel = "noopener noreferrer"
 }
+else if (href.startsWith("#")) {
+  extraAttributes['data-type'] = "anchor"
+}
 else {
   extraAttributes['data-type'] = "internal"
 }
@@ -45,6 +48,4 @@ else {
   class:list={[className, {active: isActive}]}
   {...rest}
   {...extraAttributes}
->
-  <slot />
-</a>
+><slot /></a>

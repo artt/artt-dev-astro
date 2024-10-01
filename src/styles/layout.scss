@@ -21,6 +21,11 @@ main {
     margin-top: var(--width-margin);
   }
 
+  #content {
+    position: relative;
+    z-index: 10;
+  }
+
   #content > :first-child {
     margin-top: 0;
   }
