@@ -31,7 +31,7 @@ export const ReactAlbum: React.FC<{ images: ImageMetadata[] }> = ({ images }) =>
     <React.Suspense fallback={<div>Loading...</div>}>
       <PhotoAlbum
         componentsProps={{
-          container: { className: "gallery" },
+          container: { className: "gallery my-8" },
         }}
         layout="rows"
         photos={images}
