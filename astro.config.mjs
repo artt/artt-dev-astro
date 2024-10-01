@@ -51,13 +51,13 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    AutoImport({
-      imports: [
-        {
-          './src/components/Album': ['Album'],
-        },
-      ],
-    }),
+    // AutoImport({
+    //   imports: [
+    //     {
+    //       './src/components/Album': ['Album'],
+    //     },
+    //   ],
+    // }),
     i18n({
       locales,
       defaultLocale,
@@ -81,7 +81,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkHeadingId,
       remarkDirective,
-      remarkAfm,
+      // remarkAfm,
     ],
     rehypePlugins: [
       rehypeSlug,

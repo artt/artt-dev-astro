@@ -1,0 +1,10 @@
+---
+// make a wrapper component so we don't have to go `client:load` on MDX files
+import { ReactAlbum } from './ReactAlbum';
+const { images } = Astro.props;
+---
+
+<ReactAlbum
+  client:load
+  images={images}
+/>

@@ -1,0 +1,83 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image as AstroImage } from 'astro:assets';
+import {imageDimensionsFromStream} from 'image-dimensions';
+
+
+type Props = {
+  src: string | ImageMetadata;
+  // src will be ImageMetadata type in case you use an image from your content and string in case you use some external image
+  alt: string;
+};
+
+let { src, alt } = Astro.props;
+
+let srcUrl, width, height;
+
+// TODO: this can be improved by not loading the entire image
+// in case src is string, load the image and get its width and height
+if (typeof src === 'string') {
+  try {
+    const { body } = await fetch(src);
+    const dimension = await imageDimensionsFromStream(body!);
+    if (dimension) {
+      width = dimension.width;
+      height = dimension.height;
+    }
+    else {
+      throw new Error('Failed to get image dimensions');
+    }
+  } catch (e) {
+    console.error(e);
+  } finally {
+    srcUrl = src;
+  }
+}
+else {
+  srcUrl = src.src;
+  width = src.width;
+  height = src.height;
+}
+
+---
+
+<script>
+  import 'photoswipe/style.css'
+  import pswpModule from 'photoswipe'
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+
+  const lightbox = new PhotoSwipeLightbox({
+    pswpModule,
+    gallery: 'figure.gallery-individual a',
+  })
+  lightbox.on('openingAnimationStart', () => {
+    document.body.classList.add('pswp-open')
+  })
+  lightbox.on('closingAnimationStart', () => {
+    document.body.classList.remove('pswp-open')
+  })
+  document.addEventListener(
+    'astro:page-load',
+    () => { if (lightbox) lightbox.init() },
+    { once: false },
+  )
+</script>
+
+<figure class="gallery-individual w-fit mx-auto my-8">
+  <a
+    href={srcUrl}
+    data-pswp-width={width}
+    data-pswp-height={height}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="lightbox-image nodecoration"
+  >
+  {
+    typeof src === 'string' ? (
+      <img src={src} alt={alt} class="rounded-md" />
+    ) : (
+      <AstroImage {src} {alt} class="rounded-md" />
+    )
+  }
+  </a>
+</figure>

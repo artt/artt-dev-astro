@@ -1,8 +1,10 @@
 ---
 const { title, subtitle, date } = Astro.props
 
-const d = new Date(date)
-const formattedDate = d.toISOString().split('T')[0].replaceAll('-', '⋅')
+let formattedDate = ''
+if (date) {
+  formattedDate = new Date(date).toISOString().split('T')[0].replaceAll('-', '⋅')
+}
 ---
 
 <header class="relative">
