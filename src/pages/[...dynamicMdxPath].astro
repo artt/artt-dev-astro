@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
-import AlertTitle from '@/components/AlertTitle.astro';
-import Test from '@/components/Test.astro';
 
 import { generateStaticPathFromEntry } from '@/scripts/genPaths';
 import Block from '@/components/Block.astro';
@@ -45,8 +43,6 @@ const { Content } = await entry.render()
       h5: "h6",
       a: Link,
       Block,
-      AlertTitle,
-      Test,
     }}
   />
 </MarkdownPostLayout>
