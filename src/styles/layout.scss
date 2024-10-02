@@ -51,10 +51,10 @@ main {
       grid-row: 3 / 4;
       grid-column: 1 / 2;
     }
-    .sidebar {
+    #component-sidebar > div {
       display: block;
       position: sticky;
-      top: 8rem;
+      top: 4rem;
     }
   }
 
@@ -78,7 +78,7 @@ main {
       grid-row: 2 / 3;
       background-color: var(--color-background);
     }
-    .sidebarContainer {
+    #component-sidebar {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
     }
@@ -107,6 +107,13 @@ main {
 
 main:not(.split) #component-sidebar {
   display: none;
+}
+
+#component-sidebar {
+  display: none;
+  @media screen and (min-width: $screen-large) {
+    display: block;
+  }
 }
 
 section:nth-child(even) {

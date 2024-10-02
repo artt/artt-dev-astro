@@ -33,10 +33,10 @@ const { entry, redirect } = Astro.props
 if (redirect) {
   return Astro.redirect(redirect)
 }
-const { Content } = await entry.render()
+const { Content, headings } = await entry.render()
 
 ---
-<MarkdownPostLayout frontmatter={entry.data}>
+<MarkdownPostLayout frontmatter={entry.data} headings={headings}>
   <Content
     components={{
       h1: "h2",

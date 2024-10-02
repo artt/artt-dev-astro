@@ -52,7 +52,6 @@ if (cover) {
     {!noCover &&
       <div id="component-cover-image" class="max-width" style={{ backgroundColor: coverColor }} >
         <Image src={cover || coverImage} alt="" class="mx-auto" />
-        {/* due to props thing */}
       </div>
     }
     <main class:list={[{"cap-width": !noCap}, {split: !noSplit}]}>
@@ -69,7 +68,9 @@ if (cover) {
       <div id="component-after-body">
         <slot name="after-body" />
       </div>
-      <div id="component-sidebar">sidebar</div>
+      <div id="component-sidebar">
+        <slot name="sidebar" />
+      </div>
     </main>
     <div id="component-spacer" class="spacer" />
     <Footer />
