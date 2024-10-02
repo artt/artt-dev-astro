@@ -7,6 +7,7 @@ import { generateStaticPathFromEntry } from '@/scripts/genPaths';
 import Block from '@/components/Block.astro';
 import Album from '@/components/Album/Album.astro';
 import ZoomableImage from '@/components/ZoomableImage.astro';
+import Plotter from '@/components/Plotter/Plotter.astro';
 
 export async function getStaticPaths() {
 
@@ -46,6 +47,7 @@ const { Content } = await entry.render()
       a: Link,
       Block,
       Album,
+      Plotter,
       img: ZoomableImage,
     }}
   />

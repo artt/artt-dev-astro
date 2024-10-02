@@ -51,13 +51,6 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    // AutoImport({
-    //   imports: [
-    //     {
-    //       './src/components/Album': ['Album'],
-    //     },
-    //   ],
-    // }),
     i18n({
       locales,
       defaultLocale,

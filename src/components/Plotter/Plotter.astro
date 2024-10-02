@@ -1,0 +1,7 @@
+---
+// make a wrapper component so we don't have to go `client:load` on MDX files
+import CustomHighcharts from './CustomHighcharts';
+const props = Astro.props;
+---
+
+<CustomHighcharts client:only="react" {...props} />
