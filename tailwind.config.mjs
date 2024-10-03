@@ -9,7 +9,8 @@ export default {
       },
       colors: {
         "primary": "var(--color-primary)",
-        "secondary": "var(--color-secondary)"
+        "secondary": "var(--color-secondary)",
+        "heading": "var(--color-heading)",
       },
     },
   },

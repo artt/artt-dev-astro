@@ -26,6 +26,10 @@ body {
   color: var(--color-text);
 }
 
+* {
+  scroll-margin-top: calc(var(--height-navbar) + 1rem);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -33,7 +37,7 @@ a {
   &:hover:not(.nodecoration) {
     filter: opacity(0.7);
   }
-  main :not(h1, h2, h3, h4, h5, h6) > &:not(.nodecoration) {
+  #content :not(h1, h2, h3, h4, h5, h6) > &:not(.nodecoration) {
     background-image: linear-gradient(rgba(black, 0) 50%, $secondary-50 50%);
     background-size: auto 140%;
     transition: background-position-y var(--time-short);
@@ -43,7 +47,7 @@ a {
     }
   }
   // remove effect for things we don't need
-  main .js-plotly-plot & {
+  #content .js-plotly-plot & {
     background-image: none;
   }
 }

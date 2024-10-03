@@ -10,6 +10,8 @@ import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 
 import react from "@astrojs/react";
 
@@ -74,11 +76,13 @@ export default defineConfig({
     remarkPlugins: [
       remarkHeadingId,
       remarkDirective,
+      remarkMath,
       // remarkAfm,
     ],
     rehypePlugins: [
       rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }]
+      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+      rehypeKatex,
     ],
   },
 });

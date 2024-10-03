@@ -14,5 +14,9 @@ console.log(headings)
   cover={frontmatter.cover}
 >
   <slot />
-  <Toc headings={headings} slot="sidebar"/>
+  <Toc
+    slot="sidebar"
+    title={frontmatter.title}
+    headings={headings}
+  />
 </BaseLayout>
