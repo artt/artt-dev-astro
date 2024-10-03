@@ -8,21 +8,23 @@ const { title, headings } = Astro.props;
 ---
 
 <style lang="scss">
+  nav {
+    --time-transition: 1s;
+  }
   nav > a {
     --color-item: color-mix(in srgb, var(--color-heading), rgba(0, 0, 0, 0) 30%);
     &.active {
       --color-item: var(--color-secondary);
     }
   }
-  nav > a {
+  #component-sidenav > a {
     padding: 0.12rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
     color: var(--color-item);
-    // border-left: 1px solid var(--color-item);
-    transition: color 0.1s;
+    transition: color var(--time-transition);
     filter: none;
     position: relative;
     &:not(.active):hover {
@@ -36,13 +38,13 @@ const { title, headings } = Astro.props;
       left: 0;
       top: 0;
       background-color: var(--color-item);
-      transition: width 0.1s;
+      transition: width var(--time-transition);
     }
     &.active::before {
       width: 4px;
     }
   }
-  nav > a:first-child {
+  #component-sidenav > a:first-child {
     color: var(--color-secondary);
   }
 </style>
@@ -62,6 +64,13 @@ const { title, headings } = Astro.props;
       setTimeout(() => {
         updateHeaderPositions()
         updateScrollPosition()
+        // set --time-transition in #component-sidenav to 0.1s
+        const sidenav = document.getElementById('component-sidenav')
+        if (sidenav) {
+          setTimeout(() => {
+            sidenav.style.setProperty('--time-transition', '0.1s')
+          }, 500)
+        }
       }, 1000)
     },
     { once: false },
@@ -87,10 +96,16 @@ const { title, headings } = Astro.props;
   }
 
   function updateScrollPosition() {
+    if (!headings.length) {
+      return
+    }
+    // get --height-navbar from root
+    const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--height-navbar'))
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
     // figure out which header is currently active
     let i
     for (i = 0; i < headings.length; i ++) {
-      if (window.scrollY < headings[i].top - 40) {
+      if (window.scrollY <= headings[i].top - ((navbarHeight + 1) * rootFontSize + 1)) {
         i = Math.max(i - 1, 0)
         break
       }
@@ -113,7 +128,7 @@ const { title, headings } = Astro.props;
   }
 </script>
 
-<nav class="font-heading">
+<nav id="component-sidenav" class="font-heading">
   <a href="#top">{title}</a>
   {headings.map((heading: Heading, i: number) => {
     return(
@@ -121,7 +136,7 @@ const { title, headings } = Astro.props;
         href={`#${heading.slug}`}
         aria-label="url"
         style={{
-          paddingLeft: `${heading.depth * 0.5}rem`,
+          paddingLeft: `${heading.depth * 0.75}rem`,
         }}
       >
         {heading.text}
