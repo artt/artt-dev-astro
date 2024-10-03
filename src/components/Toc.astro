@@ -1,0 +1,110 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+};
+const { title, headings } = Astro.props;
+---
+
+<style lang="scss">
+  nav > a {
+    --color-item: color-mix(in srgb, var(--color-heading), rgba(0, 0, 0, 0) 30%);
+    &.active {
+      --color-item: var(--color-secondary);
+    }
+  }
+  nav > a {
+    padding: 0.12rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    color: var(--color-item);
+    // border-left: 1px solid var(--color-item);
+    transition: color 0.1s;
+    filter: none;
+    position: relative;
+    &:hover {
+      --color-item: var(--color-heading);
+    }
+    &:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: var(--color-item);
+      transition: width 0.1s;
+    }
+    &.active::before {
+      width: 4px;
+    }
+  }
+  nav > a:first-child {
+    color: var(--color-secondary);
+  }
+</style>
+
+<script>
+
+  type HeaderPosition = {
+    top: number;
+    id: string;
+  }
+  let headerPositions: HeaderPosition[]
+
+  document.addEventListener(
+    'astro:page-load',
+    () => {
+      updateHeaderPositions()
+    },
+    { once: false },
+  )
+
+  window.addEventListener('scroll', updateScrollPosition)
+
+  function getCoords(elem: HTMLElement) {
+    const box = elem.getBoundingClientRect();
+    const top = box.top + window.scrollY;
+    return Math.round(top);
+  }
+
+  function updateHeaderPositions() {
+    const headings = document.querySelectorAll('#content > h2, #content > h3')
+    headerPositions = (Array.from(headings) as HTMLElement[]).map((heading: HTMLElement) => {
+      return {
+        top: getCoords(heading),
+        id: heading.id,
+      }
+    })
+  }
+
+  function updateScrollPosition() {
+    for (let i = 0; i < headerPositions?.length; i++) {
+      if (window.scrollY >= headerPositions[i].top - 40) {
+        document.querySelector('nav > a.active')?.classList.remove('active')
+        document.querySelector(`nav > a[href="#${headerPositions[i].id}"]`)?.classList.add('active')
+      }
+    }
+  }
+</script>
+
+<nav class="font-heading">
+  <a href="#top">{title}</a>
+  {headings.map((heading: Heading, i: number) => {
+    return(
+      <a
+        href={`#${heading.slug}`}
+        aria-label="url"
+        style={{
+          paddingLeft: `${heading.depth * 0.5}rem`,
+        }}
+      >
+        {heading.text}
+      </a>
+    )
+  })}
+  <!-- <div ref={refDot} className={styles.dot} /> -->
+</nav>
