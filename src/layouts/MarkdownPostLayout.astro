@@ -14,9 +14,11 @@ console.log(headings)
   cover={frontmatter.cover}
 >
   <slot />
-  <Toc
-    slot="sidebar"
-    title={frontmatter.title}
-    headings={headings}
-  />
+  {headings.length > 3 &&
+    <Toc
+      slot="sidebar"
+      title={frontmatter.title}
+      headings={headings}
+    />
+  }
 </BaseLayout>

@@ -6,7 +6,7 @@
 
 $primary-10: color-mix(in srgb, var(--color-primary) 10%, var(--color-background));
 $secondary-50: color-mix(in srgb, var(--color-secondary) 40%, var(--color-background));
-$secondary-text: color-mix(in srgb, var(--color-secondary) 20%, var(--color-text));
+$secondary-text: color-mix(in srgb, var(--color-secondary) 40%, var(--color-text));
 
 :root {
   font-size: 18px;
@@ -28,6 +28,10 @@ body {
 
 * {
   scroll-margin-top: calc(var(--height-navbar) + 1rem);
+}
+
+strong {
+  color: $secondary-text;
 }
 
 a {
