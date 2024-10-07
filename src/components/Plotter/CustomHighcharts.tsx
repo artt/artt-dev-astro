@@ -175,12 +175,10 @@ function CustomHighcharts({ options }: any) {
   }
 
   return(
-    <figure>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={finalOptions}
-      />
-    </figure>
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={finalOptions}
+    />
   )
 }
 

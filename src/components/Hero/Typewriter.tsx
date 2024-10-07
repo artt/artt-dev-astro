@@ -1,5 +1,5 @@
 import React from "react"
-import { shuffle } from "@/utils"
+import { shuffle } from "@/lib/utils"
 
 // mostly from https://codepen.io/Coding_Journey/embed/BEMgbX?height=600&default-tab=result&embed-version=2#html-box
 

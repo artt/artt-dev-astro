@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
 
-import { generateStaticPathFromEntry } from '@/scripts/genPaths';
+import { generateStaticPathFromEntry } from '@/lib/mdxUtils';
 import Block from '@/components/Block.astro';
 import Album from '@/components/Album/Album.astro';
 import ZoomableImage from '@/components/ZoomableImage.astro';

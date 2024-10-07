@@ -23,9 +23,10 @@ interface Props {
   noCap?: boolean;
   noSplit?: boolean;
   noCover?: boolean;
+  isMdx?: boolean;
 }
 
-const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false } = Astro.props;
+const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false } = Astro.props;
 
 // TODO: fix this
 let coverColor = "var(--color-background)"
@@ -65,7 +66,7 @@ if (cover) {
           date={date}
         />
       }
-      <div id="content">
+      <div id="content" data-is-mdx={isMdx}>
         <slot />
       </div>
       <div id="component-after-body">
@@ -79,4 +80,4 @@ if (cover) {
     <Footer />
   </body>
 </html>
-<script src="../scripts/darkmode.js" />
+<script src="../lib/darkmode.js" />

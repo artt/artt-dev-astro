@@ -8,6 +8,8 @@ const waveOptions = {
   numControls: 3,
   angleWindowSize: Math.PI / 8,
 }
+
+const { title } = Astro.props
 ---
 
 <section>
@@ -26,6 +28,9 @@ const waveOptions = {
   </div>
   <div class="bg-[--color-background-section] py-4">
     <div class="cap-width">
+      {title &&
+        <h2 class="text-center text-[var(--color-text)]">{title}</h2>
+      }
       <slot />
     </div>
 </section>

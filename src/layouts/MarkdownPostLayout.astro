@@ -10,6 +10,7 @@ const { frontmatter, headings } = Astro.props;
   subtitle={frontmatter.subtitle}
   date={frontmatter.date}
   cover={frontmatter.cover}
+  isMdx={true}
 >
   <slot />
   {headings.length > 3 &&

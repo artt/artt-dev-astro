@@ -3,20 +3,23 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getLocale } from "astro-i18n-aut";
 import Hero from '@/components/Hero';
 import Section from '@/components/Section.astro';
+import { getAllBlogPosts } from '@/lib/mdxUtils';
 
 const title = "artt.dev";
+
+const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url), 6)
+
 ---
+
 <BaseLayout title={title} noCap noSplit noCover noTitle>
-  <Hero client:load />
-  <Section>
-    <div>Test</div>
-    {getLocale(Astro.url) === "th"
-      ? <p>อันนี้หน้าแรกแบบภาษาไทย</p>
-      : <p>This is the homepage</p>
+  <Hero client:only="react" />
+  <Section
+    title={getLocale(Astro.url) === "th"
+      ? "บทความล่าสุด"
+      : "Latest blog posts"
     }
-  </Section>
-  <Section>
-    xxx
+  >
+    
   </Section>
   <Section>
     xxxyy

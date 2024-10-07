@@ -41,12 +41,12 @@ const icons = {
 
 <blockquote class={`alert-${type}`}>
   {title != '' &&
-    <h4 class="text-[var(--color-alert)]">
+    <h4 class="text-[var(--alert-color)]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={icons[type as IconType].viewBox}
         class="w-5 h-5 mr-1.5 inline-block align-middle"
-        fill="var(--color-alert)"
+        fill="var(--alert-color)"
       >
         <path fill-rule="evenodd" d={icons[type as IconType].d} />
       </svg>{title || type.charAt(0).toUpperCase() + type.slice(1)}</h4>

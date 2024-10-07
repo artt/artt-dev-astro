@@ -33,7 +33,7 @@ else {
 
 ---
 <script>
-  import { getLink, getPreferredLang } from '@/scripts/lang'
+  import { getLink, getPreferredLang } from '@/lib/lang'
   document.addEventListener('astro:page-load', () => {
     const linkElements = document.querySelectorAll('a[data-type="internal"]') as NodeListOf<HTMLAnchorElement>
     // loop over link elements

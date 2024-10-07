@@ -1,5 +1,5 @@
 import React from "react"
-import Plotter from "@/components/Plotter"
+import { LazyHighcharts } from "@/components/Plotter"
 import { quantile } from "d3"
 
 import j from './df_date.json'
@@ -117,15 +117,15 @@ export default function YearFilter() {
 	}
 
 	return(
-		<>
-			<Plotter options={options} />
+		<figure>
+			<LazyHighcharts options={options} />
 			<div style={{textAlign: `center`, fontSize: `0.8rem`}}>
 				<label>
 					<input type="checkbox" onChange={handle2020} defaultChecked={showAll} style={{marginRight: '0.5em'}} />
 					รวมข้อมูลปี 2563
 				</label>
 			</div>
-		</>
+		</figure>
 	)
 
 }
