@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
 
@@ -33,7 +33,7 @@ const { entry, redirect } = Astro.props
 if (redirect) {
   return Astro.redirect(redirect)
 }
-const { Content, headings } = await entry.render()
+const { Content, headings } = await render(entry)
 
 ---
 <MarkdownPostLayout frontmatter={entry.data} headings={headings}>

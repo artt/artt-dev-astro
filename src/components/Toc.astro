@@ -130,7 +130,7 @@ const { title, headings } = Astro.props;
 
 <nav id="component-sidenav" class="font-heading">
   <a href="#top">{title}</a>
-  {headings.map((heading: Heading, i: number) => {
+  {headings.map((heading: Heading) => {
     return(
       <a
         href={`#${heading.slug}`}

@@ -6,8 +6,11 @@ function removeDateFromSlug(slug: string) {
 
 export function generateStaticPathFromEntry(entry: Awaited<ReturnType<typeof getCollection>>[number], collection: string) {
 
-  // test if entry.id ends with .(en|th).mdx?
-  const matchBilingual = entry.id.match(/(?:(.*?)\/)?([^\/]*?)\.(th|en)\.mdx?$/)
+  // test if entry.filePath ends with .(en|th).mdx?
+  if (!entry.filePath)
+    return []
+
+  const matchBilingual = entry.filePath.match(`content\/${entry.collection}\/(?:(.*?)\/)?([^\/]*?)\.(th|en)\.mdx?$`)
 
   let mainSlug = ""
 
@@ -29,7 +32,7 @@ export function generateStaticPathFromEntry(entry: Awaited<ReturnType<typeof get
     }]
   }
   else {
-    mainSlug = `${collection}${entry.slug}`
+    mainSlug = `${collection}${entry.id}`
     mainSlug = removeDateFromSlug(mainSlug)
     // cannot infer language from file name, so try to see if it's specified in the frontmatter
     if (entry.data.lang === "en") {
