@@ -139,14 +139,14 @@ h3 {
 
 @for $i from 5 through 6 {
   h#{$i} {
-    color: var(--muted-heading-color);
+    color: var(--color-muted-heading);
     font-family: var(--font-body);
     font-weight: bold;
   }
 }
 
 .footnotes {
-  border-top: 1px solid var(--text-color);
+  border-top: 1px solid var(--color-text);
   margin-top: 3rem;
   font-size: 0.8rem;
 }

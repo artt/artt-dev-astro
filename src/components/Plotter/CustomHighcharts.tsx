@@ -4,7 +4,25 @@ import highchartsData from "highcharts/modules/data"
 import highchartsMore from "highcharts/highcharts-more"
 import highchartsAnnotations from "highcharts/modules/annotations"
 import deepmerge from "deepmerge"
-import React from 'react'
+
+Highcharts.dateFormats = {
+  q: function (timestamp) {
+    const date = new Date(timestamp)
+    return(Math.floor(date.getUTCMonth() / 3) + 1).toFixed(0);
+  }
+};
+highchartsData(Highcharts)
+highchartsMore(Highcharts)
+highchartsAnnotations(Highcharts)
+Highcharts.setOptions({
+  lang: {
+    weekdays: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"],
+    shortWeekdays: ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"],
+    shortMonths: ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."],
+    months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
+    thousandsSep: ",",
+  },
+})
 
 const commonStyles = {
   font: '--font-body',
@@ -80,8 +98,8 @@ function CustomHighcharts({ options }: any) {
       '#7f7f7f',  // middle gray
       // '#bcbd22',  // curry yellow-green
       // '#17becf'   // blue-teal
-      // "var(--neutral-color-60)",
-      // "var(--x-green-color)",
+      // "var(--color-neutral-60)",
+      // "var(--color-x-green)",
       // // "#90ed7d",
       // // "#f7a35c",
       // // "#e4d354",
@@ -155,28 +173,6 @@ function CustomHighcharts({ options }: any) {
       finalOptions[axis] = defaultAxisOptions
     }
   }
-
-  // // TODO: move this inside the component and check whether you need to load different modules
-  React.useEffect(() => {
-    Highcharts.dateFormats = {
-      q: function (timestamp) {
-        const date = new Date(timestamp)
-        return(Math.floor(date.getUTCMonth() / 3) + 1).toFixed(0);
-      }
-    };
-    highchartsData(Highcharts)
-    highchartsMore(Highcharts)
-    highchartsAnnotations(Highcharts)
-    Highcharts.setOptions({
-      lang: {
-        weekdays: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"],
-        shortWeekdays: ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"],
-        shortMonths: ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."],
-        months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
-        thousandsSep: ",",
-      },
-    })
-  }, [])
 
   return(
     <figure>

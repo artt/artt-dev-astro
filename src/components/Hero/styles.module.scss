@@ -54,17 +54,17 @@ $max-height-large: 50vh;
   .typewriter {
     font-weight: 400;
     padding-right: 0.1em;
-    border-right: 2px solid var(--text-color);
+    border-right: 2px solid var(--color-text);
     animation: blink 1s infinite;
     &:global(.typing) {
       animation: none;
     }
     @keyframes blink {
-      0%  { border-color: var(--text-color); }
-      49% { border-color: var(--text-color); }
+      0%  { border-color: var(--color-text); }
+      49% { border-color: var(--color-text); }
       50% { border-color: transparent; }
       99% { border-color: transparent; }
-      100%  { border-color: var(--text-color); }
+      100%  { border-color: var(--color-text); }
     }
   }
   @media only screen and (min-width: $screen-mid) {

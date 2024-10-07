@@ -120,7 +120,7 @@ section:nth-child(even) {
   --color-background-top: var(--color-background);
   --color-background-section: var(--color-background-alt);
   &:last-child {
-    --background-color-section: var(--background-color);
+    --background-color-section: var(--color-background);
   }
 }
 
