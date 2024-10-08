@@ -18,7 +18,7 @@ interface Props {
   title: string;
   subtitle?: string;
   date?: string;
-  cover?: ImageMetadata & { fsPath: string }; // a bit hacky here
+  cover?: ImageMetadata;
   noTitle?: boolean;
   noCap?: boolean;
   noSplit?: boolean;
@@ -29,11 +29,7 @@ interface Props {
 const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false } = Astro.props;
 
 // TODO: fix this
-let coverColor = "var(--color-background)"
-if (cover) {
-  coverColor = await getAverageColor(cover.fsPath, { algorithm: 'dominant' }).then(color => color.hex);
-}
-// const coverColor = await getAverageColor(cover?.fsPath || `${import.meta.dirname}/../images/abstract.png`, { algorithm: 'dominant' }).then(color => color.hex);
+const coverColor = await getAverageColor((cover?.src || coverImage.src).replace('/@fs', '').split('?')[0], { algorithm: 'dominant' }).then(color => color.hex);
 
 ---
 
@@ -54,7 +50,7 @@ if (cover) {
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <Header />
     {!noCover &&
-      <div id="component-cover-image" class="max-width" style={{ backgroundColor: coverColor }} >
+      <div id="component-cover-image" class="w-full" style={{ backgroundColor: coverColor }} >
         <Image src={cover || coverImage} alt="" class="mx-auto" />
       </div>
     }

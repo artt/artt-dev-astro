@@ -1,9 +1,11 @@
 ---
+import { formatDate } from "@/lib/utils"
+
 const { title, subtitle, date } = Astro.props
 
 let formattedDate = ''
 if (date) {
-  formattedDate = new Date(date).toISOString().split('T')[0].replaceAll('-', '⋅')
+  formattedDate = formatDate(date)
 }
 ---
 

@@ -15,3 +15,8 @@ export function shuffle(array: any[]) {
 
   return array;
 }
+
+export function formatDate(date: Date): string {
+  if (!date) return ''
+  return new Date(date).toISOString().split('T')[0].replaceAll('-', '⋅')
+}

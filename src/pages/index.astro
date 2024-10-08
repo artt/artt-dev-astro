@@ -4,6 +4,8 @@ import { getLocale } from "astro-i18n-aut";
 import Hero from '@/components/Hero';
 import Section from '@/components/Section.astro';
 import { getAllBlogPosts } from '@/lib/mdxUtils';
+import BlogCard from '@/components/BlogCard.astro';
+import CardList from '@/components/CardList.astro';
 
 const title = "artt.dev";
 
@@ -19,7 +21,7 @@ const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url), 6)
       : "Latest blog posts"
     }
   >
-    
+    <CardList entries={sortedBlogs} />
   </Section>
   <Section>
     xxxyy

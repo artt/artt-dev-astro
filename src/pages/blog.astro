@@ -1,18 +1,16 @@
 ---
+import CardList from '@/components/CardList.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getAllBlogPosts } from '@/lib/mdxUtils';
 import { getLocale } from "astro-i18n-aut";
+
+import writingImage from '@/images/writing.jpg';
 
 const title = getLocale(Astro.url) === "th" ? "บล็อกล่าสุด" : "Latest blog posts"
 
 const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
 
 ---
-<BaseLayout title={title}>
-  <ul>
-    {sortedBlogs.map((entry) => (
-      <li>
-        <a href={entry.mainSlug}>{entry.entry!.data.title}</a>
-      </li>
-    ))}
+<BaseLayout title={title} cover={writingImage} noSplit>
+  <CardList entries={sortedBlogs} />
 </BaseLayout>
