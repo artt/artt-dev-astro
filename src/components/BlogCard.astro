@@ -51,9 +51,9 @@ const { data, slug } = Astro.props
   <div class="bg-[var(--color-background-contrast)] p-3 relative">
     <div class="text-xs">{formatDate(data.date)}</div>
     <div class="font-heading text-lg">{data.title}</div>
-    <div class="absolute z-10 right-0 top-0 -translate-x-4 -translate-y-[10px] leading-none">
+    <div class="absolute z-10 right-0 top-0 -translate-x-4 -translate-y-[10px] leading-none flex gap-2">
       {data.categories.map((category: string) => (
-        <span class={`${category}`}>{category}</span>
+        <span class={`${category} relative`}>{category}</span>
       ))}
     </div>
   </div>
