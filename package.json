@@ -18,6 +18,7 @@
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "astro": "^5.0.0-beta.3",
+    "astro-embed": "^0.7.4",
     "astro-i18n-aut": "^0.7.0",
     "color2k": "^2.0.3",
     "d3": "^7.9.0",

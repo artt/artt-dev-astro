@@ -9,6 +9,8 @@ import Album from '@/components/Album/Album.astro';
 import ZoomableImage from '@/components/ZoomableImage.astro';
 import Plotter from '@/components/Plotter/Plotter.astro';
 
+import { Tweet, YouTube } from 'astro-embed';
+
 export async function getStaticPaths() {
 
   const blogEntries = await getCollection('blog')
@@ -49,6 +51,8 @@ const { Content, headings } = await render(entry)
       Album,
       Plotter,
       img: ZoomableImage,
+      Tweet,
+      YouTube,
     }}
   />
 </MarkdownPostLayout>
