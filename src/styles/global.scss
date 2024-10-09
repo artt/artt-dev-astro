@@ -109,6 +109,9 @@ blockquote {
     line-height: $tmp;
     margin-top: 1.2*$tmp;
     margin-bottom: 0.8*$tmp;
+    code {
+      font-size: 0.8*$tmp;
+    }
     @media (min-width: $screen-mid) {
       $h-sizes: 2rem 1.6rem 1.3rem 1.15rem 1.1rem;
       $tmp: nth($h-sizes, $i - 1);
@@ -116,6 +119,9 @@ blockquote {
       line-height: $tmp;
       margin-top: 1.2*$tmp;
       margin-bottom: 0.8*$tmp;
+      code {
+        font-size: 0.8*$tmp;
+      }
     }
   }
 }
