@@ -7,25 +7,35 @@ $padding: 4px;
 $padding-left: 8px;
 $block-line-height: 1.5;
 
-.shiki.shiki-light {
-  animation: fade_in calc(3*var(--time-long));
-  :root[data-theme="dark"] & {
-    display: none;
-    opacity: 0;
-  }
-}
+// .shiki.shiki-light {
+//   animation: fade_in calc(3*var(--time-long));
+//   :root[data-theme="dark"] & {
+//     display: none;
+//     opacity: 0;
+//   }
+// }
 
-.shiki.shiki-dark {
-  animation: fade_in calc(3*var(--time-long));
-  :root[data-theme="light"] & {
-    display: none;
-    opacity: 0;
-  }
-}
+// .shiki.shiki-dark {
+//   animation: fade_in calc(3*var(--time-long));
+//   :root[data-theme="light"] & {
+//     display: none;
+//     opacity: 0;
+//   }
+// }
 
-@keyframes fade_in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+// @keyframes fade_in {
+//   0% { opacity: 0; }
+//   100% { opacity: 1; }
+// }
+
+html[data-theme=dark] .astro-code,
+html[data-theme=dark] .astro-code span {
+  color: var(--shiki-dark) !important;
+  // background-color: var(--shiki-dark-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 // regular code
@@ -56,14 +66,14 @@ code {
 $annotation-colors: (
   "add": "--color-x-green",
   "remove": "--color-x-red",
-  "highlight": "--color-heading"
+  "highlighted": "--color-heading"
 );
 
-.shiki {
+.astro-code {
   padding: $block-padding 0;
   border-radius: 0.5rem;
   box-sizing: border-box;
-  background-color: var(--color-code-background);
+  background-color: var(--color-code-background) !important;
   font-size: $code-font-size;
   line-height: $block-line-height;
   overflow-x: auto;
@@ -81,16 +91,19 @@ $annotation-colors: (
     padding: 0 $block-padding;
     padding-left: calc($block-padding + $padding-left);
     box-sizing: border-box;
+    &:last-child {
+      display: none;
+    }
 
     @each $type, $color in $annotation-colors {
-      &.sh--#{$type} {
+      &.#{$type} {
         --color: var(#{$color});
       }
     }
 
     &.sh--add,
     &.sh--remove,
-    &.sh--highlight {
+    &.highlighted {
       position: relative;
       color: var(--color);
       border-left: $tab-width solid var(--color);
@@ -127,6 +140,11 @@ $annotation-colors: (
       &::after {
         content: '\200b';
       }
+    }
+
+    .highlighted-word {
+      background-color: var(--color);
+      color: red !important;
     }
 
   }

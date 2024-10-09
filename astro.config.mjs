@@ -8,9 +8,21 @@ import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 // import remarkAfm from "remark-afm"
+// import remarkCode from "remark-code"
 import remarkDirective from "remark-directive"
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+
+import {
+  transformerNotationDiff,
+  transformerNotationHighlight,
+  transformerNotationWordHighlight,
+  transformerNotationFocus,
+  transformerNotationErrorLevel,
+  // transformerRenderWhitespace,
+  transformerMetaHighlight,
+  transformerMetaWordHighlight,
+} from '@shikijs/transformers'
 
 import react from "@astrojs/react";
 
@@ -71,17 +83,34 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    syntaxHighlight: false,
+    // syntaxHighlight: true,
     remarkPlugins: [
       remarkHeadingId,
       remarkDirective,
       remarkMath,
-      // remarkAfm,
+      // remarkCode,
+      // [remarkAfm, {x: 5}],
     ],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
       rehypeKatex,
     ],
+    shikiConfig: {
+      themes: {
+        light: 'light-plus',
+        dark: 'dark-plus',
+      },
+      transformers: [
+        transformerNotationDiff(),
+        transformerNotationHighlight(),
+        transformerNotationWordHighlight(),
+        transformerNotationFocus(),
+        transformerNotationErrorLevel(),
+        // transformerRenderWhitespace(),
+        transformerMetaHighlight(),
+        transformerMetaWordHighlight(),
+      ],
+    }
   },
 });
