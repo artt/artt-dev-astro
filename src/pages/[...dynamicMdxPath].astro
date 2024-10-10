@@ -10,6 +10,7 @@ import ZoomableImage from '@/components/ZoomableImage.astro';
 import Plotter from '@/components/Plotter/Plotter.astro';
 
 import { Tweet, YouTube } from 'astro-embed';
+import Kbd from '@/components/Kbd.astro';
 
 export async function getStaticPaths() {
 
@@ -53,6 +54,7 @@ const { Content, headings } = await render(entry)
       img: ZoomableImage,
       Tweet,
       YouTube,
+      Kbd,
     }}
   />
 </MarkdownPostLayout>
