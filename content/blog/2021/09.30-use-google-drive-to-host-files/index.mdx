@@ -1,0 +1,40 @@
+---
+title: How to use Google Drive to host files
+date: 2021-09-30
+lang: en
+subtitle: This short tutorial will guide you on how to host and link to files on Google Drive.
+cover: ./cloud.jpg
+categories: [dev]
+tags:
+  - tutorial
+  - google drive
+  - dev
+---
+
+Once in a while you need a place to host your static files.
+Wouldn't it be nice if there's a free... oh! Google Drive!
+
+# Steps
+
+1. The first step is, well, upload your file to Google Drive. Be sure the folder's access type to "Anyone with the link".
+
+2. Right click on the file you want and click **Get link**.
+
+3. A dialog box will open showing you the link to the file. This should look something like,
+  ```
+  https://drive.google.com/file/d/yourfileid/view?usp=sharing
+  ```
+  The `yourfileid` is your file ID which will be unique to that particular file.
+  It's 33 characters long and could contain alphanumeric characters, plus `-` and `_`.
+  Copy this down somewhere. You'll need it later.
+
+4. Well, this is where you need your file ID. The URL of the file that's accessible to anyone is
+  ```
+  https://drive.google.com/uc?id=yourfileid
+  ```
+
+5. Done!
+
+:::note
+This article is probably incomplete, but should serve its purpose for now.
+:::
