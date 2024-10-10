@@ -2,13 +2,14 @@
 
 body {
   margin: 0 auto;
-  overflow-x: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 main {
+  overflow-x: clip;
 
   display: grid;
   // https://css-tricks.com/preventing-a-grid-blowout/

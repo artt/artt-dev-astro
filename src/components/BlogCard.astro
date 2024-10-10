@@ -48,9 +48,10 @@ const { data, slug } = Astro.props
 
 <Link href={slug} class="nodecoration rounded-md overflow-hidden relative">
   <Image src={data.cover || data.thumbnail} alt="" style={{ aspectRatio: 1.5, objectFit: 'cover' }} width="800" />
-  <div class="bg-[var(--color-background-contrast)] p-3 relative">
-    <div class="text-xs">{formatDate(data.date)}</div>
-    <div class="font-heading text-lg">{data.title}</div>
+  <div class="bg-[var(--color-background-contrast)] p-3 relative min-h-[95.63px]">
+    <div class="text-xs opacity-70">{formatDate(data.date)}</div>
+    <div class="font-heading text-lg leading-tight">{data.title}</div>
+    <!-- categories -->
     <div class="absolute z-10 right-0 top-0 -translate-x-4 -translate-y-[10px] leading-none flex gap-2">
       {data.categories.map((category: string) => (
         <span class={`${category} relative`}>{category}</span>
