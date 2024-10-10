@@ -46,6 +46,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
-    "@shikijs/transformers": "^1.22.0"
+    "@shikijs/transformers": "^1.22.0",
+    "vite-plugin-svgr": "^4.2.0"
   }
 }

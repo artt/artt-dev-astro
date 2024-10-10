@@ -1,0 +1,149 @@
+---
+title: NongHed
+date: 2020-09-20
+subtitle: Your personal assistant who could provide you with up-to-date economic and financial data for Thailand.
+thumbnail: ./og-image.png
+categories: [nerd]
+tags:
+  - project
+  - economics
+  - finance
+  - data
+  - bank of thailand
+  - nonghed
+  - dev
+---
+
+import NongHed from './NongHed'
+
+<NongHed client:load />
+
+> NongHed is a chatbot who could provide you
+with up-to-date economic and financial data for Thailand.
+See NongHed's homepage [here](https://nonghed.artt.dev).
+
+# Background
+
+When I started my job at the Bank of Thailand,
+  one of the first things I noticed is how data-oriented the organization is.
+Questions like, "What was last month's export growth?"
+  or "What was the current account last year?" consistently pop up.
+
+While most people could recall these numbers off the top of their head
+  (or at least have some rough numbers),
+  newcomers often find it hard to recall these numbers
+  and would have to flip through their giant folders to look up the numbers.
+The same goes for "infrequently asked numbers" that even veterans sometimes find troublesome.
+
+## Existing solution(s)
+
+### BOT Statistics
+
+Indeed, the Bank of Thailand has a ginormous
+  [statistics portal](https://www.bot.or.th/English/Statistics/Pages/default.aspx)
+  with tens of thousands of series covering everything
+  from [total loans in the banking system](
+  https://www.bot.or.th/App/BTWS_STAT/statistics/BOTWEBSTAT.aspx?reportID=155&language=ENG)
+  to [quantity of pineapples exported each month](
+  https://www.bot.or.th/App/BTWS_STAT/statistics/BOTWEBSTAT.aspx?reportID=748&language=ENG).
+So theoretically anybody could look up the numbers from there.
+
+The problem? The statistics portal is ginormous.
+Unless you know exactly which table number to look at,
+  you'll likely find yourself poking around different tables
+  and end up unsure which one is the series you want.
+
+### Friends
+
+Next up are friends.
+You use your favorite instant messaging means (LINE, Facebook Messenger, etc.)
+  and ask your veteran friends or people in the respective teams to help you look it up.
+Of course, the problem with this approach is that your friend might not always be there for you.
+
+
+# Comes along NongHed
+
+NongHed was meant to be that friend who would always be there for you
+  (to provide Help with Economic Data, of course).
+The idea is that the user could simply ask the chatbot
+  with these questions you'd normally ask your friends,
+  and NongHed will answer them for you, 24/7.
+
+NongHed is available on both
+  [LINE](https://lin.ee/biOThlf) and [Facebook](https://www.facebook.com/nonghed.bot),
+  and you can start chatting with him (her?) right away.
+
+
+## Architecture
+
+When you chat with NongHed,
+  your request goes through respective platform's messaging API,
+  which then forward your requests
+  to Google's [Dialogflow](https://cloud.google.com/dialogflow/docs/).
+From there, simpler requests like "Hi" or "What's your name"
+  are handled directly by Dialogflow,
+  while data-related requests are forwarded to an API hosted on [Heroku](https://heroku.com/).
+
+This backend is written in Python and handles everything
+  from updating data
+  to parsing dates (Dialogflow doesn't do a particularly good job of handling quarterly dates)
+  to doing requested calculations.
+
+## Data
+
+The data NongHed has comes from several sources.
+
+### Bank of Thailand's API
+
+The Bank of Thailand has made its statistics (yes, those tables) available
+  through [BOT API](https://apiportal.bot.or.th/bot/public/) since 2017.
+This is a huge step forward in making public data accessible,
+  and I sincerely thank the people who have made this possible.
+
+BOT API itself is easy enough to use, but is intended for power users
+  (read: people who can code.)
+So one can think of NongHed as a user-friendly frontend for BOT API.
+
+Making more than 20,000 series in BOT API available to NongHed users
+  could make things as confusing for users,
+  so I chose only series that are queried frequently
+  (currently there are around 40 series).
+Adding more series from BOT API is as simple as adding a row in a `.csv` file.
+
+For faster results, data from BOT API are pulled automatically every day
+  into a local copy.
+
+### Other government agencies
+
+Huge as it is, BOT API only contains data compiled by the Bank of Thailand.
+Important economic series like
+  GDP (compiled by [NESDC](https://www.nesdc.go.th/nesdb_en/more_news.php?cid=155))
+  or inflation (compiled by [MOC](http://www.price.moc.go.th/))
+  are not included in the BOT API.
+As a result, these data have to be pulled separately via available means.
+
+### Other sources
+
+Other—mostly live—data are scraped through many sources.
+  and I guess we'll have to be sneaky-sneaky about that ;)
+
+# Looking forward
+
+I hope to add more useful features for NongHed in the future.
+Suggestions are more than welcome!
+If you have any suggestions or questions,
+  please send them to [`nonghed.bot@gmail.com`](mailto:nonghed.bot@gmail.com).
+
+All of the cloud services I use for this project
+  (LINE Official Account, Facebook Messenger, Dialogflow, Heroku) are on a free tier.
+This means there are certain limitations
+  like number of messages that NongHed can handle in an hour,
+  or an uptime that might not be guaranteed.
+If you find NongHed helpful and would like to support continued development,
+  please feel free to [support NongHed](https://nonghed.artt.dev/#support)!
+
+Sorry for a long post. Here's a potato! 🥔
+
+<Block type="tip" title="Fun fact">
+September 20 is [Global Magic Mushroom Day](https://920coalition.org)!
+</Block>

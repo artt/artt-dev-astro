@@ -1,7 +1,7 @@
 import { getCollection, type InferEntrySchema } from 'astro:content';
 
 function removeDateFromSlug(slug: string) {
-  return slug.replace(/\/\d{4}-/, "/")
+  return slug.replace(/\/\d{2}(?:\.)?\d{2}-/, "/")
 }
 
 export async function getAllBlogPosts(lang: string, maxPosts: number = 0) {

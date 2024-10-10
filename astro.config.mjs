@@ -13,6 +13,8 @@ import remarkDirective from "remark-directive"
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 
+import svgr from "vite-plugin-svgr";
+
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -59,6 +61,9 @@ export default defineConfig({
         crypto: path.resolve(__dirname, "./src/emptyModule.ts"),
       },
     },
+    plugins: [
+      svgr(),
+    ],
   },
   integrations: [
     tailwind({
