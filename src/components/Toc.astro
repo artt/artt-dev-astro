@@ -131,7 +131,8 @@ const { title, headings } = Astro.props;
 <nav id="component-sidenav" class="font-heading">
   <a href="#top">{title}</a>
   {headings.map((heading: Heading) => {
-    return(
+    if (heading.slug === "footnote-label") return null
+    return (
       <a
         href={`#${heading.slug}`}
         aria-label="url"
