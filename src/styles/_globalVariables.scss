@@ -13,16 +13,6 @@ $cover-wide-ar: 2.5;
 $shadow: 0 6px 14px -3px rgba(black, .25), 0 4px 8px -4px rgba(black, .3), 0 -3px 8px -3px rgba(black, .025);
 $shadow-up: 0 -6px 14px -3px rgba(black, .15);
 
-$alert-size: 1.1rem;
-
-$alert-colors: (
-  "tip": "--color-x-green",
-  "info": "--color-x-grey",
-  "note": "--color-x-blue",
-  "warning": "--color-x-yellow",
-  "danger": "--color-x-red"
-);
-
 $category-colors: (
   "art": "--color-x-yellow",
   "dev": "--color-x-purple",
@@ -30,6 +20,10 @@ $category-colors: (
   "nerd": "--color-secondary",
   "thoughts": "--color-x-green",
 );
+
+$primary-10: color-mix(in srgb, var(--color-primary) 10%, var(--color-background));
+$secondary-50: color-mix(in srgb, var(--color-secondary) 40%, var(--color-background));
+$secondary-text: color-mix(in srgb, var(--color-secondary) 40%, var(--color-text));
 
 :root {
   --font-body: "Bai Jamjuree", "Mulish", Sans-serif;

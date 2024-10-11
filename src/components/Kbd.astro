@@ -1,7 +1,0 @@
----
-const { k } = Astro.props
-const keys = k.split('+')
----
-<span class="kbd-container">
-  {keys.map((key: string) => <kbd>{key}</kbd>).reduce((prev: any, curr: any) => [prev, ' + ', curr])}
-</span>

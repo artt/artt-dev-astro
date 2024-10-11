@@ -1,0 +1,13 @@
+---
+import { getLocale } from "astro-i18n-aut";
+
+const { type } = Astro.props;
+const lang = getLocale(Astro.url)
+---
+<div class="fignote">
+  <span class="fignote-heading">
+    {type === "source" && ((lang === "th" || lang === null) ? "ที่มา: " : "Source: ")}
+    {type === "note" && ((lang === "th" || lang === null) ? "หมายเหตุ: " : "Note: ")}
+  </span>
+  <slot />
+</div>

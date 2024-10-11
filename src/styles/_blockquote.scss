@@ -1,0 +1,62 @@
+@import "globalVariables";
+
+$alert-size: 1.1rem;
+
+$alert-colors: (
+  "tip": "--color-x-green",
+  "info": "--color-x-grey",
+  "note": "--color-x-blue",
+  "warning": "--color-x-yellow",
+  "danger": "--color-x-red"
+);
+
+blockquote {
+  // border: 1px solid;
+  --alert-color: var(--color-heading);
+  z-index: -1;
+  position: relative;
+  border-left: 0.5rem solid;
+  border-color: var(--color-primary);
+  background-color: $primary-10;
+  padding: 1rem 1rem;
+  margin: 1.5rem 0;
+  border-radius: 4px 1rem 1rem 4px;
+  box-shadow: $shadow;
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  @each $type, $color in $alert-colors {
+    &.alert-#{$type} {
+      --alert-color: var(#{$color});
+    }
+    &.alert-#{$type} .alert-title::before {
+      mask: url("/icons/#{$type}.svg") no-repeat center center;
+    }
+  }
+  border-left-color: var(--alert-color);
+  background-color: color-mix(in srgb, var(--alert-color) 10%, var(--color-background));
+  .alert-title {
+    color: var(--alert-color);
+    fill: var(--alert-color);
+    font-family: var(--font-heading);
+    font-size: $alert-size;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    ~ p {
+      margin-top: 0.5rem;
+    }
+    &::before {
+      // mask: url("/tip.svg") no-repeat center center ;
+      content: '';
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+      display: inline-block;
+      background-color: var(--alert-color);
+    }
+  }
+}

@@ -12,6 +12,7 @@ const blogCollection = defineCollection({
     lang: z.enum(['th', 'en']).optional(),
     categories: z.array(z.string()),
     tags: z.array(z.string()),
+    canonical: z.string().optional(),
   }),
 })
 

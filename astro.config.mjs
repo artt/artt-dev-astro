@@ -7,8 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-// import remarkAfm from "remark-afm"
-// import remarkCode from "remark-code"
+import remarkSomething from "./plugins/remarkSomething"
 import remarkDirective from "remark-directive"
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -21,7 +20,6 @@ import {
   transformerNotationWordHighlight,
   transformerNotationFocus,
   transformerNotationErrorLevel,
-  // transformerRenderWhitespace,
   transformerMetaHighlight,
   transformerMetaWordHighlight,
 } from '@shikijs/transformers'
@@ -93,13 +91,13 @@ export default defineConfig({
       remarkHeadingId,
       remarkDirective,
       remarkMath,
-      // remarkCode,
-      // [remarkAfm, {x: 5}],
+      remarkSomething,
     ],
     rehypePlugins: [
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
       rehypeKatex,
+      // rehypeSomething,
     ],
     shikiConfig: {
       themes: {
@@ -112,7 +110,6 @@ export default defineConfig({
         transformerNotationWordHighlight(),
         transformerNotationFocus(),
         transformerNotationErrorLevel(),
-        // transformerRenderWhitespace(),
         transformerMetaHighlight(),
         transformerMetaWordHighlight(),
       ],

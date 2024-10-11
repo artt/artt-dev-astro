@@ -8,11 +8,16 @@ type Props = {
   src: string | ImageMetadata;
   // src will be ImageMetadata type in case you use an image from your content and string in case you use some external image
   alt: string;
+  title?: string;
 };
 
-let { src, alt } = Astro.props;
+// title is only used in case we want to scale the image down (half or quarter)
+// e.g. for retina-size screenshots
+let { src, alt, title } = Astro.props;
 
-let srcUrl, width, height;
+let srcUrl
+let width = 0
+let height = 0
 
 // TODO: this can be improved by not loading the entire image
 // in case src is string, load the image and get its width and height
@@ -39,6 +44,16 @@ else {
   height = src.height;
 }
 
+// deal with scaling
+if (title === 'half') {
+  width = width / 2;
+  height = height / 2;
+}
+else if (title === 'quarter') {
+  width = width / 4;
+  height = height / 4;
+}
+
 ---
 
 <script>
@@ -48,7 +63,7 @@ else {
 
   const lightbox = new PhotoSwipeLightbox({
     pswpModule,
-    gallery: 'figure.gallery-individual a',
+    gallery: '.gallery-individual a',
   })
   lightbox.on('openingAnimationStart', () => {
     document.body.classList.add('pswp-open')
@@ -63,7 +78,7 @@ else {
   )
 </script>
 
-<figure class="gallery-individual w-fit mx-auto my-8">
+<div class="gallery-individual w-fit mx-auto">
   <a
     href={srcUrl}
     data-pswp-width={width}
@@ -76,8 +91,8 @@ else {
     typeof src === 'string' ? (
       <img src={src} alt={alt} class="rounded-md" />
     ) : (
-      <AstroImage {src} {alt} class="rounded-md" />
+      <AstroImage src={{...src, width, height}} {alt} class="rounded-md" />
     )
   }
   </a>
-</figure>
+</div>

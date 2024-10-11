@@ -7,6 +7,10 @@
 
 function setRootAttribute(targetTheme) {
   document.documentElement.setAttribute('data-theme', targetTheme)
+  const meta = document.createElement('meta')
+  meta.name = "twitter:widgets:theme"
+  meta.content = targetTheme
+  document.getElementsByTagName('head')[0].appendChild(meta);
 }
 
 var preferDarkQuery = '(prefers-color-scheme: dark)';

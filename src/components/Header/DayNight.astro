@@ -8,9 +8,21 @@
     const daynight = document.getElementById('component-daynight');
     daynight?.addEventListener('click', () => {
       // toggle data-theme attribute
-      document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      // add meta tag for twitter
+      document.querySelector('meta[name="twitter:widgets:theme"]')?.setAttribute('content', targetTheme);
       // save to localStorage
-      localStorage.setItem('theme', document.documentElement.getAttribute('data-theme') || 'light');
+      localStorage.setItem('theme', targetTheme || 'light');
+
+      // change twitter embed theme
+      // https://lukelowrey.com/change-embedded-tweet-dark-theme-to-match-site/
+      const tweets = document.querySelectorAll('[data-tweet-id]');
+      tweets.forEach(function(tweet) {
+          var src = tweet.getAttribute("src");
+          tweet.setAttribute("src", src!.replace("theme=" + currentTheme, "theme=" + targetTheme));
+      });
     })
   })
 </script>
