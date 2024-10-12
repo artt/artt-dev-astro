@@ -1,6 +1,5 @@
 # Todo's
 
-- [ ] Day/Night switcher
 - [ ] SEO
 - [ ] Navbar floating
 - [ ] HTML article, etc. tags
@@ -11,3 +10,4 @@
 - [ ] Search
 - [ ] Contact page
 - [ ] Footnote preview
+- [ ] Day/Night switcher to include system

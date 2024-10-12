@@ -6,19 +6,20 @@
 
   $nightBtn: $off-white-background;
   $dayBtn: $artt-orange;
+  $icon-size: 21px;
 
   #component-daynight {
-    width: var(--icon-size);
+    width: $icon-size;
     display: flex;
     justify-content: center;
     align-items: center;
 
     label {
       display: block;
-      transform: scale(calc(var(--icon-size) / 36px));
+      transform: scale(calc($icon-size / 36px));
       transition: transform var(--time-short);
       &:hover {
-        transform: scale(calc(var(--icon-size) / 36px * 1.1));
+        transform: scale(calc($icon-size / 36px * 1.1));
       }
       cursor: pointer;
       input {
