@@ -1,12 +1,95 @@
 ---
 ---
+
+<style lang="scss">
+  @import "@/styles/darkmode";
+
+  $nightBtn: $off-white-background;
+  $dayBtn: $artt-orange;
+
+  #component-daynight {
+    width: var(--icon-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      display: block;
+      transform: scale(calc(var(--icon-size) / 36px));
+      transition: transform var(--time-short);
+      &:hover {
+        transform: scale(calc(var(--icon-size) / 36px * 1.1));
+      }
+      cursor: pointer;
+      input {
+        display: none;
+        & + div {
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          position: relative;
+          box-shadow: inset 16px -1*16px 0 0 $nightBtn;
+          transform: scale(1) rotate(-2deg);
+          transition: box-shadow .5s ease 0s, transform .4s ease .1s;
+          &:before {
+            content: '';
+            width: inherit;
+            height: inherit;
+            border-radius: inherit;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: background-color .3s ease;
+          }
+          &:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin: -1*4px 0 0 -1*4px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            box-shadow: 0 -1*23px 0 $dayBtn, 0 23px 0 $dayBtn, 23px 0 0 $dayBtn, -1*23px 0 0 $dayBtn, 15px 15px 0 $dayBtn, -1*15px 15px 0 $dayBtn, 15px -1*15px 0 $dayBtn, -1*15px -1*15px 0 $dayBtn;
+            transform: scale(0);
+            transition: all .3s ease;
+          }
+        }
+        :root[data-theme="light"] & + div {
+          box-shadow: inset 32px -1*32px 0 0 $nightBtn;
+          transform: scale(.5) rotate(0deg);
+          transition: transform .3s ease .1s, box-shadow .2s ease 0s;
+          &:before {
+            background: $dayBtn;
+            transition: background-color .3s ease .1s;
+          }
+          &:after {
+            transform: scale(1.5);
+            transition: transform .5s ease .15s;
+          }
+        }
+      }
+    }
+  }
+</style>
+
 <div id="component-daynight">
-  Switch
+  <div id="component-daynight">
+    <label>
+      <input type="checkbox" />
+      <div />
+    </label>
+  </div>
 </div>
 <script>
   document.addEventListener('astro:page-load', () => {
-    const daynight = document.getElementById('component-daynight');
-    daynight?.addEventListener('click', () => {
+    const dayNight = document.querySelector('#component-daynight input[type=checkbox]')
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      // set initial state to currentTheme
+    if (dayNight) {
+      (dayNight as HTMLInputElement).checked = currentTheme === 'dark';
+    }
+    dayNight?.addEventListener('change', () => {
       // toggle data-theme attribute
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
