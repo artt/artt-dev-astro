@@ -10,3 +10,4 @@
 - [ ] Fix TOC HTML rendering
 - [ ] Search
 - [ ] Contact page
+- [ ] Footnote preview
