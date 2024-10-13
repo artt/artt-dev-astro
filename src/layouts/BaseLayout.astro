@@ -8,6 +8,7 @@ import { ClientRouter } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
 import { Image } from 'astro:assets';
 import { SEO, type Props as SeoProps } from "astro-seo";
+import { getLink } from '@/lib/lang';
 
 import coverImage from '@/images/abstract.png';
 
@@ -26,9 +27,12 @@ interface Props {
   noSplit?: boolean;
   noCover?: boolean;
   isMdx?: boolean;
+  mainSlug?: string;
+  lang?: string;
+  isBilingual?: boolean;
 }
 
-const { title, subtitle, description=subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false } = Astro.props;
+const { title, subtitle, description=subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false, mainSlug, isBilingual=true } = Astro.props;
 
 const image = cover || coverImage;
 const imageUrl = new URL(image.src, Astro.site).href
@@ -44,7 +48,7 @@ else {
 // TODO: fix this
 const coverColor = await getAverageColor(localImage, { algorithm: 'dominant' }).then(color => color.hex);
 
-console.log(Astro.url)
+const lang = getLocale(Astro.url);
 
 const defaultSeoProps: SeoProps = {
   title: title,
@@ -53,10 +57,14 @@ const defaultSeoProps: SeoProps = {
   charset: 'utf-8',
   description: description,
   // canonical?: URL | string;
-  // languageAlternates?: {
-  //   href: URL | string;
-  //   hrefLang: string;
-  // }[];
+  ...(isBilingual && {
+    languageAlternates: [
+      {
+        href: getLink(Astro.url.pathname, lang === "en" ? "th" : "en"),
+        hrefLang: lang === "en" ? "th" : "en",
+      },
+    ],
+  }),
   openGraph: {
     basic: {
       title: title,
@@ -66,8 +74,8 @@ const defaultSeoProps: SeoProps = {
     },
     optional: {
       description: description,
-      // locale?: string;
-      // localeAlternate?: string[];
+      locale: lang,
+      ...(isBilingual && {localeAlternate: [lang === "en" ? "th" : "en"]}),
       siteName: "artt.dev",
     },
     image: {
@@ -109,8 +117,6 @@ const defaultSeoProps: SeoProps = {
 
 <html lang={getLocale(Astro.url)}>
   <head>
-    <!-- description in case there's no subtitle -->
-    <!-- canonical + languageAlternatives -->
     <SEO {...defaultSeoProps} />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
     <meta name="viewport" content="width=device-width" />

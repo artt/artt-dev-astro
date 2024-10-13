@@ -1,4 +1,5 @@
 import { getCollection, type InferEntrySchema } from 'astro:content';
+import { addTrailingSlash, joinPath } from '@/lib/utils';
 
 function removeDateFromSlug(slug: string) {
   return slug.replace(/\/\d{2}(?:\.)?\d{2}-/, "/")
@@ -60,27 +61,27 @@ export function generateStaticPathFromEntry (
     }
     else {
       // otherwise, mainSlug should be matchBilingual[1] + "/" + matchBilingual[2]
-      mainSlug = `${matchBilingual[1]}/${matchBilingual[2]}`
+      mainSlug = `/${matchBilingual[1]}/${matchBilingual[2]}`
     }
     mainSlug = removeDateFromSlug(mainSlug)
     return [{
-      params: { dynamicMdxPath: `${matchBilingual[3] === "en" ? "en/" : ""}${collection}${mainSlug}` },
-      props: { entry, mainSlug: `${collection}${mainSlug}`, lang: matchBilingual[3], isBilingual: true },
+      params: { dynamicMdxPath: joinPath([matchBilingual[3] === "en" ? "en" : "", collection, mainSlug], false) },
+      props: { entry, mainSlug: joinPath([collection, mainSlug]), lang: matchBilingual[3], isBilingual: true },
     }]
   }
   else {
-    mainSlug = `${collection}${entry.id}`
-    mainSlug = removeDateFromSlug(mainSlug)
+    mainSlug = joinPath([collection, removeDateFromSlug(entry.id)])
+    // mainSlug = removeDateFromSlug(mainSlug)
     // cannot infer language from file name, so try to see if it's specified in the frontmatter
     if (entry.data.lang === "en") {
       return [
         {
-          params: { dynamicMdxPath: `en/${mainSlug}` },
+          params: { dynamicMdxPath: joinPath(['en', mainSlug], false) },
           props: { entry, mainSlug, lang: "en", isBilingual: false },
         },
         {
-          params: { dynamicMdxPath: `${mainSlug}` },
-          props: { redirect: `/en/${mainSlug}` },
+          params: { dynamicMdxPath: joinPath([mainSlug], false) },
+          props: { redirect: joinPath(['en', mainSlug], true) },
         },
       ]
     }
@@ -88,12 +89,12 @@ export function generateStaticPathFromEntry (
       // if lang is "th" or not specified, then we assume that it's Thai
       return [
         {
-          params: { dynamicMdxPath: `${mainSlug}` },
+          params: { dynamicMdxPath: joinPath([mainSlug], false) },
           props: { entry, mainSlug, lang: "th", isBilingual: false },
         },
         {
-          params: { dynamicMdxPath: `en/${mainSlug}` },
-          props: { redirect: `/${mainSlug}` },
+          params: { dynamicMdxPath: joinPath(['en', mainSlug], false) },
+          props: { redirect: mainSlug },
         },
       ]
     }

@@ -1,14 +1,8 @@
 ---
 import Toc from "@/components/Toc.astro";
 import BaseLayout from "./BaseLayout.astro";
-// import { type Props as SeoProps } from "astro-seo"
 
-const { frontmatter, headings } = Astro.props;
-
-// const seoData: SeoProps = {
-//   title: frontmatter.title,
-//   titleTemplate: '%s | artt.dev'
-// }
+const { frontmatter, headings, mainSlug, isBilingual } = Astro.props;
 
 ---
 <BaseLayout
@@ -17,6 +11,8 @@ const { frontmatter, headings } = Astro.props;
   date={frontmatter.date}
   cover={frontmatter.cover}
   isMdx={true}
+  mainSlug={mainSlug}
+  isBilingual={isBilingual}
 >
   <slot />
   {headings.length > 3 &&

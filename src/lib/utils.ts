@@ -38,3 +38,20 @@ export const combineMerge = (target: any, source: any, options: any) => {
 	})
 	return destination
 }
+
+export function removeTrailingSlash(path: string) {
+  return path === "/" ? path : path.replace(/\/$/, "")
+}
+
+export function addTrailingSlash(path: string) {
+  // add trailing slash if path doesn't end with slash already
+  return path.endsWith("/") ? path : path + "/"
+}
+
+// append array of path to form full path, ensuring there's no double slash, etc.
+export function joinPath(paths: string[], prependSlash=true, appendSlash=true) {
+  let path = paths.join("/")
+  if (prependSlash) path = "/" + path
+  if (appendSlash) path = path + "/"
+  return path.replace(/\/{2,}/g, "/")
+}
