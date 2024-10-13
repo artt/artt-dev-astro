@@ -41,9 +41,9 @@ const defaultLocale = "th"
 // https://astro.build/config
 export default defineConfig({
   site: "https://artt.dev",
-  trailingSlash: "never",
+  trailingSlash: "always",
   build: {
-    format: "file",
+    format: "directory",
   },
   vite: {
     css: {

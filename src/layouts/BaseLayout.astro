@@ -44,6 +44,8 @@ else {
 // TODO: fix this
 const coverColor = await getAverageColor(localImage, { algorithm: 'dominant' }).then(color => color.hex);
 
+console.log(Astro.url)
+
 const defaultSeoProps: SeoProps = {
   title: title,
   titleTemplate: '%s | artt.dev',
