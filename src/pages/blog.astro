@@ -6,7 +6,7 @@ import { getLocale } from "astro-i18n-aut";
 
 import writingImage from '@/images/writing.jpg';
 
-const title = getLocale(Astro.url) === "th" ? "บล็อกล่าสุด" : "Latest blog posts"
+const title = "Art's Random Thoughts"
 
 const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
 
