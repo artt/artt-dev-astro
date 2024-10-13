@@ -7,6 +7,7 @@ import TitleBlock from '@/components/TitleBlock.astro';
 import { ClientRouter } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
 import { Image } from 'astro:assets';
+import { SEO, type Props as SeoProps } from "astro-seo";
 
 import coverImage from '@/images/abstract.png';
 
@@ -17,6 +18,7 @@ import '@/styles/layout.scss';
 interface Props {
   title: string;
   subtitle?: string;
+  description?: string;
   date?: string;
   cover?: ImageMetadata;
   noTitle?: boolean;
@@ -26,20 +28,91 @@ interface Props {
   isMdx?: boolean;
 }
 
-const { title, subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false } = Astro.props;
+const { title, subtitle, description=subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false } = Astro.props;
+
+const image = cover || coverImage;
+const imageUrl = new URL(image.src, Astro.site).href
+
+let localImage: string
+if (import.meta.env.MODE === "development") {
+  localImage = image.src.replace('/@fs', '').split('?')[0]
+}
+else {
+  localImage = `./dist${image.src}`
+}
 
 // TODO: fix this
-const coverColor = await getAverageColor((cover?.src || coverImage.src).replace('/@fs', '').split('?')[0], { algorithm: 'dominant' }).then(color => color.hex);
+const coverColor = await getAverageColor(localImage, { algorithm: 'dominant' }).then(color => color.hex);
+
+const defaultSeoProps: SeoProps = {
+  title: title,
+  titleTemplate: '%s | artt.dev',
+  titleDefault: 'artt.dev',
+  charset: 'utf-8',
+  description: description,
+  // canonical?: URL | string;
+  // languageAlternates?: {
+  //   href: URL | string;
+  //   hrefLang: string;
+  // }[];
+  openGraph: {
+    basic: {
+      title: title,
+      type: isMdx ? "article" : "website",
+      image: imageUrl,
+      url: Astro.url,
+    },
+    optional: {
+      description: description,
+      // locale?: string;
+      // localeAlternate?: string[];
+      siteName: "artt.dev",
+    },
+    image: {
+      secureUrl: imageUrl,
+      type: image.format,
+      width: image.width,
+      height: image.height,
+      // alt?: string;
+    },
+    ...(isMdx && {
+      article: {
+        publishedTime: date,
+        // modifiedTime?: string;
+        // expirationTime?: string;
+        // authors?: string[];
+        // section?: string;
+        // tags?: string[];
+      },
+    }),
+    // };
+  },
+  twitter: {
+    card: "summary_large_image",
+    // site?: string;
+    // creator?: string;
+    title: title,
+    description: description,
+    image: imageUrl,
+    // imageAlt?: string;
+  },
+  // extend?: {
+  //   link?: Partial<Link>[];
+  //   meta?: Partial<Meta>[];
+  // };
+  // surpressWarnings?: boolean;
+}
 
 ---
 
 <html lang={getLocale(Astro.url)}>
   <head>
-    <meta charset="utf-8" />
+    <!-- description in case there's no subtitle -->
+    <!-- canonical + languageAlternatives -->
+    <SEO {...defaultSeoProps} />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
     <ClientRouter />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
     <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>

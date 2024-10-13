@@ -1,5 +1,5 @@
 import { visit } from 'unist-util-visit'
-import { h } from 'hastscript'
+// import { h } from 'hastscript'
 
 
 function processAlertBlocks(node) {
@@ -115,7 +115,6 @@ export default function foo() {
       if (node.type === "paragraph" && node.children?.length === 1) {
         const child = node.children[0]
         if (child.type === "image") {
-          console.log(child)
           tree.children.splice(index, 1, {
             type: 'figure',
             data: {
