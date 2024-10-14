@@ -1,5 +1,5 @@
 import { getCollection, type InferEntrySchema } from 'astro:content';
-import { addTrailingSlash, joinPath } from '@/lib/utils';
+import { joinPath } from '@/lib/utils';
 
 function removeDateFromSlug(slug: string) {
   return slug.replace(/\/\d{2}(?:\.)?\d{2}-/, "/")

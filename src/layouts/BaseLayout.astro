@@ -27,12 +27,11 @@ interface Props {
   noSplit?: boolean;
   noCover?: boolean;
   isMdx?: boolean;
-  mainSlug?: string;
   lang?: string;
   isBilingual?: boolean;
 }
 
-const { title, subtitle, description=subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false, mainSlug, isBilingual=true } = Astro.props;
+const { title, subtitle, description=subtitle, date, cover, noTitle=false, noCap=false, noSplit=false, noCover=false, isMdx=false, isBilingual=true } = Astro.props;
 
 const image = cover || coverImage;
 const imageUrl = new URL(image.src, Astro.site).href
@@ -117,6 +116,16 @@ const defaultSeoProps: SeoProps = {
 
 <html lang={getLocale(Astro.url)}>
   <head>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async is:inline src="https://www.googletagmanager.com/gtag/js?id=G-QRST7VQ562"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QRST7VQ562');
+    </script>
+
     <SEO {...defaultSeoProps} />
     <link rel="icon" href={`https://js.api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
     <meta name="viewport" content="width=device-width" />

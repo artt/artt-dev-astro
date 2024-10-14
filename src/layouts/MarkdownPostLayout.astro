@@ -2,7 +2,7 @@
 import Toc from "@/components/Toc.astro";
 import BaseLayout from "./BaseLayout.astro";
 
-const { frontmatter, headings, mainSlug, isBilingual } = Astro.props;
+const { frontmatter, headings, isBilingual } = Astro.props;
 
 ---
 <BaseLayout
@@ -11,7 +11,6 @@ const { frontmatter, headings, mainSlug, isBilingual } = Astro.props;
   date={frontmatter.date}
   cover={frontmatter.cover}
   isMdx={true}
-  mainSlug={mainSlug}
   isBilingual={isBilingual}
 >
   <slot />

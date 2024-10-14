@@ -1,7 +1,7 @@
 # Todo's
 
 - [x] SEO
-- [ ] Floating navbar
+- [x] Floating navbar
 - [ ] Google Analytics
 - [ ] HTML article, etc. tags
 - [ ] Figure reference
