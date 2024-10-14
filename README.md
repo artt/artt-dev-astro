@@ -3,6 +3,7 @@
 - [x] SEO
 - [x] Floating navbar
 - [x] Google Analytics
+- [ ] Use astro-imagetool
 - [ ] Search console
 - [ ] HTML article, etc. tags
 - [ ] Figure reference

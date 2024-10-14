@@ -32,9 +32,8 @@ if (localStorageThemeExists) {
 } else if (supportsColorSchemeQuery) {
   // source of truth from system
   setRootAttribute(mql.matches ? 'dark' : 'light');
-  localStorage.setItem(storageKey, mql.matches);
+  localStorage.setItem('theme', mql.matches);
 } else {
   // source of truth from document
-  // var isDarkMode = document.documentElement.setAttribute('data-theme') === 'dark';
   localStorage.setItem('theme', document.documentElement.getAttribute('data-theme'));
 }
