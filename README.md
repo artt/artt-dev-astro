@@ -2,7 +2,8 @@
 
 - [x] SEO
 - [x] Floating navbar
-- [ ] Google Analytics
+- [x] Google Analytics
+- [ ] Search console
 - [ ] HTML article, etc. tags
 - [ ] Figure reference
 - [ ] Bibtex citation
