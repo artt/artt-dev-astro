@@ -4,7 +4,9 @@ type Heading = {
   slug: string;
   text: string;
 };
-const { title, headings } = Astro.props;
+const { title, headings: astroHeadings } = Astro.props;
+const headings = astroHeadings.filter((heading: Heading) => heading.depth <= 2);
+
 ---
 
 <style lang="scss">
