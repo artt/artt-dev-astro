@@ -8,7 +8,7 @@ import CardList from '@/components/CardList.astro';
 
 const title = "Home";
 
-const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url), 6)
+const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
 
 ---
 
@@ -16,11 +16,18 @@ const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url), 6)
   <Hero client:only="react" />
   <Section
     title={getLocale(Astro.url) === "th"
-      ? "บล็อกล่าสุด"
+      ? "บทความล่าสุด"
       : "Latest blog posts"
     }
   >
-    <CardList entries={sortedBlogs} />
+    <CardList entries={sortedBlogs.slice(0, 6)} />
+    <!-- align this to the right -->
+    <a href="/blog" class="mt-4 inline-block">
+      {getLocale(Astro.url) === "th"
+        ? `ดูบทความทั้ง ${sortedBlogs.length} บทความ`
+        : `View all ${sortedBlogs.length} blog posts`
+      }
+    </a>
   </Section>
   <Section />
 </BaseLayout>

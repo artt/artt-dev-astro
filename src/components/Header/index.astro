@@ -7,7 +7,7 @@ import LangSwitch from './LangSwitch.astro';
 const navLinks = [
   { href: '/blog', text: 'Blog' },
   { href: '/about', text: 'About' },
-  { href: '/contact', text: 'Contact' },
+  // { href: '/contact', text: 'Contact' },
 ]
 ---
 
@@ -26,18 +26,31 @@ const navLinks = [
   #component-menu-backdrop {
     height: 100vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background-color: rgb(from var(--color-background-contrast) r g b / 50%);
     backdrop-filter: blur(10px);
     opacity: 0;
     transition: opacity var(--time-long);
-    z-index: 10;
+    z-index: 15;
     pointer-events: none;
     body.menu-open & {
       opacity: 1;
       pointer-events: auto;
+    }
+  }
+
+
+  #component-header {
+    --navbar-top: 0;
+    --navbar-position: absolute;
+    top: var(--navbar-top);
+    position: var(--navbar-position);
+    min-height: var(--height-navbar);
+    @media screen and (min-width: 768px) {
+      position: sticky;
+      top: 0;
     }
   }
 
@@ -109,9 +122,112 @@ const navLinks = [
 
 </style>
 
+<script>
+  document.addEventListener('astro:page-load', () => {
+  
+    enum ScrollDirection {
+      UP,
+      DOWN,
+      UNKNOWN,
+    }
+
+    let isResizing = false
+    let prevPageOffset = 0
+    let prevScrollDirection = ScrollDirection.UNKNOWN
+    let lastTurnPos = 0
+    let navbarTop = 0
+    const headerElement = document.getElementById('component-header')
+    const backgroundElement = document.getElementById('component-header-background')
+
+    const setHeader = (position: string, top: number) => {
+      if (!headerElement) return
+      headerElement.style.setProperty('--navbar-position', position)
+      headerElement.style.setProperty('--navbar-top', top + "px")
+      navbarTop = top
+    }
+
+    function setNavBarOpacity(y: number) {
+      if (!backgroundElement)
+        return
+      const opacity = 1 - Math.min(Math.max(y - 100, 0), 300) / 300 * 0.3
+      // const hexOpacity = (Math.round(opacity * 255)).toString(16)
+      backgroundElement.style.opacity = opacity.toString()
+    }
+
+    function handleScroll() {
+      if (!headerElement) return
+      const navbarHeight = headerElement.offsetHeight
+      const curPageOffset = Math.max(window.scrollY, 0)
+      setNavBarOpacity(curPageOffset)
+
+      if (prevPageOffset > curPageOffset) {
+      // scroll up
+        if (prevScrollDirection === ScrollDirection.DOWN) {
+        // previous scroll was down
+          prevScrollDirection = ScrollDirection.UP
+          if (curPageOffset - lastTurnPos > navbarHeight) {
+          // we have scrolled down all the way through the navbar's height
+          // so hide it on top of the view
+            setHeader('absolute', curPageOffset - navbarHeight)
+          }
+          lastTurnPos = curPageOffset
+        }
+        else {
+          // continue to scroll up
+          const margin = prevPageOffset - curPageOffset
+          if (lastTurnPos - curPageOffset > navbarHeight - margin || curPageOffset < navbarTop) {
+            // can hide
+            setHeader('fixed', 0)
+            navbarTop = curPageOffset
+          }
+        }
+      }
+      else if (prevPageOffset < curPageOffset) {
+      // scroll down
+        // if (navbarElement.current.classList.contains("menu-hide")) {
+          if (prevScrollDirection === ScrollDirection.UP) {
+          // previously scroll up, now scroll down
+            prevScrollDirection = ScrollDirection.DOWN
+            if (lastTurnPos - curPageOffset > navbarHeight) {
+              setHeader('absolute', curPageOffset)
+            }
+            else if (lastTurnPos < curPageOffset) {
+              setHeader('absolute', Math.max(0, curPageOffset - navbarHeight))
+            }
+            lastTurnPos = curPageOffset
+          }
+          else if (prevScrollDirection === ScrollDirection.UNKNOWN) {
+            prevScrollDirection = ScrollDirection.DOWN
+            setHeader('absolute', curPageOffset)
+            lastTurnPos = curPageOffset
+          }
+          else {
+            setHeader('absolute', navbarTop)
+          }
+        // }
+      }
+      prevPageOffset = curPageOffset
+    }
+    function handleScrollTimeout() {
+      setTimeout(() => {
+        if (!isResizing)
+          handleScroll()
+      }, 0)
+    }
+    function handleResize() {
+      isResizing = true
+      setTimeout(() => {
+        isResizing = false
+      }, 100)
+    }
+    window.addEventListener('scroll', handleScrollTimeout)
+    window.addEventListener('resize', handleResize)
+  })
+</script>
+
 <div id="component-menu-backdrop" />
 <header id="component-header" class="z-50">
-  <div class="absolute w-full h-[--height-navbar] bg-[--color-background]" />
+  <div id="component-header-background" class="absolute w-full h-[--height-navbar] bg-[--color-background]" />
   <div id="component-navbar" class="relative flex h-[--height-navbar] z-50">
     <div class="absolute cap-width flex items-center h-full md:self-end md:h-3/5 z-50 gap-2">
       <Link href="/" class="text-xl">artt.dev</Link>
@@ -132,4 +248,4 @@ const navLinks = [
     ))}
   </nav>
 </header>
-<div id="component-navbar-placeholder" class="h-[--height-navbar]" />
+<!-- <div id="component-navbar-placeholder" class="h-[--height-navbar]" /> -->
