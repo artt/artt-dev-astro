@@ -16,19 +16,19 @@ function setRootAttribute(targetTheme) {
 var preferDarkQuery = '(prefers-color-scheme: dark)';
 var mql = window.matchMedia(preferDarkQuery);
 var supportsColorSchemeQuery = mql.media === preferDarkQuery;
-var localStorageLang = null;
+var localStorageTheme = null;
 try {
-  localStorageLang = localStorage.getItem('theme');
+  localStorageTheme = localStorage.getItem('theme');
 } catch (err) {}
-var localStorageExists = localStorageLang !== null;
-if (localStorageExists) {
-  localStorageLang = localStorageLang;
+var localStorageThemeExists = localStorageTheme !== null;
+if (localStorageThemeExists) {
+  localStorageTheme = localStorageTheme;
 }
 
 // Determine the source of truth
-if (localStorageExists) {
+if (localStorageThemeExists) {
   // source of truth from localStorage
-  setRootAttribute(localStorageLang);
+  setRootAttribute(localStorageTheme);
 } else if (supportsColorSchemeQuery) {
   // source of truth from system
   setRootAttribute(mql.matches ? 'dark' : 'light');

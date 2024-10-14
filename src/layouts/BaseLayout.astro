@@ -136,8 +136,8 @@ const defaultSeoProps: SeoProps = {
     <script is:inline defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
   </head>
   <body>
-    <script is:inline data-astro-rerun src="/loadTheme.js" />
     <script is:inline data-astro-rerun src="/loadLang.js" />
+    <script is:inline data-astro-rerun src="/loadTheme.js" />
     <Header />
     {!noCover &&
       <div id="component-cover-image" class="w-full" style={{ backgroundColor: coverColor }} >

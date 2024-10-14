@@ -13,16 +13,16 @@ var localStorageLang = null;
 try {
   localStorageLang = localStorage.getItem('preferredLang');
 } catch (err) {}
-var localStorageExists = localStorageLang !== null;
-if (localStorageExists) {
+var localStorageLangExists = localStorageLang !== null;
+if (localStorageLangExists) {
   localStorageLang = localStorageLang;
 }
 
 // Determine the source of truth
-if (localStorageExists) {
+if (localStorageLangExists) {
   // source of truth from localStorage
   setRootAttribute(localStorageLang);
 } else {
-  localStorage.setItem('theme', 'th');
+  localStorage.setItem('preferredLang', 'th');
   setRootAttribute('th');
 }
