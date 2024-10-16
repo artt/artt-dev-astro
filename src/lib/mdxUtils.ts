@@ -63,10 +63,10 @@ export function generateStaticPathFromEntry (
       // otherwise, mainSlug should be matchBilingual[1] + "/" + matchBilingual[2]
       mainSlug = `/${matchBilingual[1]}/${matchBilingual[2]}`
     }
-    mainSlug = removeDateFromSlug(mainSlug)
+    mainSlug = joinPath([collection, removeDateFromSlug(mainSlug)])
     return [{
-      params: { dynamicMdxPath: joinPath([matchBilingual[3] === "en" ? "en" : "", collection, mainSlug], false) },
-      props: { entry, mainSlug: joinPath([collection, mainSlug]), lang: matchBilingual[3], isBilingual: true },
+      params: { dynamicMdxPath: joinPath([matchBilingual[3] === "en" ? "en" : "", mainSlug], false) },
+      props: { entry, mainSlug, lang: matchBilingual[3], isBilingual: true },
     }]
   }
   else {

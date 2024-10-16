@@ -18,9 +18,8 @@ export async function getStaticPaths() {
 
   const allDynamicMdxPaths: any[] = []
   
-  blogEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
-    console.log(entry)
-    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, '/blog'))
+  blogEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number], i: number) => {
+    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, '/blog', ))
   })
 
   pageEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
