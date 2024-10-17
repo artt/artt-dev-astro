@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
 
@@ -18,11 +18,11 @@ export async function getStaticPaths() {
 
   const allDynamicMdxPaths: any[] = []
   
-  blogEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
+  blogEntries.forEach((entry: CollectionEntry<'blog'>) => {
     allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
   })
 
-  pageEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
+  pageEntries.forEach((entry: CollectionEntry<'pages'>) => {
     allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
   })
 
