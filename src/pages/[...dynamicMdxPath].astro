@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 import Link from '@/components/Link.astro';
 
-import { generateStaticPathFromEntry } from '@/lib/mdxUtils';
+import { generateStaticPathFromEntry, generateMainSlugFromEntry } from '@/lib/mdxUtils';
 import Album from '@/components/Album/Album.astro';
 import ZoomableImage from '@/components/ZoomableImage.astro';
 import Plotter from '@/components/Plotter/Plotter.astro';
@@ -19,11 +19,11 @@ export async function getStaticPaths() {
   const allDynamicMdxPaths: any[] = []
   
   blogEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
-    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, '/blog', ))
+    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
   })
 
   pageEntries.forEach((entry: Awaited<ReturnType<typeof getCollection>>[number]) => {
-    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry, ''))
+    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
   })
 
   return allDynamicMdxPaths
