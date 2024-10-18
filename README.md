@@ -3,7 +3,7 @@
 - [x] SEO
 - [x] Floating navbar
 - [x] Google Analytics
-- [ ] Prev-next buttons for blogs
+- [x] Prev-next buttons for blogs
 - [ ] Use astro-imagetool
 - [ ] Search console
 - [ ] HTML article, etc. tags

@@ -18,19 +18,27 @@ export async function getStaticPaths() {
 
   const allDynamicMdxPaths: any[] = []
   
-  blogEntries.forEach((entry: CollectionEntry<'blog'>) => {
-    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
-  })
+  // blogEntries.forEach((entry: CollectionEntry<'blog'>) => {
+  //   allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
+  // })
 
-  pageEntries.forEach((entry: CollectionEntry<'pages'>) => {
-    allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
-  })
+  for (const entry of blogEntries) {
+    allDynamicMdxPaths.push(...(await generateStaticPathFromEntry(entry)))
+  }
+
+  // pageEntries.forEach((entry: CollectionEntry<'pages'>) => {
+  //   allDynamicMdxPaths.push(...generateStaticPathFromEntry(entry))
+  // })
+
+  for (const entry of pageEntries) {
+    allDynamicMdxPaths.push(...(await generateStaticPathFromEntry(entry)))
+  }
 
   return allDynamicMdxPaths
 
 }
 
-const { entry, mainSlug, isBilingual, redirect } = Astro.props
+const { entry, mainSlug, isBilingual, redirect, prevBlog, nextBlog } = Astro.props
 
 if (redirect) {
   return Astro.redirect(redirect)
@@ -38,7 +46,15 @@ if (redirect) {
 const { Content, headings } = await render(entry)
 
 ---
-<MarkdownPostLayout frontmatter={entry.data} headings={headings} mainSlug={mainSlug} isBilingual={isBilingual}>
+
+<MarkdownPostLayout
+  frontmatter={entry.data}
+  headings={headings}
+  mainSlug={mainSlug}
+  isBilingual={isBilingual}
+  prevBlog={prevBlog}
+  nextBlog={nextBlog}
+>
   <Content
     components={{
       h1: "h2",

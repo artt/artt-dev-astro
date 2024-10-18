@@ -1,0 +1,21 @@
+---
+import Link from "@/components/Link.astro"
+
+const { prevBlog, nextBlog } = Astro.props
+---
+
+<div class="flex">
+  {prevBlog &&
+    <Link href={prevBlog.mainSlug}>
+      <div class="text-secondary">‹ Previous</div>
+      <div class="text-heading font-heading text-lg">{prevBlog.data.title}</div>
+    </Link>
+  }
+  <div class="spacer" />
+  {nextBlog &&
+    <Link href={nextBlog.mainSlug} class="text-right">
+      <div class="text-secondary capitalize">Next ›</div>
+      <div class="text-heading font-heading text-lg">{nextBlog.data.title}</div>
+    </Link>
+  }
+</div>
