@@ -116,17 +116,17 @@ const headings = astroHeadings.filter((heading: Heading) => heading.depth <= 2);
       i = headings.length - 1
     }
     // check if the header is already active
-    if (document.querySelector(`nav > a[href="#${headings[i].id}"]`)?.classList.contains('active')) {
+    if (document.querySelector(`nav#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.contains('active')) {
       return
     }
     // if not, deactivate the one with active class
 
-    const activeHeaders = document.querySelectorAll('.active');
+    const activeHeaders = document.querySelectorAll('nav#component-sidenav .active');
     (Array.from(activeHeaders) as HTMLElement[]).forEach((header: HTMLElement) => {
       header.classList.remove('active')
     })
     // and activate the new one
-    document.querySelector(`nav > a[href="#${headings[i].id}"]`)?.classList.add('active')
+    document.querySelector(`nav#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.add('active')
   }
 </script>
 
