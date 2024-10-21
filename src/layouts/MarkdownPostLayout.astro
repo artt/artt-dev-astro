@@ -3,6 +3,8 @@ import Toc from "@/components/Toc.astro";
 import BaseLayout from "./BaseLayout.astro";
 import BlogNav from "@/components/BlogNav.astro";
 
+import "katex/dist/katex.min.css"
+
 const { frontmatter, headings, isBilingual, prevBlog, nextBlog } = Astro.props;
 
 ---

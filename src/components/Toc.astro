@@ -1,19 +1,12 @@
 ---
-type Heading = {
-  depth: number;
-  slug: string;
-  text: string;
-};
-const { title, headings: astroHeadings } = Astro.props;
-const headings = astroHeadings.filter((heading: Heading) => heading.depth <= 2);
-
+const { title } = Astro.props;
 ---
 
-<style lang="scss">
-  nav {
+<style lang="scss" is:global>
+  #component-sidenav {
     --time-transition: 1s;
   }
-  nav > a {
+  #component-sidenav > a {
     --color-item: color-mix(in srgb, var(--color-heading), rgba(0, 0, 0, 0) 30%);
     &.active {
       --color-item: var(--color-secondary);
@@ -74,6 +67,23 @@ const headings = astroHeadings.filter((heading: Heading) => heading.depth <= 2);
           }, 500)
         }
       }, 1000)
+      const x = document.querySelectorAll("#content h2, #content h3")
+      const sidenav = document.getElementById('component-sidenav')
+      if (!sidenav) {
+        return
+      }
+      for (let i = 0; i < x.length; i ++) {
+        const heading = x[i] as HTMLElement
+        // if heading's slug === "footnote-label" then skip
+        if (heading.id === 'footnote-label') {
+          continue
+        }
+        const a = document.createElement('a')
+        a.href = `#${heading.id}`
+        a.innerHTML = heading.innerHTML
+        a.style.paddingLeft = `${heading.tagName === 'H2' ? 0.75 : 1.5}rem`
+        sidenav.appendChild(a)
+      }
     },
     { once: false },
   )
@@ -116,35 +126,21 @@ const headings = astroHeadings.filter((heading: Heading) => heading.depth <= 2);
       i = headings.length - 1
     }
     // check if the header is already active
-    if (document.querySelector(`nav#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.contains('active')) {
+    if (document.querySelector(`#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.contains('active')) {
       return
     }
     // if not, deactivate the one with active class
 
-    const activeHeaders = document.querySelectorAll('nav#component-sidenav .active');
+    const activeHeaders = document.querySelectorAll('#component-sidenav .active');
     (Array.from(activeHeaders) as HTMLElement[]).forEach((header: HTMLElement) => {
       header.classList.remove('active')
     })
     // and activate the new one
-    document.querySelector(`nav#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.add('active')
+    document.querySelector(`#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.add('active')
   }
 </script>
 
 <nav id="component-sidenav" class="font-heading">
   <a href="#top">{title}</a>
-  {headings.map((heading: Heading) => {
-    if (heading.slug === "footnote-label") return null
-    return (
-      <a
-        href={`#${heading.slug}`}
-        aria-label="url"
-        style={{
-          paddingLeft: `${heading.depth * 0.75}rem`,
-        }}
-      >
-        {heading.text}
-      </a>
-    )
-  })}
-  <!-- <div ref={refDot} className={styles.dot} /> -->
+  <!-- more children are added via script -->
 </nav>
