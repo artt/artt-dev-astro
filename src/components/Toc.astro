@@ -109,6 +109,14 @@ const { title } = Astro.props;
         element: heading,
       }
     })
+    console.log(headings)
+  }
+
+  function removeAllActiveClasses() {
+    const activeHeaders = document.querySelectorAll('#component-sidenav .active');
+    (Array.from(activeHeaders) as HTMLElement[]).forEach((header: HTMLElement) => {
+      header.classList.remove('active')
+    })
   }
 
   function updateScrollPosition() {
@@ -120,8 +128,13 @@ const { title } = Astro.props;
     const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize)
     // figure out which header is currently active
     let i
+    // TODO: this can be optimized
     for (i = 0; i < headings.length; i ++) {
       if (window.scrollY <= headings[i].top - ((navbarHeight + 1) * rootFontSize + 1)) {
+        if (i === 0) {
+          removeAllActiveClasses()
+          return
+        }
         i = Math.max(i - 1, 0)
         break
       }
@@ -134,11 +147,7 @@ const { title } = Astro.props;
       return
     }
     // if not, deactivate the one with active class
-
-    const activeHeaders = document.querySelectorAll('#component-sidenav .active');
-    (Array.from(activeHeaders) as HTMLElement[]).forEach((header: HTMLElement) => {
-      header.classList.remove('active')
-    })
+    removeAllActiveClasses()
     // and activate the new one
     document.querySelector(`#component-sidenav > a[href="#${headings[i].id}"]`)?.classList.add('active')
   }
