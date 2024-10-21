@@ -83,7 +83,7 @@ const { title } = Astro.props;
         }
         const a = document.createElement('a')
         a.href = `#${heading.id}`
-        a.innerHTML = heading.innerHTML
+        a.innerHTML = heading.children[0].innerHTML
         a.style.paddingLeft = `${heading.tagName === 'H2' ? 0.75 : 1.5}rem`
         sidenav.appendChild(a)
       }
