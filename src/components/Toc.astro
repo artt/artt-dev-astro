@@ -5,6 +5,8 @@ const { title } = Astro.props;
 <style lang="scss" is:global>
   #component-sidenav {
     --time-transition: 1s;
+    opacity: 0;
+    transition: opacity var(--time-transition);
   }
   #component-sidenav > a {
     --color-item: color-mix(in srgb, var(--color-heading), rgba(0, 0, 0, 0) 30%);
@@ -72,6 +74,7 @@ const { title } = Astro.props;
       if (!sidenav) {
         return
       }
+      // set opacity to 0 first, then after populating the sidebar, set it to 1
       for (let i = 0; i < x.length; i ++) {
         const heading = x[i] as HTMLElement
         // if heading's slug === "footnote-label" then skip
@@ -84,6 +87,7 @@ const { title } = Astro.props;
         a.style.paddingLeft = `${heading.tagName === 'H2' ? 0.75 : 1.5}rem`
         sidenav.appendChild(a)
       }
+      sidenav.style.opacity = '1'
     },
     { once: false },
   )
