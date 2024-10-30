@@ -129,3 +129,17 @@ section:nth-child(odd) {
   --color-background-top: var(--color-background-alt);
   --color-background-section: var(--color-background);
 }
+
+// https://stackoverflow.com/a/39554003/3230090
+$height-small: 40vh;
+$height-large: 1000px;
+$max-height-large: 50vh;
+
+.heroSize {
+  position: relative;
+  height: $height-small;
+  @media only screen and (min-width: $screen-mid) {
+    height: $height-large;
+    max-height: $max-height-large;
+  }
+}

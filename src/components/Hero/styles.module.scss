@@ -1,25 +1,8 @@
 @import "@/styles/globalVariables";
 
-// https://stackoverflow.com/a/39554003/3230090
-$hack: 500px;
-$height-small: 40vh;
-$height-large: 1000px;
-$max-height-large: 50vh;
-
-.heroSize {
-  position: relative;
-  height: $height-small;
-  @media only screen and (min-width: $screen-mid) {
-    height: $height-large;
-    max-height: $max-height-large;
-  }
-}
-
 .container {
   box-sizing: content-box;
   font-size: 2rem;
-  margin: -$hack 0 !important;
-  padding: $hack 0;
   display: flex;
   justify-content: center;
   .positioner {

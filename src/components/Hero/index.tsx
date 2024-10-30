@@ -69,8 +69,8 @@ const waveOptions = {
 export default function Hero() {
 
   return(
-    <div className={clsx(styles.heroSize, styles.container, "pointer-events-none")}>
-      <div className={clsx(styles.heroSize, styles.positioner)}>
+    <div className={clsx("heroSize", styles.container, "pointer-events-none")}>
+      <div className={clsx("heroSize", styles.positioner)}>
         <div className={clsx(styles.waves)}>
           <WaveGroup
             numWaves={numLines * 2}
