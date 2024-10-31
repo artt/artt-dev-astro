@@ -18,7 +18,7 @@ const pathname = Astro.url.pathname
 const isActive = pathname.startsWith(href) || pathname.startsWith(`/en${href}`)
 
 const extraAttributes: { 'data-type'?: string, 'target'?: string, 'rel'?: string } = {}
-if (href.startsWith("http")) {
+if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) {
   extraAttributes['data-type'] = "external"
   extraAttributes.target = "_blank"
   extraAttributes.rel = "noopener noreferrer"
