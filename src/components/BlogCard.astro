@@ -8,7 +8,7 @@ const { data, mainSlug } = Astro.props
 ---
 
 <style lang="scss">
-  @import "@/styles/globalVariables";
+  @use "@/styles/globalVariables" as *;
   span {
     color: var(--color-background-contrast);
     font-size: 0.75rem;

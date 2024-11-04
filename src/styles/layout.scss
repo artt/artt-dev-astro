@@ -1,4 +1,4 @@
-@import "globalVariables";
+@use "globalVariables" as *;
 
 body {
   margin: 0 auto;

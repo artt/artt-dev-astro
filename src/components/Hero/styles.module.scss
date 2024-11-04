@@ -1,4 +1,4 @@
-@import "@/styles/globalVariables";
+@use "@/styles/globalVariables" as *;
 
 .container {
   box-sizing: content-box;

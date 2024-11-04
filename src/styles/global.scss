@@ -1,11 +1,11 @@
 @use 'sass:list';
+@use "globalVariables" as *;
 
-@import "code";
-@import "globalVariables";
-@import "fonts.css";
-@import "darkmode";
-@import "blockquote";
-@import "figure";
+@use "code" as *;
+@use "fonts.css" as *;
+@use "darkmode" as *;
+@use "blockquote" as *;
+@use "figure" as *;
 
 :root {
   font-size: 18px;
