@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:map";
+
 $artt-blue: #077185;
 $artt-orange: #D76D07;
 $off-white-background: #F4F1F0;
@@ -41,66 +44,66 @@ $themes: (
 	light: (
     background: $off-white-background,
     background-contrast: rgba(255, 255, 255, 1),
-    background-alt: scale-color($off-white-background, $lightness: -5%),
+    background-alt: color.scale($off-white-background, $lightness: -5%),
     primary: $artt-blue,
     secondary: $artt-orange,
     text: rgba(0,0,0,0.87),
     heading: $artt-blue,
     x-green: rgba(0, 128, 0, 1),
-    x-blue: scale-color(#4BB3D3, $lightness: -40%),
-    x-yellow: scale-color(#f5b318, $lightness: -20%),
+    x-blue: color.scale(#4BB3D3, $lightness: -40%),
+    x-yellow: color.scale(#f5b318, $lightness: -20%),
     x-red: #f44336,
-    x-grey: scale-color(#aaaaaa, $lightness: -30%),
+    x-grey: color.scale(#aaaaaa, $lightness: -30%),
     x-purple: #9c27b0,
     code-background: $code-background-light,
     cover-shadow-spread: rgba(black, 0.15),
     cover-shadow-focus: rgba(black, 0.2),
-    neutral-3: mix($off-white-background, black, 97%),
-    neutral-5: mix($off-white-background, black, 95%),
-    neutral-10: mix($off-white-background, black, 90%),
-    neutral-20: mix($off-white-background, black, 80%),
-    neutral-40: mix($off-white-background, black, 60%),
-    neutral-60: mix($off-white-background, black, 40%),
-    neutral-80: mix($off-white-background, black, 20%),
-    neutral-100: mix($off-white-background, black, 0%),
+    neutral-3: color.mix($off-white-background, black, 97%),
+    neutral-5: color.mix($off-white-background, black, 95%),
+    neutral-10: color.mix($off-white-background, black, 90%),
+    neutral-20: color.mix($off-white-background, black, 80%),
+    neutral-40: color.mix($off-white-background, black, 60%),
+    neutral-60: color.mix($off-white-background, black, 40%),
+    neutral-80: color.mix($off-white-background, black, 20%),
+    neutral-100: color.mix($off-white-background, black, 0%),
   ),
   dark: (
     background: $off-black-background,
     background-contrast: rgba(0, 0, 0, 1),
-    background-alt: scale-color($off-black-background, $lightness: 5%),
-    primary: scale-color($artt-blue, $lightness: 10%),
-    secondary: scale-color($artt-orange, $lightness: 20%, $saturation: -20%),
+    background-alt: color.scale($off-black-background, $lightness: 5%),
+    primary: color.scale($artt-blue, $lightness: 10%),
+    secondary: color.scale($artt-orange, $lightness: 20%, $saturation: -20%),
     text: rgba(255, 255, 255, 0.87),
-    heading: scale-color($artt-blue, $lightness: 50%, $saturation: -40%),
-    x-green: scale-color(green, $lightness: 50%, $saturation: -40%),
+    heading: color.scale($artt-blue, $lightness: 50%, $saturation: -40%),
+    x-green: color.scale(green, $lightness: 50%, $saturation: -40%),
     x-blue: #4BB3D3,
     x-yellow: #f5b318,
-    x-red: scale-color(#f44336, $lightness: 10%),
+    x-red: color.scale(#f44336, $lightness: 10%),
     x-grey: #aaaaaa,
-    x-purple: scale-color(#9c27b0, $lightness: 30%),
+    x-purple: color.scale(#9c27b0, $lightness: 30%),
     code-background: $code-background-dark,
     cover-shadow-spread: rgba(black, 0.4),
     cover-shadow-focus: rgba(black, 0.6),
-    neutral-3: mix($off-black-background, white, 97%),
-    neutral-5: mix($off-black-background, white, 95%),
-    neutral-10: mix($off-black-background, white, 90%),
-    neutral-20: mix($off-black-background, white, 80%),
-    neutral-40: mix($off-black-background, white, 60%),
-    neutral-60: mix($off-black-background, white, 40%),
-    neutral-80: mix($off-black-background, white, 20%),
-    neutral-100: mix($off-black-background, white, 0%),
+    neutral-3: color.mix($off-black-background, white, 97%),
+    neutral-5: color.mix($off-black-background, white, 95%),
+    neutral-10: color.mix($off-black-background, white, 90%),
+    neutral-20: color.mix($off-black-background, white, 80%),
+    neutral-40: color.mix($off-black-background, white, 60%),
+    neutral-60: color.mix($off-black-background, white, 40%),
+    neutral-80: color.mix($off-black-background, white, 20%),
+    neutral-100: color.mix($off-black-background, white, 0%),
   ),
 );
 
 :root {
  
   @each $prop in $properties {
-    --color-#{$prop}: #{map-get(map-get($themes, "light"), '#{$prop}')};
+    --color-#{$prop}: #{map.get(map.get($themes, "light"), '#{$prop}')};
   }
 
   &[data-theme="dark"] {
     @each $prop in $properties {
-      --color-#{$prop}: #{map-get(map-get($themes, "dark"), '#{$prop}')};
+      --color-#{$prop}: #{map.get(map.get($themes, "dark"), '#{$prop}')};
     }
   }
 

@@ -1,7 +1,9 @@
+@use 'sass:list';
+
+@import "code";
 @import "globalVariables";
 @import "fonts.css";
 @import "darkmode";
-@import "code";
 @import "blockquote";
 @import "figure";
 
@@ -64,7 +66,7 @@ p {
     font-family: var(--font-heading);
     font-weight: bold;
     $h-sizes: 1.5rem 1.3rem 1.2rem 1.1rem 1.05rem;
-    $tmp: nth($h-sizes, $i - 1);
+    $tmp: list.nth($h-sizes, $i - 1);
     font-size: $tmp;
     line-height: $tmp;
     margin-top: 1.2*$tmp;
@@ -74,7 +76,7 @@ p {
     }
     @media (min-width: $screen-mid) {
       $h-sizes: 2rem 1.6rem 1.3rem 1.15rem 1.1rem;
-      $tmp: nth($h-sizes, $i - 1);
+      $tmp: list.nth($h-sizes, $i - 1);
       font-size: $tmp;
       line-height: $tmp;
       margin-top: 1.2*$tmp;

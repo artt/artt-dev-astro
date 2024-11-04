@@ -1,4 +1,5 @@
-@import "darkmode";
+@use "sass:map";
+@use "darkmode" as *;
 
 :export {
   arttBlue: $artt-blue;
@@ -10,11 +11,11 @@
 
   // these are actually exported in camelCase
   @each $prop in $properties {
-    light--color-#{$prop}: #{map-get(map-get($themes, "light"), '#{$prop}')};
+    light--color-#{$prop}: #{map.get(map.get($themes, "light"), '#{$prop}')};
   }
 
   @each $prop in $properties {
-    dark--color-#{$prop}: #{map-get(map-get($themes, "dark"), '#{$prop}')};
+    dark--color-#{$prop}: #{map.get(map.get($themes, "dark"), '#{$prop}')};
   }
 
 }
