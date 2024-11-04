@@ -57,7 +57,12 @@ const defaultSeoProps: SeoProps = {
   description: description,
   // canonical?: URL | string;
   ...(isBilingual && {
+    // need to include both languages
     languageAlternates: [
+      {
+        href: getLink(Astro.url.pathname, lang),
+        hrefLang: lang,
+      },
       {
         href: getLink(Astro.url.pathname, lang === "en" ? "th" : "en"),
         hrefLang: lang === "en" ? "th" : "en",
