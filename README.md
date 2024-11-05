@@ -5,7 +5,7 @@
 - [x] Google Analytics
 - [x] Prev-next buttons for blogs
 - [x] Fix TOC HTML rendering
-- [ ] Use astro-imagetool
+- [ ] Use astro-imagetool / unpic
 - [ ] Search console
 - [ ] HTML article, etc. tags
 - [ ] Figure reference
