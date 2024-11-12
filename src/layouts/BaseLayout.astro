@@ -54,17 +54,17 @@ const defaultSeoProps: SeoProps = {
   titleTemplate: '%s | artt.dev',
   titleDefault: 'artt.dev',
   charset: 'utf-8',
-  description: description,
+  description: description || "My personal space where I keep my random ideas and projects.",
   // canonical?: URL | string;
   ...(isBilingual && {
     // need to include both languages
     languageAlternates: [
       {
-        href: getLink(Astro.url.pathname, lang),
+        href: new URL(getLink(Astro.url.pathname, lang), Astro.site),
         hrefLang: lang,
       },
       {
-        href: getLink(Astro.url.pathname, lang === "en" ? "th" : "en"),
+        href: new URL(getLink(Astro.url.pathname, lang === "en" ? "th" : "en"), Astro.site),
         hrefLang: lang === "en" ? "th" : "en",
       },
     ],
