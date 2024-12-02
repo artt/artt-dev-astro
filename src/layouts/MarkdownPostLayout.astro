@@ -5,7 +5,7 @@ import BlogNav from "@/components/BlogNav.astro";
 
 import "katex/dist/katex.min.css"
 
-const { frontmatter, headings, isBilingual, prevBlog, nextBlog } = Astro.props;
+const { frontmatter, isBilingual, prevBlog, nextBlog } = Astro.props;
 
 ---
 <BaseLayout
@@ -17,13 +17,10 @@ const { frontmatter, headings, isBilingual, prevBlog, nextBlog } = Astro.props;
   isBilingual={isBilingual}
 >
   <slot />
-  {headings.length > 3 &&
-    <Toc
-      slot="sidebar"
-      title={frontmatter.title}
-      headings={headings}
-    />
-  }
+  <Toc
+    slot="sidebar"
+    title={frontmatter.title}
+  />
   <BlogNav
     slot="after-body"
     prevBlog={prevBlog}

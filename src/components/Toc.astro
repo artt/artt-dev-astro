@@ -69,11 +69,20 @@ const { title } = Astro.props;
           }, 500)
         }
       }, 1000)
-      const x = document.querySelectorAll("#content h2, #content h3")
       const sidenav = document.getElementById('component-sidenav')
       if (!sidenav) {
         return
       }
+      const x = document.querySelectorAll("#content h2, #content h3")
+      if (x.length < 4) {
+        // remove the sidenav's first child if there are less than 4 headings
+        const firstChild = sidenav.firstElementChild
+        if (firstChild) {
+          sidenav.removeChild(firstChild)
+        }
+        return
+      }
+
       // set opacity to 0 first, then after populating the sidebar, set it to 1
       for (let i = 0; i < x.length; i ++) {
         const heading = x[i] as HTMLElement
@@ -83,7 +92,7 @@ const { title } = Astro.props;
         }
         const a = document.createElement('a')
         a.href = `#${heading.id}`
-        a.innerHTML = heading.children[0].innerHTML
+        a.innerHTML = heading.lastElementChild?.innerHTML || heading.innerHTML
         a.style.paddingLeft = `${heading.tagName === 'H2' ? 0.75 : 1.5}rem`
         sidenav.appendChild(a)
       }
