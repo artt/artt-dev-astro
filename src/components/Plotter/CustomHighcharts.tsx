@@ -1,8 +1,8 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import highchartsData from "highcharts/modules/data"
-import highchartsMore from "highcharts/highcharts-more"
-import highchartsAnnotations from "highcharts/modules/annotations"
+import "highcharts/modules/data"
+import "highcharts/highcharts-more"
+import "highcharts/modules/annotations"
 import deepmerge from "deepmerge"
 
 Highcharts.dateFormats = {
@@ -11,9 +11,6 @@ Highcharts.dateFormats = {
     return(Math.floor(date.getUTCMonth() / 3) + 1).toFixed(0);
   }
 };
-highchartsData(Highcharts)
-highchartsMore(Highcharts)
-highchartsAnnotations(Highcharts)
 Highcharts.setOptions({
   lang: {
     weekdays: ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"],
