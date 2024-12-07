@@ -146,7 +146,9 @@ const defaultSeoProps: SeoProps = {
     <Header />
     {!noCover &&
       <div id="component-cover-image" class="w-full" style={{ backgroundColor: coverColor }} >
-        <Image src={cover || coverImage} alt="" class="mx-auto" />
+        <div id="component-cover-image-container">
+          <Image src={cover || coverImage} alt="" class="mx-auto w-full h-full" />
+        </div>
       </div>
     }
     <main class:list={[{"cap-width": !noCap}, {split: !noSplit}]}>
