@@ -29,38 +29,59 @@ const Wave: React.FC<Props> = ({
   ...rest
 }) => {
   
-  // need to set the initial seed to avoid complaining about props not match
-  const [attributes, setAttributes] = React.useState({ d: getPath(initialSeed), style: {} })
+  const pathRef = React.useRef<SVGPathElement | null>(null)
+  const startPath = getPath(initialSeed)
 
   function getPath(seed?: string | number) {
     seed = typeof seed === "number" ? seed.toString() : seed
     return genHLines(width, height, {...options, seed: seed || ''}, override)[0].curve + pathSuffix
   }
 
-  function animatePath() {
+  // Convert easing array or string into a keySpline format if it's an array
+  // keySplines expects a format like "x1 y1 x2 y2"
+  const keySpline = Array.isArray(easing) ? easing.join(" ") : easing
+
+  function animatePath(startPath: string) {
+    
+    if (!pathRef.current) return
+
     const time = duration[0] + Math.random() * (duration[1] - duration[0])
-    setAttributes({
-      d: getPath(),
-      style: {
-        transition: `d ${time}s cubic-bezier(${typeof easing === "string" ? easing : easing.join(", ")})`,
-      },
-    })
-    setTimeout(animatePath, time * 1000)
+    const nextPath = getPath()
+
+    // delete all children of pathRef.current
+    while (pathRef.current.firstChild) {
+      pathRef.current.removeChild(pathRef.current.firstChild)
+    }
+    
+    // add animate element to pathRef.current
+    const animateTag = document.createElementNS("http://www.w3.org/2000/svg", "animate")
+    animateTag.setAttribute("attributeName", "d")
+    animateTag.setAttribute("begin", "indefinite")
+    animateTag.setAttribute("fill", "freeze")
+    animateTag.setAttribute("from", startPath)
+    animateTag.setAttribute("to", nextPath)
+    animateTag.setAttribute("dur", `${time}s`)
+    animateTag.setAttribute("keyTimes", "0;1")
+    animateTag.setAttribute("keySplines", keySpline)
+    animateTag.setAttribute("calcMode", "spline")
+    pathRef.current.appendChild(animateTag)
+
+    pathRef.current.setAttribute("d", startPath)
+    animateTag.beginElement()
+
+    setTimeout(() => animatePath(nextPath), time * 1000)
   }
 
   React.useEffect(() => {
-    animatePath()
+    animatePath(startPath)
   }, [])
 
   return (
     <path
-      {...attributes}
+      ref={pathRef}
       className={className}
       {...rest}
-    >
-      <animate
-      />
-    </path>
+    />
   )
 }
 
