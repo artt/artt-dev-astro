@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
-import { imageService } from "@unpic/astro/service";
+// import { imageService } from "@unpic/astro/service";
 
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
@@ -65,14 +65,7 @@ export default defineConfig({
     ],
   },
   image: {
-    // service: imageService({
-    //   cdnOptions: {
-    //     astro: {
-    //       trailingSlash: true,
-    //     },
-    //   },
-    // }),
-    service: imageService(),
+    // service: imageService(),
   },
   integrations: [
     tailwind({
