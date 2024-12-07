@@ -4,8 +4,7 @@ import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
 import { imageService } from "@unpic/astro/service";
-// import vercel from '@astrojs/vercel';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"

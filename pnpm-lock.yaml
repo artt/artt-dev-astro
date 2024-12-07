@@ -24,8 +24,8 @@ importers:
         specifier: ^5.1.2
         version: 5.1.2(astro@5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1))(tailwindcss@3.4.15)
       '@astrojs/vercel':
-        specifier: ^7.8.1
-        version: 7.8.1(astro@5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1))(react@18.3.1)(rollup@4.28.0)
+        specifier: ^8.0.0
+        version: 8.0.0(astro@5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1))(react@18.3.1)(rollup@4.28.0)
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
@@ -260,10 +260,10 @@ packages:
     resolution: {integrity: sha512-wxhSKRfKugLwLlr4OFfcqovk+LIFtKwLyGPqMsv+9/ibqqnW3Gv7tBhtKEb0gAyUAC4G9BTVQeQahqnQAhd6IQ==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/vercel@7.8.1':
-    resolution: {integrity: sha512-2PIVmv2/nI527DQsaZnf2jeUr+ddJjaQLXwqnVPXQn0LfIE8mi8BgYC5SUU9hJWIaFwEWTwJh90POaA2L3RpWQ==}
+  '@astrojs/vercel@8.0.0':
+    resolution: {integrity: sha512-JEVt/J9NJ0unMCLh2fCOvr9M6Mugph3SoNSzaRLR88hA6ckakHabSAMyd8fTFy4pogPH/puyQkiKak7nsHyM6g==}
     peerDependencies:
-      astro: ^4.2.0
+      astro: ^5.0.0
 
   '@astrojs/yaml2ts@0.2.2':
     resolution: {integrity: sha512-GOfvSr5Nqy2z5XiwqTouBBpy5FyI6DEe+/g/Mk5am9SjILN1S5fOEvYK0GuWHg98yS/dobP4m8qyqw/URW35fQ==}
@@ -3411,9 +3411,6 @@ packages:
   web-namespaces@2.0.1:
     resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
 
-  web-vitals@3.5.2:
-    resolution: {integrity: sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==}
-
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
 
@@ -3745,16 +3742,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@7.8.1(astro@5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1))(react@18.3.1)(rollup@4.28.0)':
+  '@astrojs/vercel@8.0.0(astro@5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1))(react@18.3.1)(rollup@4.28.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.4.2
       '@vercel/analytics': 1.4.1(react@18.3.1)
       '@vercel/edge': 1.1.3
       '@vercel/nft': 0.27.7(rollup@4.28.0)
       astro: 5.0.3(@types/node@18.19.67)(jiti@1.21.6)(rollup@4.28.0)(sass@1.81.0)(typescript@5.7.2)(yaml@2.6.1)
-      esbuild: 0.21.5
+      esbuild: 0.24.0
       fast-glob: 3.3.2
-      web-vitals: 3.5.2
     transitivePeerDependencies:
       - '@remix-run/react'
       - '@sveltejs/kit'
@@ -7415,8 +7411,6 @@ snapshots:
   vscode-uri@3.0.8: {}
 
   web-namespaces@2.0.1: {}
-
-  web-vitals@3.5.2: {}
 
   webidl-conversions@3.0.1: {}
 
