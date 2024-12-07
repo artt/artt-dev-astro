@@ -43,10 +43,10 @@ const defaultLocale = "th"
 // https://astro.build/config
 export default defineConfig({
   site: "https://artt.dev",
-  // trailingSlash: "always",
-  // build: {
-  //   format: "directory",
-  // },
+  trailingSlash: "always",
+  build: {
+    format: "directory",
+  },
   output: 'server',
   adapter: vercel({
     // imageService: true,
