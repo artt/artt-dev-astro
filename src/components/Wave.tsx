@@ -53,7 +53,14 @@ const Wave: React.FC<Props> = ({
   }, [])
 
   return (
-    <path {...attributes} className={className} {...rest} />
+    <path
+      {...attributes}
+      className={className}
+      {...rest}
+    >
+      <animate
+      />
+    </path>
   )
 }
 
