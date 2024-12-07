@@ -48,7 +48,7 @@ export default defineConfig({
     format: "directory",
   },
   output: 'static',
-  adapter: vercel(),
+  // adapter: vercel(),
   vite: {
     css: {
       preprocessorOptions: {
