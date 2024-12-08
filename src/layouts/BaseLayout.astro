@@ -144,7 +144,7 @@ const defaultSeoProps: SeoProps = {
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <script is:inline data-astro-rerun src="/loadTheme.js" />
     <script is:inline define:vars={{ isBilingual }}>
-      const pageLang = window.location.pathname.startsWith("/en/") ? "en" : "th"
+      const pageLang = (window.location.pathname === "/en" || window.location.pathname.startsWith("/en/")) ? "en" : "th"
       const preferredLang = document.documentElement.dataset.preferredLang
       if (isBilingual && (pageLang !== preferredLang)) {
         if (preferredLang === "th") {
