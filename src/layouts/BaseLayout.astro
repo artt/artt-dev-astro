@@ -55,7 +55,7 @@ const defaultSeoProps: SeoProps = {
   titleDefault: 'artt.dev',
   charset: 'utf-8',
   description: description || "My personal space where I keep my random ideas and projects.",
-  // canonical?: URL | string;
+  canonical: Astro.url,
   ...(isBilingual && {
     // need to include both languages
     languageAlternates: [
