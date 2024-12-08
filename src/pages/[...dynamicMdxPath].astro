@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 const { entry, mainSlug, isBilingual, redirect, prevBlog, nextBlog } = Astro.props
 
 if (redirect) {
-  return Astro.redirect(redirect)
+  return Astro.redirect(redirect, 308)
 }
 const { Content } = await render(entry)
 
