@@ -91,10 +91,14 @@ export async function generateStaticPathFromEntry(entry: Awaited<ReturnType<type
   const { mainSlug, isBilingual, lang } = ret
 
   // find previous/next blog post
-  const allBlogs = allBlogPosts[lang as "th" | "en"] //await getAllBlogPosts(lang)
-  const index = allBlogs.findIndex((blog) => blog!.mainSlug === mainSlug)
-  const prevBlog = allBlogs[index + 1] || null
-  const nextBlog = allBlogs[index - 1] || null
+  let prevBlog = null
+  let nextBlog = null
+  if (entry.collection === "blog") {
+    const allBlogs = allBlogPosts[lang as "th" | "en"] //await getAllBlogPosts(lang)
+    const index = allBlogs.findIndex((blog) => blog!.mainSlug === mainSlug)
+    prevBlog = allBlogs[index + 1] || null
+    nextBlog = allBlogs[index - 1] || null
+  }
 
   if (isBilingual) {
     return [{
