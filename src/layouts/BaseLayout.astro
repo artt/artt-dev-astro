@@ -143,6 +143,18 @@ const defaultSeoProps: SeoProps = {
   <body>
     <script is:inline data-astro-rerun src="/loadLang.js" />
     <script is:inline data-astro-rerun src="/loadTheme.js" />
+    <script is:inline define:vars={{ isBilingual }}>
+      const pageLang = window.location.pathname.startsWith("/en/") ? "en" : "th"
+      const preferredLang = document.documentElement.dataset.preferredLang
+      if (isBilingual && pageLang !== preferredLang) {
+        if (preferredLang === "th") {
+          window.location.href = window.location.pathname.replace("/en/", "/")
+        }
+        else {
+          window.location.href = window.location.pathname.replace(/^\//, "/en/")
+        }
+      }
+    </script>
     <Header />
     {!noCover &&
       <div id="component-cover-image" class="w-full" style={{ backgroundColor: coverColor }} >

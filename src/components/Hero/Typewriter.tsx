@@ -11,6 +11,7 @@ const artList = [
   "creative",
   "a writer",
   "a musician",
+  "a maker",
   "a designer",
   "a photographer",
 ]
