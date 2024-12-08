@@ -1,0 +1,12 @@
+diff --git a/dist/core/routing/3xx.js b/dist/core/routing/3xx.js
+index b13f3824808ceb752b513800efe484222eabccc7..10fb72f7f8a37e13408cdf3f9dbe38507ec90f65 100644
+--- a/dist/core/routing/3xx.js
++++ b/dist/core/routing/3xx.js
+@@ -1,4 +1,7 @@
+ function redirectTemplate({ status, location, from }) {
++  if (status === 308) {
++    return `<meta http-equiv="refresh" content="0;url=${location}">`
++  }
+   const delay = status === 302 ? 2 : 0;
+   return `<!doctype html>
+ <title>Redirecting to: ${location}</title>

@@ -18,7 +18,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@unpic/astro": "^0.1.0",
-    "astro": "5.0.0-beta.6",
+    "astro": "5.0.3",
     "astro-embed": "^0.9.0",
     "astro-i18n-aut": "^0.7.0",
     "astro-seo": "^0.8.4",
@@ -55,5 +55,10 @@
   "devDependencies": {
     "@shikijs/transformers": "^1.24.0",
     "vite-plugin-svgr": "^4.3.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "astro@5.0.3": "patches/astro@5.0.3.patch"
+    }
   }
 }
