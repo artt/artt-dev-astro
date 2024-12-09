@@ -17,8 +17,8 @@ importers:
         specifier: ^0.9.4
         version: 0.9.4(typescript@5.7.2)
       '@astrojs/mdx':
-        specifier: 4.0.0-beta.3
-        version: 4.0.0-beta.3(astro@5.0.3(patch_hash=6hdmt5xvgneur2tnt2smdyay4m)(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.28.1)(sass@1.82.0)(typescript@5.7.2)(yaml@2.6.1))
+        specifier: 4.0.2
+        version: 4.0.2(astro@5.0.3(patch_hash=6hdmt5xvgneur2tnt2smdyay4m)(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.28.1)(sass@1.82.0)(typescript@5.7.2)(yaml@2.6.1))
       '@astrojs/react':
         specifier: ^3.6.3
         version: 3.6.3(@types/node@22.10.1)(@types/react-dom@18.3.2)(@types/react@18.3.14)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.82.0)
@@ -223,18 +223,14 @@ packages:
   '@astrojs/markdown-remark@6.0.0':
     resolution: {integrity: sha512-Tabo7xM44Pz2Yf9qpdaCCgxRmtaypi2YCinqTUNefDrWUa+OyKW62OuNeCaGwNh/ys+QAd9FUWN5/3HgPWjP4Q==}
 
-  '@astrojs/markdown-remark@6.0.0-beta.2':
-    resolution: {integrity: sha512-XHadnf3c+hb2A0kWBuwKA3TqBKi7bIF3bpRt49DTnE3dVlsHDPmByn0Wj3CZij1HvXL/ODmPiOJt2JGXMeivuQ==}
+  '@astrojs/markdown-remark@6.0.1':
+    resolution: {integrity: sha512-CTSYijj25NfxgZi15TU3CwPwgyD1/7yA3FcdcNmB9p94nydupiUbrIiq3IqeTp2m5kCVzxbPZeC7fTwEOaNyGw==}
 
-  '@astrojs/mdx@4.0.0-beta.3':
-    resolution: {integrity: sha512-U8fWNOTpbGqxyvHQY/Uj2ucp8uUdBxHxInkH+2AcRQaL4ZYq0W/agufz+VsCt4DQkapvgREwIACsJ8WnoEE79A==}
-    engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
+  '@astrojs/mdx@4.0.2':
+    resolution: {integrity: sha512-uBoXNSSAUqhf2dVtJWFbSapwNkcnCzbISW98EcybFXvNgYt9g8yPJ7+lYnf+sH5pv0c/JEW8HlBvPSi81AVRlw==}
+    engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0}
     peerDependencies:
-      astro: ^5.0.0-alpha.0
-
-  '@astrojs/prism@3.1.0':
-    resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
-    engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
+      astro: ^5.0.0
 
   '@astrojs/prism@3.2.0':
     resolution: {integrity: sha512-GilTHKGCW6HMq7y3BUv9Ac7GMe/MO9gi9GW62GzKtth0SwukCu/qp2wLiGpEujhY+VVhaG9v7kv/5vFzvf4NYw==}
@@ -3430,9 +3426,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/markdown-remark@6.0.0-beta.2':
+  '@astrojs/markdown-remark@6.0.1':
     dependencies:
-      '@astrojs/prism': 3.1.0
+      '@astrojs/prism': 3.2.0
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
       hast-util-to-text: 4.0.2
@@ -3454,9 +3450,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.0.0-beta.3(astro@5.0.3(patch_hash=6hdmt5xvgneur2tnt2smdyay4m)(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.28.1)(sass@1.82.0)(typescript@5.7.2)(yaml@2.6.1))':
+  '@astrojs/mdx@4.0.2(astro@5.0.3(patch_hash=6hdmt5xvgneur2tnt2smdyay4m)(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.28.1)(sass@1.82.0)(typescript@5.7.2)(yaml@2.6.1))':
     dependencies:
-      '@astrojs/markdown-remark': 6.0.0-beta.2
+      '@astrojs/markdown-remark': 6.0.1
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
       astro: 5.0.3(patch_hash=6hdmt5xvgneur2tnt2smdyay4m)(@types/node@22.10.1)(jiti@1.21.6)(rollup@4.28.1)(sass@1.82.0)(typescript@5.7.2)(yaml@2.6.1)
@@ -3472,10 +3468,6 @@ snapshots:
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
-
-  '@astrojs/prism@3.1.0':
-    dependencies:
-      prismjs: 1.29.0
 
   '@astrojs/prism@3.2.0':
     dependencies:
