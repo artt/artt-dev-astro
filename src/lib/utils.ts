@@ -55,3 +55,8 @@ export function joinPath(paths: string[], prependSlash=true, appendSlash=true) {
   if (appendSlash) path = path + "/"
   return path.replace(/\/{2,}/g, "/")
 }
+
+// Retrieve item from array of objects. Each object is guaranteed to have a unique key `id`.
+export function getItem(array: any[], key: string) {
+  return array.find(item => item.id === key)
+}

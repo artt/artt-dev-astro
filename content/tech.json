@@ -1,0 +1,54 @@
+[
+  {
+    "id": "react",
+    "title": "React",
+    "color": "61DAFB",
+    "iconColor": "black"
+  },
+  {
+    "id": "tailwindcss",
+    "title": "Tailwind CSS",
+    "color": "06B6D4"
+  },
+  {
+    "id": "svg",
+    "title": "SVG",
+    "color": "FFB13B"
+  },
+  {
+    "id": "highcharts",
+    "title": "Highcharts",
+    "color": "FF0000"
+  },
+  {
+    "id": "mui",
+    "title": "MUI",
+    "color": "007FFF"
+  },
+  {
+    "id": "python",
+    "title": "Python",
+    "color": "3776AB"
+  },
+  {
+    "id": "openai",
+    "title": "OpenAI",
+    "color": "412991"
+  },
+  {
+    "id": "line",
+    "title": "LINE",
+    "color": "00C300"
+  },
+  {
+    "id": "chakra-ui",
+    "title": "Chakra UI",
+    "color": "319795"
+  },
+  {
+    "id": "threejs",
+    "title": "Three.js",
+    "color": "000000",
+    "icon": "threedotjs"
+  }
+]

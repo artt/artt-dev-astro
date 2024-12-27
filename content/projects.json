@@ -7,7 +7,8 @@
       "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
       "en": "A website app to find available slots for visiting Rurikoin temple"
     },
-    "image": "https://rurikoin-scanner.artt.dev/cover.jpg"
+    "image": "https://rurikoin-scanner.artt.dev/cover.jpg",
+    "tech": ["react", "tailwindcss"]
   },
   {
     "id": "react-random-shapes",
@@ -17,7 +18,8 @@
       "th": "Package สำหรับสร้างเส้น `svg`",
       "en": "Create random, wavy, `svg` shapes."
     },
-    "image": "https://raw.githubusercontent.com/artt/react-random-shapes/HEAD/wave.svg"
+    "image": "https://raw.githubusercontent.com/artt/react-random-shapes/HEAD/wave.svg",
+    "tech": ["react", "svg"]
   },
   {
     "id": "nongped",
@@ -27,7 +29,19 @@
       "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
       "en": "A website app to find available slots for visiting Rurikoin temple"
     },
-    "image": "https://nongped.artt.dev/assets/nongped-08f98170.svg"
+    "image": "https://nongped.artt.dev/assets/nongped-08f98170.svg",
+    "tech": ["react", "highcharts", "mui", "python"]
+  },
+  {
+    "id": "nonghed",
+    "title": "NongHed",
+    "url": "https://nonghed.artt.dev/",
+    "description": {
+      "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
+      "en": "A website app to find available slots for visiting Rurikoin temple"
+    },
+    "image": "https://nonghed.artt.dev/og-image.png",
+    "tech": ["python", "openai", "line"]
   },
   {
     "id": "dltqme",
@@ -37,7 +51,8 @@
       "th": "เว็บจองคิวบริการต่อใบขับขี่ของกรมการขนส่งทางบก",
       "en": "A website app to find available slots for DLT's driver license services"
     },
-    "image": "https://dltqme.artt.dev/preview.png"
+    "image": "https://dltqme.artt.dev/preview.png",
+    "tech": ["react", "mui"]
   },
   {
     "id": "tabby",
@@ -47,7 +62,8 @@
       "th": "Chrome extension ช่วยจัดการ tab ให้เป็นระเบียบ",
       "en": "A Chrome extension that will help you manage your tabs efficiently"
     },
-    "image": "https://tabby.artt.dev/cover.jpg"
+    "image": "https://tabby.artt.dev/cover.jpg",
+    "tech": ["react", "chakra-ui", "openai"]
   },
   {
     "id": "rta-network",
@@ -57,6 +73,7 @@
       "th": "แผนผังเครือข่ายข้อตกลงการค้าภูมิภาค (regional trade agreement: RTA)",
       "en": "Visualization of regional trade agreement (RTA) network"
     },
-    "image": "https://rta-network.artt.dev/og.png"
+    "image": "https://rta-network.artt.dev/og.png",
+    "tech": ["react", "threejs", "mui"]
   }
 ]

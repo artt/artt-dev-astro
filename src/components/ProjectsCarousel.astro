@@ -4,7 +4,9 @@ import { getLocale } from 'astro-i18n-aut';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import { getItem } from '@/lib/utils';
 import 'swiper/css';
+import { data } from 'highcharts';
 
 const lang = getLocale(Astro.url)
 const projects = await getCollection('projects')
@@ -17,6 +19,8 @@ await Promise.all(projects.map(async (project) => {
     en: await marked.parse(project.data.description.en),
   };
 }));
+
+const tech = await getCollection('tech')
 
 ---
 
@@ -40,9 +44,27 @@ await Promise.all(projects.map(async (project) => {
           height="400"
           class="object-cover h-full w-full"
         />
-        <div class="p-4">
-          <div class="font-heading text-xl text-heading font-bold mt-4 md:mt-16">{project.data.title}</div>
-          <div set:html={getText(lang, markedDescriptions[project.data.id])} />
+        <div class="p-4 flex flex-col">
+          <div class="flex-grow">
+            <div class="font-heading text-xl text-heading font-bold mt-4 md:mt-16">{project.data.title}</div>
+            <div set:html={getText(lang, markedDescriptions[project.data.id])} />
+          </div>
+          {project.data.tech &&
+            <div class="flex flex-wrap gap-2">
+              {
+                project.data.tech.map((t) => {
+                  const techEntry = getItem(tech, t.id)
+                  return (
+                    <img
+                      src={`https://img.shields.io/badge/${techEntry.data.title}-${techEntry.data.color}?logo=${techEntry.data.icon || techEntry.id}&logoColor=white&labelColor=555`} 
+                      alt={techEntry.data.title}
+                      class=""
+                    />
+                  )
+                })
+              }
+            </div>
+          }
         </div>
       </div>
     ))
