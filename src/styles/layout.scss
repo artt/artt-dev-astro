@@ -142,3 +142,10 @@ $max-height-large: 50vh;
     max-height: $max-height-large;
   }
 }
+
+// https://css-tricks.com/full-width-containers-limited-width-parents/#aa-no-calc-needed
+.full-width {
+  width: 100vw !important;
+  left: 50% !important;
+  margin-left: -50vw !important;
+}
