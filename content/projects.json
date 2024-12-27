@@ -28,5 +28,15 @@
       "en": "A website app to find available slots for DLT's driver license services."
     },
     "image": "https://dltqme.artt.dev/preview.png"
+  },
+  {
+    "id": "tabby",
+    "title": "Tabby",
+    "url": "https://tabby.artt.dev/",
+    "description": {
+      "th": "Chrome extension ช่วยจัดการ tab ให้เป็นระเบียบ",
+      "en": "A Chrome extension that will help you manage your tabs efficiently."
+    },
+    "image": "https://tabby.artt.dev/cover.jpg"
   }
 ]

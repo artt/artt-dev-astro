@@ -9,13 +9,13 @@ const projects = await getCollection('projects')
 
 <style lang="scss">
   .swiper-slide {
-    height: 200px;
-    width: 100px;
+    height: 400px;
+    max-width: 600px;
   }
 </style>
 
 
-<div class="swiper mySwiper">
+<div class="swiper">
   <div class="swiper-wrapper">
   {
     projects.map((project) => (
@@ -30,18 +30,21 @@ const projects = await getCollection('projects')
 
 <script>
   import Swiper from 'swiper';
+  // somehow we need this: https://stackoverflow.com/questions/76702448/how-to-connect-swiper-js-to-astro-build-and-make-it-a-component
   import { register } from 'swiper/element/bundle';
   register();
-  const swiper = new Swiper(".mySwiper", {
+  new Swiper(".swiper", {
     effect: "coverflow",
     grabCursor: true,
+    loop: true,
     centeredSlides: true,
     slidesPerView: "auto",
     coverflowEffect: {
-      rotate: 50,
+      rotate: 20,
       stretch: 0,
       depth: 100,
       modifier: 1,
+      scale: 0.95,
       slideShadows: true,
     },
     pagination: {
