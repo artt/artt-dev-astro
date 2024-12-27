@@ -6,7 +6,6 @@ import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import { getItem } from '@/lib/utils';
 import 'swiper/css';
-import { data } from 'highcharts';
 
 const lang = getLocale(Astro.url)
 const projects = await getCollection('projects')
