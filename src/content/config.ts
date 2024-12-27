@@ -26,7 +26,7 @@ const pagesCollection = defineCollection({
 })
 
 const projectsCollection = defineCollection({
-  loader: file("./content/projects/projects.json"),
+  loader: file("./content/projects.json"),
   schema: z.object({
     id: z.string(),
     title: z.string(),
