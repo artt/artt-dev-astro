@@ -6,17 +6,23 @@ import Section from '@/components/Section.astro';
 import { getAllBlogPosts } from '@/lib/mdxUtils';
 import CardList from '@/components/CardList.astro';
 import Link from '@/components/Link.astro';
+import { getCollection } from 'astro:content';
 
 const title = "Home";
 
 const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
 
+const projects = await getCollection('projects')
+console.log(projects)
+
 ---
 
 <BaseLayout title={title} noCap noSplit noCover noTitle>
+  
   <div class="heroSize">
     <Hero client:only="react" />
   </div>
+  
   <Section
     title={getLocale(Astro.url) === "th"
       ? "บทความล่าสุด"
@@ -32,5 +38,14 @@ const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
       }
     </Link>
   </Section>
-  <Section />
+  
+  <Section
+    title={getLocale(Astro.url) === "th"
+      ? "โปรเจคล่าสุด"
+      : "Latest projects"
+    }
+  >
+    <div>XXX</div>
+  </Section>
+
 </BaseLayout>
