@@ -33,8 +33,10 @@ const projects = await getCollection('projects')
 
 <script>
   import Swiper from 'swiper';
+  import { register } from 'swiper/element/bundle';
+  register();
   const swiper = new Swiper(".mySwiper", {
-    effect: "cards",
+    effect: "coverflow",
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
