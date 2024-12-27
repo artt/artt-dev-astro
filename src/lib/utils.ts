@@ -39,9 +39,9 @@ export const combineMerge = (target: any, source: any, options: any) => {
   return destination
 }
 
-export function removeTrailingSlash(path: string) {
-  return path === "/" ? path : path.replace(/\/$/, "")
-}
+// export function removeTrailingSlash(path: string) {
+//   return path === "/" ? path : path.replace(/\/$/, "")
+// }
 
 export function addTrailingSlash(path: string) {
   // add trailing slash if path doesn't end with slash already

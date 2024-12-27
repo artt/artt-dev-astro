@@ -7,17 +7,14 @@ import Section from '@/components/Section.astro';
 import { getAllBlogPosts } from '@/lib/mdxUtils';
 import CardList from '@/components/CardList.astro';
 import Link from '@/components/Link.astro';
-import { getCollection } from 'astro:content';
 import { getText } from '@/lib/lang';
+import ProjectsCarousel from '@/components/ProjectsCarousel.astro';
 
 const title = "Home";
 
 const lang = getLocale(Astro.url);
 
 const sortedBlogs = await getAllBlogPosts(lang)
-
-const projects = await getCollection('projects')
-console.log(projects)
 
 ---
 
@@ -44,12 +41,12 @@ console.log(projects)
   </Section>
   
   <Section
-    title={getLocale(Astro.url) === "th"
-      ? "โปรเจคล่าสุด"
-      : "Latest projects"
-    }
+    title={getText(lang, {
+      th: "งานประดิษฐ์",
+      en: "Things I make"
+    })}
   >
-    <div>XXX</div>
+    <ProjectsCarousel />
   </Section>
 
 </BaseLayout>

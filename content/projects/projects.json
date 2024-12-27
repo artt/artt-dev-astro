@@ -4,9 +4,29 @@
     "title": "Rurikoin Scanner",
     "url": "https://rurikoin-scanner.artt.dev/",
     "description": {
-      "en": "Test",
-      "th": "ทดสอบ"
+      "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
+      "en": "A website app to find available slots for visiting Rurikoin temple."
     },
     "image": "https://rurikoin-scanner.artt.dev/cover.jpg"
+  },
+  {
+    "id": "nongped",
+    "title": "NongPed",
+    "url": "https://nongped.artt.dev/",
+    "description": {
+      "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
+      "en": "A website app to find available slots for visiting Rurikoin temple."
+    },
+    "image": "https://nongped.artt.dev/assets/nongped-08f98170.svg"
+  },
+  {
+    "id": "dltqme",
+    "title": "DLT, Queue Me!",
+    "url": "https://dltqme.artt.dev/",
+    "description": {
+      "th": "เว็บจองคิวบริการต่อใบขับขี่ของกรมการขนส่งทางบก",
+      "en": "A website app to find available slots for DLT's driver license services."
+    },
+    "image": "https://dltqme.artt.dev/preview.png"
   }
 ]

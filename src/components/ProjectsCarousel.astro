@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+
+import 'swiper/css';
+
+const projects = await getCollection('projects')
+
+
+
+
+---
+
+<style lang="scss">
+  .swiper-slide {
+    height: 200px;
+    width: 100px;
+  }
+</style>
+
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+  {
+    projects.map((project) => (
+      <div class="swiper-slide bg-[var(--color-background-contrast)]">
+        {project.data.title}
+      </div>
+    ))
+  }
+  </div>
+  <div class="swiper-pagination" />
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  const swiper = new Swiper(".mySwiper", {
+    effect: "cards",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+  });
+</script>

@@ -1,4 +1,4 @@
-import { getCollection, type InferEntrySchema } from 'astro:content';
+import { getCollection, type CollectionEntry, type InferEntrySchema } from 'astro:content';
 import { joinPath } from '@/lib/utils';
 
 function getPathPrefix(collection: string): string {
@@ -14,7 +14,7 @@ function removeDateFromSlug(slug: string) {
 }
 
 
-export function generateMainSlugFromEntry(entry: Awaited<ReturnType<typeof getCollection>>[number]) {
+export function generateMainSlugFromEntry(entry: CollectionEntry<'blog' | 'pages'>) {
   if (!entry.filePath)
     return null
   const matchBilingual = entry.filePath.match(`content\/${entry.collection}\/(?:(.*?)\/)?([^\/]*?)\.(th|en)\.mdx?$`)
@@ -39,7 +39,7 @@ export function generateMainSlugFromEntry(entry: Awaited<ReturnType<typeof getCo
   else {
     mainSlug = joinPath([getPathPrefix(entry.collection), removeDateFromSlug(entry.id)])
     isBilingual = false
-    // if lang is "th" or not specified, then we assume that it's Thai
+    // if lang is "th" or not specified, then we assume that it's Thai)
     lang = entry.data.lang === "en" ? "en" : "th"
   }
   return { data: entry.data, mainSlug, isBilingual, lang }
@@ -84,7 +84,7 @@ const allBlogPosts = {
   en: await getAllBlogPosts("en"),
 }
 
-export async function generateStaticPathFromEntry(entry: Awaited<ReturnType<typeof getCollection>>[number]) {
+export async function generateStaticPathFromEntry(entry: CollectionEntry<'blog' | 'pages'>) {
 
   const ret = generateMainSlugFromEntry(entry)
   if (!ret) return []
