@@ -33,6 +33,7 @@
     "image-dimensions": "^2.3.0",
     "install": "^0.13.0",
     "katex": "^0.16.18",
+    "marked": "^15.0.4",
     "photoswipe": "^5.4.4",
     "pnpm": "^9.15.1",
     "popmotion": "^11.0.5",

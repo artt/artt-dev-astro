@@ -3,34 +3,46 @@ import { getText } from '@/lib/lang';
 import { getLocale } from 'astro-i18n-aut';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-
+import { marked } from 'marked';
 import 'swiper/css';
+
 const lang = getLocale(Astro.url)
 const projects = await getCollection('projects')
 
+const markedDescriptions: Record<string, { th: string, en: string }> = {}
+
+await Promise.all(projects.map(async (project) => {
+  markedDescriptions[project.data.id] = {
+    th: await marked.parse(project.data.description.th),
+    en: await marked.parse(project.data.description.en),
+  };
+}));
+
 ---
 
-<style lang="scss">
-  .swiper-slide {
-    height: 400px;
-    max-width: min(90vw, 600px);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-</style>
 
 
 <div class="swiper full-width">
   <div class="swiper-wrapper">
   {
     projects.map((project) => (
-      <div class="swiper-slide border border-[var(--color-background)] bg-[var(--color-background-contrast)] rounded-2xl overflow-hidden">
-        <Image src={project.data.image} alt={project.data.title} width="400" height="400" class="object-cover h-full w-full" />
+      <div
+        class={`
+          swiper-slide !grid border border-[var(--color-background)] bg-[var(--color-background-contrast)] rounded-2xl overflow-hidden
+          grid-cols-1 !w-[400px] max-w-[90vw] !h-[500px]
+          md:grid-cols-2 md:!w-[600px] md:!h-[400px]
+        `}
+      >
+        <Image
+          src={project.data.image}
+          alt={project.data.title}
+          width="400"
+          height="400"
+          class="object-cover h-full w-full"
+        />
         <div class="p-4">
-          <div class="font-heading text-xl text-heading font-bold mt-16 mb-8">{project.data.title}</div>
-          <div>
-            {getText(lang, project.data.description)}
-          </div>
+          <div class="font-heading text-xl text-heading font-bold mt-4 md:mt-16">{project.data.title}</div>
+          <div set:html={getText(lang, markedDescriptions[project.data.id])} />
         </div>
       </div>
     ))
@@ -57,7 +69,7 @@ const projects = await getCollection('projects')
           forceToAxis: true,
         },
         coverflowEffect: {
-          rotate: 20,
+          rotate: 30,
           stretch: 0,
           depth: 200,
           modifier: 1,

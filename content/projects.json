@@ -5,9 +5,19 @@
     "url": "https://rurikoin-scanner.artt.dev/",
     "description": {
       "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
-      "en": "A website app to find available slots for visiting Rurikoin temple."
+      "en": "A website app to find available slots for visiting Rurikoin temple"
     },
     "image": "https://rurikoin-scanner.artt.dev/cover.jpg"
+  },
+  {
+    "id": "react-random-shapes",
+    "title": "React Random Shapes",
+    "url": "https://github.com/artt/react-random-shapes",
+    "description": {
+      "th": "Package สำหรับสร้างเส้น `svg`",
+      "en": "Create random, wavy, `svg` shapes."
+    },
+    "image": "https://raw.githubusercontent.com/artt/react-random-shapes/HEAD/wave.svg"
   },
   {
     "id": "nongped",
@@ -15,7 +25,7 @@
     "url": "https://nongped.artt.dev/",
     "description": {
       "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัดรูริโกะอิน",
-      "en": "A website app to find available slots for visiting Rurikoin temple."
+      "en": "A website app to find available slots for visiting Rurikoin temple"
     },
     "image": "https://nongped.artt.dev/assets/nongped-08f98170.svg"
   },
@@ -25,7 +35,7 @@
     "url": "https://dltqme.artt.dev/",
     "description": {
       "th": "เว็บจองคิวบริการต่อใบขับขี่ของกรมการขนส่งทางบก",
-      "en": "A website app to find available slots for DLT's driver license services."
+      "en": "A website app to find available slots for DLT's driver license services"
     },
     "image": "https://dltqme.artt.dev/preview.png"
   },
@@ -35,8 +45,18 @@
     "url": "https://tabby.artt.dev/",
     "description": {
       "th": "Chrome extension ช่วยจัดการ tab ให้เป็นระเบียบ",
-      "en": "A Chrome extension that will help you manage your tabs efficiently."
+      "en": "A Chrome extension that will help you manage your tabs efficiently"
     },
     "image": "https://tabby.artt.dev/cover.jpg"
+  },
+  {
+    "id": "rta-network",
+    "title": "RTA Network",
+    "url": "https://rta-network.artt.dev/",
+    "description": {
+      "th": "แผนผังเครือข่ายข้อตกลงการค้าภูมิภาค (regional trade agreement: RTA)",
+      "en": "Visualization of regional trade agreement (RTA) network"
+    },
+    "image": "https://rta-network.artt.dev/og.png"
   }
 ]
