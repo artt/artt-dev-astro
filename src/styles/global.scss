@@ -208,3 +208,10 @@ kbd {
   margin-left: auto;
   margin-right: auto;
 }
+
+$sides: left right;
+@each $side in $sides {
+  .swiper-slide-shadow-#{$side} {
+    background-image: linear-gradient(to #{$side}, color-mix(in srgb, black, transparent 80%), transparent) !important;
+  }
+}

@@ -24,7 +24,7 @@ const projects = await getCollection('projects')
   <div class="swiper-wrapper">
   {
     projects.map((project) => (
-      <div class="swiper-slide bg-[var(--color-background-contrast)] rounded-2xl overflow-hidden">
+      <div class="swiper-slide border border-[var(--color-background)] bg-[var(--color-background-contrast)] rounded-2xl overflow-hidden">
         <Image src={project.data.image} alt={project.data.title} width="400" height="400" class="object-cover h-full w-full" />
         <div class="p-4">
           <div class="font-heading text-xl text-heading font-bold mt-16 mb-8">{project.data.title}</div>
@@ -36,7 +36,6 @@ const projects = await getCollection('projects')
     ))
   }
   </div>
-  <div class="swiper-pagination" />
 </div>
 
 <script>
@@ -52,7 +51,11 @@ const projects = await getCollection('projects')
         grabCursor: true,
         loop: true,
         centeredSlides: true,
+        freeMode: true,
         slidesPerView: "auto",
+        mousewheel: {
+          forceToAxis: true,
+        },
         coverflowEffect: {
           rotate: 20,
           stretch: 0,
@@ -60,9 +63,6 @@ const projects = await getCollection('projects')
           modifier: 1,
           scale: 0.95,
           slideShadows: true,
-        },
-        pagination: {
-          el: ".swiper-pagination",
         },
       });
     }
