@@ -8,7 +8,7 @@ import { ClientRouter } from 'astro:transitions';
 import { getLocale } from "astro-i18n-aut";
 import { Image } from 'astro:assets';
 import { SEO, type Props as SeoProps } from "astro-seo";
-import { getLink } from '@/lib/lang';
+import { getLink, getOtherLang, getText } from '@/lib/lang';
 
 import coverImage from '@/images/abstract.png';
 
@@ -64,8 +64,8 @@ const defaultSeoProps: SeoProps = {
         hrefLang: lang,
       },
       {
-        href: new URL(getLink(Astro.url.pathname, lang === "en" ? "th" : "en"), Astro.site),
-        hrefLang: lang === "en" ? "th" : "en",
+        href: new URL(getLink(Astro.url.pathname, getOtherLang(lang)), Astro.site),
+        hrefLang: getOtherLang(lang),
       },
     ],
   }),
@@ -79,7 +79,7 @@ const defaultSeoProps: SeoProps = {
     optional: {
       description: description,
       locale: lang,
-      ...(isBilingual && {localeAlternate: [lang === "en" ? "th" : "en"]}),
+      ...(isBilingual && {localeAlternate: [getOtherLang(lang)]}),
       siteName: "artt.dev",
     },
     image: {
@@ -119,7 +119,7 @@ const defaultSeoProps: SeoProps = {
 
 ---
 
-<html lang={getLocale(Astro.url)}>
+<html lang={lang}>
   <head>
     
     <!-- Google tag (gtag.js) -->

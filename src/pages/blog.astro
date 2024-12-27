@@ -8,7 +8,9 @@ import writingImage from '@/images/writing.jpg';
 
 const title = "Art's Random Thoughts"
 
-const sortedBlogs = await getAllBlogPosts(getLocale(Astro.url))
+const lang = getLocale(Astro.url)
+
+const sortedBlogs = await getAllBlogPosts(lang)
 
 ---
 <BaseLayout title={title} cover={writingImage} noSplit>
