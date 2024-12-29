@@ -18,7 +18,8 @@
   {
     "id": "highcharts",
     "title": "Highcharts",
-    "color": "FF0000"
+    "color": "46465B",
+    "icon": "data:image/svg%2bxml;base64,PHN2ZyB3aWR0aD0iMjUwMCIgaGVpZ2h0PSIyMzczIiB2aWV3Qm94PSIwIDAgMjU2IDI0MyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PHBhdGggZD0iTTE3OC42IDExOS43bC0xLjgtMy4xLTYwLjMtMTkuNy0xLjcgMi0yLjYuNi01My42IDEyNS4yLjcgMy44TDE4OC40IDE3NGwxLjEtMi4yLTktNTAtMS45LTIuMXoiIGZpbGw9IiM3ODc1OEMiLz48cGF0aCBkPSJNNTkuMyAyMjguNWw1NS41LTEyOS42TC44IDYxLjdsNTguNSAxNjYuOHoiIGZpbGw9IiNBM0VEQkEiLz48cGF0aCBkPSJNMTU3LjEuM2wtNDIuMyA5OC42IDYzLjggMjAuOC4zLS44TDE1Ny41IDEuMmwtLjQtLjl6IiBmaWxsPSIjODA4N0U4Ii8+PHBhdGggZD0iTTE3OC42IDExOS43bDkuOCA1NC4zIDQuNS0uMSA2MS4xLTI2LjUgMi43LTIuMy0zLjItMi43LTcxLjktMjQuMi0zIDEuNXoiIGZpbGw9IiMzMDQyNkIiLz48cGF0aCBkPSJNMTg4LjQgMTc0bDEyLjUgNjkuNCA1NS44LTk4LjMtNjguMyAyOC45ek0xNTcuMS4zbDIxLjUgMTE5LjQgNzguMSAyNS40TDE1Ny4xLjN6IiBmaWxsPSIjNjY5OUExIi8+PC9zdmc+"
   },
   {
     "id": "mui",
@@ -41,7 +42,7 @@
     "color": "00C300"
   },
   {
-    "id": "chakra-ui",
+    "id": "chakraui",
     "title": "Chakra UI",
     "color": "319795"
   },

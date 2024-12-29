@@ -6,9 +6,10 @@ import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import { getItem } from '@/lib/utils';
 import 'swiper/css';
+import Link from './Link.astro';
 
 const lang = getLocale(Astro.url)
-const projects = await getCollection('projects')
+const projects = await (getCollection('projects').then(projects => projects.sort((a, b) => a.data.year - b.data.year)))
 
 const markedDescriptions: Record<string, { th: string, en: string }> = {}
 
@@ -41,27 +42,53 @@ const tech = await getCollection('tech')
           alt={project.data.title}
           width="400"
           height="400"
-          class="object-cover h-full w-full"
+          class={`object-cover h-full w-full`}
+          style={{
+            objectFit: project.data.imageFit || 'cover'
+          }}
         />
         <div class="p-4 flex flex-col">
           <div class="flex-grow">
-            <div class="font-heading text-xl text-heading font-bold mt-4 md:mt-16">{project.data.title}</div>
+            <div class="mt-4 md:mt-16">
+              <h2 class="mb-0">
+                <Link href={project.data.url} class="font-heading text-xl text-heading font-bold">
+                  {project.data.title}
+                </Link>
+              </h2>
+              <div class="text-sm text-text opacity-50">
+                {project.data.year}
+                {
+                  project.data.workInProgress && "(Work in progress)"
+                }
+              </div>
+            </div>
             <div set:html={getText(lang, markedDescriptions[project.data.id])} />
+            {
+              project.data.npm && (
+                <Link href={`https://www.npmjs.com/package/${project.data.npm}`}>
+                  <img
+                    src={`https://img.shields.io/npm/v/${project.data.npm}`} 
+                    alt="npm"
+                    class=""
+                  />
+                </Link>
+              )
+            }
           </div>
           {project.data.tech &&
-            <div class="flex flex-wrap gap-2">
-              {
-                project.data.tech.map((t) => {
-                  const techEntry = getItem(tech, t.id)
-                  return (
-                    <img
-                      src={`https://img.shields.io/badge/${techEntry.data.title}-${techEntry.data.color}?logo=${techEntry.data.icon || techEntry.id}&logoColor=white&labelColor=555`} 
-                      alt={techEntry.data.title}
-                      class=""
-                    />
-                  )
-                })
-              }
+            <div class="flex flex-wrap gap-1">
+            {
+              project.data.tech.map((t) => {
+                const techEntry = getItem(tech, t.id)
+                return (
+                  <img
+                    src={`https://img.shields.io/badge/${techEntry.data.title}-${techEntry.data.color}?logo=${techEntry.data.icon || techEntry.id}&logoColor=white&labelColor=555`} 
+                    alt={techEntry.data.title}
+                    class=""
+                  />
+                )
+              })
+            }
             </div>
           }
         </div>

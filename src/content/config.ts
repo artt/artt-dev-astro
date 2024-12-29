@@ -30,13 +30,17 @@ const projectsCollection = defineCollection({
   schema: ({ image }) => z.object({
     id: z.string(),
     title: z.string(),
+    year: z.number(),
     url: z.string().url(),
     description: z.object({
       en: z.string(),
       th: z.string(),
     }),
     image: image(),
+    imageFit: z.enum(['cover', 'contain', 'fill', 'none', 'scale-down']).optional(),
     tech: z.array(reference('tech')).optional(),
+    npm: z.string().optional(),
+    workInProgress: z.boolean().optional(),
   })
 })
 
