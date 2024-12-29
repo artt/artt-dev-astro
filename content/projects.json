@@ -31,7 +31,7 @@
     "year": 2021,
     "url": "https://rta-network.artt.dev/",
     "description": {
-      "th": "แผนผังเครือข่ายข้อตกลงการค้าภูมิภาค (regional trade agreement: RTA) จากข้อมูล WTO",
+      "th": "แผนผังเครือข่ายข้อตกลงการค้าภูมิภาค (RTA) จากข้อมูล WTO",
       "en": "Visualization of regional trade agreement (RTA) network from WTO data"
     },
     "image": "https://rta-network.artt.dev/og.png",
