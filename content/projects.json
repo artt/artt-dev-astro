@@ -67,7 +67,7 @@
     "id": "tabby",
     "title": "Tabby",
     "year": 2024,
-    "url": "https://tabby.artt.dev/",
+    "url": "https://github.com/artt/tabby",
     "description": {
       "th": "Chrome extension ช่วยจัดการรวมรวบ tab ให้เป็นระเบียบ",
       "en": "A Chrome extension that will help you manage your tabs intelligently"
