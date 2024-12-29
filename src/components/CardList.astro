@@ -4,7 +4,36 @@ import BlogCard from "./BlogCard.astro"
 const { entries } = Astro.props
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+<style is:global lang="scss">
+  @use "@/styles/globalVariables" as *;
+  #component-blog-list {
+    grid-template-columns: 1fr;
+    > *:nth-child(n+4) {
+      display: none;
+    }
+  }
+  @media screen and (min-width: $screen-small) {
+    #component-blog-list {
+      grid-template-columns: repeat(2, 1fr);
+      > *:nth-child(4) {
+        display: block;
+      }
+      > *:nth-child(n+5) {
+        display: none;
+      }
+    }
+  }
+  @media screen and (min-width: $screen-large) {
+    #component-blog-list {
+      grid-template-columns: repeat(3, 1fr);
+      > *:nth-child(n) {
+        display: block;
+      }
+    }
+  }
+</style>
+
+<div id="component-blog-list" class="grid gap-4 sm:gap-6 lg:gap-8">
   <!-- TODO: fix this any -->
   {entries.map((entry: any) => (
     <BlogCard {...entry} />

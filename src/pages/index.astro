@@ -8,6 +8,7 @@ import { getAllBlogPosts } from '@/lib/mdxUtils';
 import CardList from '@/components/CardList.astro';
 import Link from '@/components/Link.astro';
 import { getText } from '@/lib/lang';
+import ProjectsCarousel from '@/components/ProjectsCarousel.astro';
 
 const title = "Home";
 
@@ -18,9 +19,11 @@ const sortedBlogs = await getAllBlogPosts(lang)
 ---
 
 <BaseLayout title={title} noCap noSplit noCover noTitle>
+  
   <div class="heroSize">
     <Hero client:only="react" />
   </div>
+  
   <Section
     title={getText(lang, {
       th: "บทความล่าสุด",
@@ -36,5 +39,14 @@ const sortedBlogs = await getAllBlogPosts(lang)
       })}
     </Link>
   </Section>
-  <Section />
+  
+  <Section
+    title={getText(lang, {
+      th: "งานประดิษฐ์",
+      en: "Things I make"
+    })}
+  >
+    <ProjectsCarousel />
+  </Section>
+
 </BaseLayout>

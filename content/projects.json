@@ -1,0 +1,92 @@
+[
+  {
+    "id": "nonghed",
+    "title": "NongHed",
+    "year": 2019,
+    "url": "https://nonghed.artt.dev/",
+    "description": {
+      "th": "Chatbot ที่จะช่วยคุณค้นหาข้อมูลเศรษฐกิจและการเงินของไทย",
+      "en": "A chatbot who could provide you with up-to-date economic and financial data for Thailand"
+    },
+    "image": "https://nonghed.artt.dev/og-image.png",
+    "tech": ["python", "openai", "line"],
+    "workInProgress": true
+  },
+  {
+    "id": "react-random-shapes",
+    "title": "React Random Shapes",
+    "year": 2020,
+    "url": "https://github.com/artt/react-random-shapes",
+    "description": {
+      "th": "React package สำหรับสร้างเส้น `svg` แบบ random แบบที่เห็นในเว็บนี้",
+      "en": "A React package to create random, wavy/blobby, `svg` shapes as seen on this website"
+    },
+    "image": "https://raw.githubusercontent.com/artt/react-random-shapes/HEAD/wave.svg",
+    "tech": ["react", "svg"],
+    "npm": "react-random-shapes"
+  },
+  {
+    "id": "rta-network",
+    "title": "RTA Network",
+    "year": 2021,
+    "url": "https://rta-network.artt.dev/",
+    "description": {
+      "th": "แผนผังเครือข่ายข้อตกลงการค้าภูมิภาค (regional trade agreement: RTA) จากข้อมูล WTO",
+      "en": "Visualization of regional trade agreement (RTA) network from WTO data"
+    },
+    "image": "https://rta-network.artt.dev/og.png",
+    "tech": ["react", "threejs", "mui"]
+  },
+  {
+    "id": "dltqme",
+    "title": "DLT, Queue Me!",
+    "year": 2022,
+    "url": "https://dltqme.artt.dev/",
+    "description": {
+      "th": "เว็บเช็คคิวบริการต่อใบขับขี่ของกรมการขนส่งทางบก",
+      "en": "A website to find available slots for DLT's driver license services"
+    },
+    "image": "https://dltqme.artt.dev/preview.png",
+    "tech": ["react", "mui"]
+  },
+  {
+    "id": "nongped",
+    "title": "NongPed",
+    "year": 2023,
+    "url": "https://nongped.artt.dev/",
+    "description": {
+      "th": "เว็บแสดงกราฟข้อมูลสำคัญทางเศรษฐกิจการเงินของประเทศไทย",
+      "en": "Dashboard for Thailand's key economic and financial data"
+    },
+    "image": "https://nongped.artt.dev/assets/nongped-08f98170.svg",
+    "imageFit": "contain",
+    "tech": ["react", "highcharts", "mui", "python"],
+    "workInProgress": true
+  },
+  {
+    "id": "tabby",
+    "title": "Tabby",
+    "year": 2024,
+    "url": "https://tabby.artt.dev/",
+    "description": {
+      "th": "Chrome extension ช่วยจัดการรวมรวบ tab ให้เป็นระเบียบ",
+      "en": "A Chrome extension that will help you manage your tabs intelligently"
+    },
+    "image": "https://raw.githubusercontent.com/artt/tabby/main/public/images/icon-large.png",
+    "imageFit": "contain",
+    "tech": ["react", "chakraui", "openai"],
+    "workInProgress": true
+  },
+  {
+    "id": "rurikoin-scanner",
+    "title": "Rurikoin Scanner",
+    "year": 2024,
+    "url": "https://rurikoin-scanner.artt.dev/",
+    "description": {
+      "th": "เว็บหา slot ว่าง สำหรับเข้าชมวัด<span style='white-space: nowrap;'>รูริโกะอิน</span>",
+      "en": "A website app to find available slots for visiting Rurikoin temple"
+    },
+    "image": "https://rurikoin-scanner.artt.dev/cover.jpg",
+    "tech": ["react", "tailwindcss"]
+  }
+]
