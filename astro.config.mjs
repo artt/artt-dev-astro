@@ -30,6 +30,7 @@ import react from "@astrojs/react";
 // https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
 import path from "path";
 import { fileURLToPath } from 'url';
+import netlify from "@astrojs/netlify";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -43,9 +44,11 @@ const defaultLocale = "th"
 export default defineConfig({
   site: "https://artt.dev",
   trailingSlash: "always",
+
   build: {
     format: "directory",
   },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -64,10 +67,12 @@ export default defineConfig({
       svgr(),
     ],
   },
+
   image: {
     domains: ["https://artt.dev", "https://www.artt.dev"],
     service: imageService(),
   },
+
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -90,6 +95,7 @@ export default defineConfig({
     react(),
     mdx(),
   ],
+
   markdown: {
     // syntaxHighlight: true,
     remarkPlugins: [
@@ -120,4 +126,6 @@ export default defineConfig({
       ],
     }
   },
+
+  adapter: netlify(),
 });
