@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
-// import { imageService } from "@unpic/astro/service";
+import { imageService } from "@unpic/astro/service";
 
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
@@ -30,7 +30,6 @@ import react from "@astrojs/react";
 // https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
 import path from "path";
 import { fileURLToPath } from 'url';
-import netlify from "@astrojs/netlify";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -70,7 +69,7 @@ export default defineConfig({
 
   image: {
     // domains: ["https://artt.dev", "https://www.artt.dev"],
-    // service: imageService(),
+    service: imageService(),
   },
 
   integrations: [
@@ -127,5 +126,4 @@ export default defineConfig({
     }
   },
 
-  adapter: netlify(),
 });
