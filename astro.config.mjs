@@ -65,7 +65,7 @@ export default defineConfig({
     ],
   },
   image: {
-    // domains: ["artt.dev"],
+    domains: ["artt.dev"],
     service: imageService(),
   },
   integrations: [
