@@ -42,7 +42,7 @@ const defaultLocale = "th"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://artt.dev",
+  site: "https://netlify--artt-dev.netlify.app",
   trailingSlash: "always",
 
   build: {
