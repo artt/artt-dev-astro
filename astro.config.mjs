@@ -3,7 +3,6 @@ import tailwind from "@astrojs/tailwind";
 import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
-// import { imageService } from "@unpic/astro/service";
 
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
@@ -46,6 +45,9 @@ export default defineConfig({
   build: {
     format: "directory",
   },
+  experimental: {
+    responsiveImages: true,
+  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -65,8 +67,7 @@ export default defineConfig({
     ],
   },
   image: {
-    domains: ["artt.dev"],
-    // service: imageService(),
+    experimentalLayout: 'responsive',
   },
   integrations: [
     tailwind({
@@ -110,11 +111,12 @@ export default defineConfig({
         dark: 'dark-plus',
       },
       transformers: [
-        transformerNotationDiff(),
-        transformerNotationHighlight(),
-        transformerNotationWordHighlight(),
-        transformerNotationFocus(),
-        transformerNotationErrorLevel(),
+        // TODO: remove this when we upgrade shiki to v3
+        transformerNotationDiff({ matchAlgorithm: 'v3', }),
+        transformerNotationHighlight({ matchAlgorithm: 'v3', }),
+        transformerNotationWordHighlight({ matchAlgorithm: 'v3', }),
+        transformerNotationFocus({ matchAlgorithm: 'v3', }),
+        transformerNotationErrorLevel({ matchAlgorithm: 'v3', }),
         transformerMetaHighlight(),
         transformerMetaWordHighlight(),
       ],
