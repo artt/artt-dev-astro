@@ -46,7 +46,7 @@ http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow
   http://dataservices.imf.org/REST/SDMX_JSON.svc
   ```
 
-  with `...`. So the above URL becomes `.../Dataflow`.
+  with `…`. So the above URL becomes `…/Dataflow`.
 :::
 
 
@@ -76,7 +76,7 @@ This is the database ID we're looking for.
 
 # Find your Dimensions
 
-Once you have the dataflow ID, you can find out more about the data structure by looking at [`.../DataStructure/IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/DataStructure/IRFCL).
+Once you have the dataflow ID, you can find out more about the data structure by looking at [`…/DataStructure/IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/DataStructure/IRFCL).
 More specifically, what we need are the dimensions of the dataset.
 Take a look in `Structure` > `KeyFamilies` > `KeyFamily` > `Components` > `Dimension` and we'll see something like this
 
@@ -132,8 +132,8 @@ This tells us that this dataset has four dimensions:
 
 # Find your CodeList
 
-For each of these dimensions (aside from `FREQ`), you can find which values are available by looking at the corresponding codelist at `.../CodeList/[@codelist]`.
-For example, you can view which indicators are in this dataset by going to [`.../CodeList/CL_INDICATOR_IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/CodeList/CL_INDICATOR_IRFCL).
+For each of these dimensions (aside from `FREQ`), you can find which values are available by looking at the corresponding codelist at `…/CodeList/[@codelist]`.
+For example, you can view which indicators are in this dataset by going to [`…/CodeList/CL_INDICATOR_IRFCL`](http://dataservices.imf.org/REST/SDMX_JSON.svc/CodeList/CL_INDICATOR_IRFCL).
 The applicable values could be found under `Structure` > `CodeLists` > `CodeList` > `Code`.
 
 ```json
@@ -167,10 +167,10 @@ The applicable values could be found under `Structure` > `CodeLists` > `CodeList
 
 Now that we know the dimensions and the possible values for each dimension, we can finally get the data.
 IMF's Data Services has a method called `CompactData`.
-Here's a template:
+Here's a template: `abc`
 
 ```
-.../CompactData/[@dataflow]/[@dimension1].[@dimension2].....[@dimensionN]
+…/CompactData/[@dataflow]/[@dimension1].[@dimension2].....[@dimensionN]
 ```
 
 For the last part, we need to put in a code for each dimension, separated by a dot (`.`).
@@ -182,9 +182,9 @@ For example, to get a monthly data on foreign exchange reserves for Thailand who
   use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH.RAFA_USD.S1X):
 
 ```
-.../CompactData/IRFCL/M.TH.RAFA_USD.S1X
-                      ^ ^  ^        ^
-    Dimension         1 2  3        4
+…/CompactData/IRFCL/M.TH.RAFA_USD.S1X
+                    ^ ^  ^        ^
+  Dimension         1 2  3        4
 ```
 
 ## More than one item in a dimension
@@ -193,9 +193,8 @@ To add more than one code in a dimension,
 For example, to get the aforementioned data for both Thailand and Malaysia,
   use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH+MY.RAFA_USD.S1X):
 
-```
-.../CompactData/IRFCL/M.TH+MY.RAFA_USD.S1X
-                          ———
+```txt /\+MY/
+…/CompactData/IRFCL/M.TH+MY.RAFA_USD.S1X
 ```
 
 ## All items in the dimension
@@ -203,23 +202,22 @@ To include *all* codes in that dimension, don't put anything in that dimension.
 For example, to get the data for *all* countries,
   use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M..RAFA_USD.S1X):
 
-```
-.../CompactData/IRFCL/M..RAFA_USD.S1X
-                       ——
+```txt /\.\./
+…/CompactData/IRFCL/M..RAFA_USD.S1X
 ```
 
 :::note
 We still need to put the dot (`.`) to indicate that we're skipping that dimension.
 
 If the dimension you want to exclude is at the end, you can omit the last dot.
-In other words, `.../CompactData/IRFCL/M.TH.RAFA_USD` is equivalent to `.../CompactData/IRFCL/M.TH.RAFA_USD.`.
+In other words, `…/CompactData/IRFCL/M.TH.RAFA_USD` is equivalent to `…/CompactData/IRFCL/M.TH.RAFA_USD.`.
 :::
 
 You can, of course, combine these strategies.
 For example, to get annual data for all countries for two indicators, you use the [following URL](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD):
 
 ```
-.../CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD
+…/CompactData/IRFCL/M..RAFA_USD+RAFAGOLD_USD
 ```
 
 ## Specifying start and end periods
@@ -230,9 +228,8 @@ These can be in the form of `YYYY` or `YYYY-MM`.
 For example, to get the data for Thailand from July 2010 to 2012,
   use the [following link](http://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IRFCL/M.TH.RAFA_USD?startPeriod=2010-07&endPeriod=2012):
 
-```
-.../CompactData/IRFCL/M.TH.RAFA_USD?startPeriod=2010-07&endPeriod=2012
-                                   ———————————————————————————————————
+```txt /?startPeriod=2010-07&endPeriod=2012/
+…/CompactData/IRFCL/M.TH.RAFA_USD?startPeriod=2010-07&endPeriod=2012
 ```
 
 # Limitations
