@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.0.5",
-    "@astrojs/react": "^4.1.4",
+    "@astrojs/mdx": "^4.0.7",
+    "@astrojs/react": "^4.1.6",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/tailwind": "^5.1.4",
-    "@types/react": "^19.0.7",
+    "@astrojs/tailwind": "^5.1.5",
+    "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@unpic/astro": "^0.1.0",
-    "astro": "^5.1.6",
+    "@unpic/astro": "^1.0.0",
+    "astro": "^5.1.9",
     "astro-embed": "^0.9.0",
     "astro-i18n-aut": "^0.7.3",
     "astro-seo": "^0.8.4",
@@ -32,7 +32,7 @@
     "highcharts-react-official": "^3.2.1",
     "image-dimensions": "^2.3.0",
     "install": "^0.13.0",
-    "katex": "^0.16.20",
+    "katex": "^0.16.21",
     "marked": "^15.0.6",
     "photoswipe": "^5.4.4",
     "pnpm": "^9.15.4",
@@ -45,7 +45,7 @@
     "rehype-katex": "^7.0.1",
     "rehype-slug": "^6.0.0",
     "remark-custom-heading-id": "^2.0.0",
-    "remark-directive": "^3.0.0",
+    "remark-directive": "^3.0.1",
     "remark-math": "^6.0.0",
     "sass": "^1.83.4",
     "sharp": "^0.33.5",
@@ -55,12 +55,12 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@shikijs/transformers": "^1.26.2",
+    "@shikijs/transformers": "^2.1.0",
     "vite-plugin-svgr": "^4.3.0"
   },
   "pnpm": {
     "patchedDependencies": {
-      "astro@5.1.6": "patches/astro@5.0.3.patch"
+      "astro@5.1.9": "patches/astro@5.0.3.patch"
     }
   }
 }
