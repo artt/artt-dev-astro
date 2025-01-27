@@ -69,7 +69,7 @@ export default defineConfig({
   },
 
   image: {
-    // domains: ["https://artt.dev", "https://www.artt.dev"],
+    domains: ["artt.dev"],
     service: imageService(),
   },
 
