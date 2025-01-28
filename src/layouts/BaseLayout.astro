@@ -158,8 +158,8 @@ const defaultSeoProps: SeoProps = {
     <Header />
     {!noCover &&
       <div id="component-cover-image" class="w-full" style={{ backgroundColor: coverColor }} >
-        <div id="component-cover-image-container">
-          <Image src={cover || coverImage} alt="" class="mx-auto w-full h-full object-cover" layout="full-width" />
+        <div id="component-cover-image-container" class="mx-auto">
+          <Image src={cover || coverImage} alt="" class="mx-auto w-full !h-full object-cover" layout="full-width" />
         </div>
       </div>
     }
