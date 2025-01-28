@@ -14,5 +14,5 @@ const sortedBlogs = await getAllBlogPosts(lang)
 
 ---
 <BaseLayout title={title} cover={writingImage} noSplit>
-  <CardList entries={sortedBlogs} />
+  <CardList entries={sortedBlogs} numEagerLoad={6} />
 </BaseLayout>

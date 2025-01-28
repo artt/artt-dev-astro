@@ -1,7 +1,7 @@
 ---
 import BlogCard from "./BlogCard.astro"
 
-const { entries } = Astro.props
+const { entries, numEagerLoad } = Astro.props
 ---
 
 <style is:global lang="scss">
@@ -35,7 +35,7 @@ const { entries } = Astro.props
 
 <div id="component-blog-list" class="grid gap-4 sm:gap-6 lg:gap-8">
   <!-- TODO: fix this any -->
-  {entries.map((entry: any) => (
-    <BlogCard {...entry} />
+  {entries.map((entry: any, i: number) => (
+    <BlogCard priority={i < numEagerLoad} {...entry} />
   ))}
 </div>

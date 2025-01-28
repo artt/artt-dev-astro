@@ -2,9 +2,8 @@
 import { formatDate } from "@/lib/utils";
 import Link from "./Link.astro"
 import { Image } from 'astro:assets';
-// import { Image } from "@unpic/astro";
 
-const { data, mainSlug } = Astro.props
+const { data, mainSlug, priority } = Astro.props
 
 ---
 
@@ -48,7 +47,13 @@ const { data, mainSlug } = Astro.props
 </style>
 
 <Link href={mainSlug} class="nodecoration rounded-md overflow-hidden relative">
-  <Image src={data.cover || data.thumbnail} alt="" style={{ aspectRatio: 1.5, objectFit: 'cover' }} width="800" />
+  <Image
+    src={data.cover || data.thumbnail}
+    alt=""
+    style={{ aspectRatio: 1.5, objectFit: 'cover' }}
+    width="800"
+    priority={priority}
+  />
   <div class="bg-[var(--color-background-contrast)] p-3 relative min-h-[95.63px]">
     <div class="text-xs opacity-70">{formatDate(data.date)}</div>
     <div class="font-heading text-lg leading-tight">{data.title}</div>
