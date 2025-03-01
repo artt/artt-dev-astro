@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.0.8",
-    "@astrojs/react": "^4.2.0",
+    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/react": "^4.2.1",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.5",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "astro": "^5.2.3",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "astro": "^5.4.1",
     "astro-embed": "^0.9.0",
     "astro-i18n-aut": "^0.7.3",
     "astro-seo": "^0.8.4",
@@ -32,9 +32,9 @@
     "image-dimensions": "^2.3.0",
     "install": "^0.13.0",
     "katex": "^0.16.21",
-    "marked": "^15.0.6",
+    "marked": "^15.0.7",
     "photoswipe": "^5.4.4",
-    "pnpm": "^9.15.5",
+    "pnpm": "^9.15.6",
     "popmotion": "^11.0.5",
     "random-shapes": "^0.2.3",
     "react": "^19.0.0",
@@ -46,20 +46,20 @@
     "remark-custom-heading-id": "^2.0.0",
     "remark-directive": "^3.0.1",
     "remark-math": "^6.0.0",
-    "sass": "^1.83.4",
+    "sass": "^1.85.1",
     "sharp": "^0.33.5",
-    "swiper": "^11.2.2",
+    "swiper": "^11.2.4",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3",
+    "typescript": "^5.8.2",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@shikijs/transformers": "^2.3.0",
+    "@shikijs/transformers": "^2.5.0",
     "vite-plugin-svgr": "^4.3.0"
   },
   "pnpm": {
     "patchedDependencies": {
-      "astro@5.2.3": "patches/astro@5.0.3.patch"
+      "astro@5.4.1": "patches/astro@5.0.3.patch"
     }
   }
 }

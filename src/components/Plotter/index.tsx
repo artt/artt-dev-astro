@@ -15,12 +15,8 @@ export function LazyHighcharts(props: any) {
 export default function Plotter(props: any) {
 
   return (
-    <figure>
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <CustomHighcharts
-          {...props}
-        />
-      </React.Suspense>
+    <figure className="">
+      <LazyHighcharts {...props} />
     </figure>
   )
 }
