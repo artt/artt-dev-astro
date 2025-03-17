@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkHeadingId from "remark-custom-heading-id"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import remarkSomething from "./plugins/remarkSomething"
+import remarkAfm from "remark-afm"
 import remarkDirective from "remark-directive"
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
@@ -97,7 +97,8 @@ export default defineConfig({
       remarkHeadingId,
       remarkDirective,
       remarkMath,
-      remarkSomething,
+      remarkAfm,
+      // remarkSomething,
     ],
     rehypePlugins: [
       rehypeSlug,

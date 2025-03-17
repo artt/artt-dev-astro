@@ -112,6 +112,9 @@ importers:
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
+      remark-afm:
+        specifier: github:artt/remark-afm
+        version: https://codeload.github.com/artt/remark-afm/tar.gz/a8c54215da16d1b64d5cfd0b01367ffe93132604
       remark-custom-heading-id:
         specifier: ^2.0.0
         version: 2.0.0
@@ -2569,6 +2572,10 @@ packages:
 
   rehype@13.0.2:
     resolution: {integrity: sha512-j31mdaRFrwFRUIlxGeuPXXKWQxet52RBQRvCmzl5eCefn/KGbomK5GMHNMsOJf55fgo3qw5tST5neDuarDYR2A==}
+
+  remark-afm@https://codeload.github.com/artt/remark-afm/tar.gz/a8c54215da16d1b64d5cfd0b01367ffe93132604:
+    resolution: {tarball: https://codeload.github.com/artt/remark-afm/tar.gz/a8c54215da16d1b64d5cfd0b01367ffe93132604}
+    version: 0.0.1
 
   remark-custom-heading-id@2.0.0:
     resolution: {integrity: sha512-LpR+c4pmuBGG/zhNbebecDnpKyXU4B7bdNu6tXW83T3QWlkwUpHYyUR8uXQ/BERK9HlI5pXGLu7DjkIS07/iVQ==}
@@ -6263,6 +6270,10 @@ snapshots:
       rehype-parse: 9.0.1
       rehype-stringify: 10.0.1
       unified: 11.0.5
+
+  remark-afm@https://codeload.github.com/artt/remark-afm/tar.gz/a8c54215da16d1b64d5cfd0b01367ffe93132604:
+    dependencies:
+      unist-util-visit: 5.0.0
 
   remark-custom-heading-id@2.0.0:
     dependencies:
