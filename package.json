@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.1.0",
+    "@astrojs/mdx": "^4.2.1",
     "@astrojs/react": "^4.2.1",
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/sitemap": "^3.3.0",
     "@astrojs/tailwind": "^5.1.5",
-    "@types/react": "^19.0.10",
+    "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
-    "astro": "^5.4.2",
+    "astro": "^5.5.4",
     "astro-embed": "^0.9.0",
     "astro-i18n-aut": "^0.7.3",
     "astro-seo": "^0.8.4",
@@ -34,7 +34,7 @@
     "katex": "^0.16.21",
     "marked": "^15.0.7",
     "photoswipe": "^5.4.4",
-    "pnpm": "^9.15.6",
+    "pnpm": "^9.15.9",
     "popmotion": "^11.0.5",
     "random-shapes": "^0.2.3",
     "react": "^19.0.0",
@@ -47,9 +47,9 @@
     "remark-custom-heading-id": "^2.0.0",
     "remark-directive": "^3.0.1",
     "remark-math": "^6.0.0",
-    "sass": "^1.85.1",
+    "sass": "^1.86.0",
     "sharp": "^0.33.5",
-    "swiper": "^11.2.5",
+    "swiper": "^11.2.6",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2",
     "unist-util-visit": "^5.0.0"
@@ -60,7 +60,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "astro@5.4.2": "patches/astro@5.0.3.patch"
+      "astro": "patches/astro.patch"
     }
   }
 }
