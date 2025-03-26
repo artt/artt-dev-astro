@@ -7,7 +7,7 @@ index d81516b427a0c618d352d0b139a5fc7c2503a7b6..8418647a427a977640c769f34c43d40d
  }) {
    const delay = status === 302 ? 2 : 0;
 +  if (status === 308) {
-+    return `<meta http-equiv="refresh" content="0;url=${location}">`
++    return `<meta http-equiv="refresh" content="0;url=${relativeLocation}">`
 +  }
    return `<!doctype html>
  <title>Redirecting to: ${relativeLocation}</title>

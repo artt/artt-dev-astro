@@ -54,7 +54,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@shikijs/transformers": "^2.5.0",
+    "@shikijs/transformers": "^3.2.1",
     "vite-plugin-svgr": "^4.3.0"
   },
   "pnpm": {
