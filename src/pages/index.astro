@@ -30,7 +30,7 @@ const sortedBlogs = await getAllBlogPosts(lang)
       en: "Latest blog posts"
     })}
   >
-    <CardList entries={sortedBlogs.slice(0, 6)} numEagerLoad={3} />
+    <CardList entries={sortedBlogs.slice(0, 6)} numEagerLoad={3} hideSome={true} />
     <!-- align this to the right -->
     <Link href="/blog" class="mt-4 inline-block">
       {getText(lang, {

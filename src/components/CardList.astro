@@ -1,24 +1,24 @@
 ---
 import BlogCard from "./BlogCard.astro"
 
-const { entries, numEagerLoad } = Astro.props
+const { entries, numEagerLoad, hideSome } = Astro.props
 ---
 
 <style is:global lang="scss">
   @use "@/styles/globalVariables" as *;
   #component-blog-list {
     grid-template-columns: 1fr;
-    > *:nth-child(n+4) {
+    &.hideSome > *:nth-child(n+4) {
       display: none;
     }
   }
   @media screen and (min-width: $screen-small) {
     #component-blog-list {
       grid-template-columns: repeat(2, 1fr);
-      > *:nth-child(4) {
+      &.hideSome > *:nth-child(4) {
         display: block;
       }
-      > *:nth-child(n+5) {
+      &.hideSome > *:nth-child(n+5) {
         display: none;
       }
     }
@@ -26,14 +26,14 @@ const { entries, numEagerLoad } = Astro.props
   @media screen and (min-width: $screen-large) {
     #component-blog-list {
       grid-template-columns: repeat(3, 1fr);
-      > *:nth-child(n) {
+      &.hideSome > *:nth-child(n) {
         display: block;
       }
     }
   }
 </style>
 
-<div id="component-blog-list" class="grid gap-4 sm:gap-6 lg:gap-8">
+<div id="component-blog-list" class:list={["grid gap-4 sm:gap-6 lg:gap-8", { hideSome: hideSome }]}
   <!-- TODO: fix this any -->
   {entries.map((entry: any, i: number) => (
     <BlogCard priority={i < numEagerLoad} {...entry} />
