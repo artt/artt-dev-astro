@@ -33,7 +33,7 @@ const { entries, numEagerLoad, hideSome } = Astro.props
   }
 </style>
 
-<div id="component-blog-list" class:list={["grid gap-4 sm:gap-6 lg:gap-8", { hideSome: hideSome }]}
+<div id="component-blog-list" class:list={["grid gap-4 sm:gap-6 lg:gap-8", { hideSome: hideSome }]}>
   <!-- TODO: fix this any -->
   {entries.map((entry: any, i: number) => (
     <BlogCard priority={i < numEagerLoad} {...entry} />
