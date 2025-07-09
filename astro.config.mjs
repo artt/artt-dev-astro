@@ -45,9 +45,6 @@ export default defineConfig({
   build: {
     format: "directory",
   },
-  experimental: {
-    responsiveImages: true,
-  },
   vite: {
     css: {
       preprocessorOptions: {
@@ -67,7 +64,8 @@ export default defineConfig({
     ],
   },
   image: {
-    experimentalLayout: 'constrained',
+    responsiveStyles: true,
+    layout: 'constrained',
   },
   integrations: [
     tailwind({
