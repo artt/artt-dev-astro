@@ -32,7 +32,7 @@
     "image-dimensions": "^2.3.0",
     "install": "^0.13.0",
     "katex": "^0.16.22",
-    "marked": "^15.0.12",
+    "marked": "^16.0.0",
     "photoswipe": "^5.4.4",
     "popmotion": "^11.0.5",
     "random-shapes": "^0.2.3",
