@@ -80,8 +80,8 @@ importers:
         specifier: ^0.16.27
         version: 0.16.27
       marked:
-        specifier: ^16.4.2
-        version: 16.4.2
+        specifier: ^17.0.1
+        version: 17.0.1
       photoswipe:
         specifier: ^5.4.4
         version: 5.4.4
@@ -128,8 +128,8 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
       swiper:
-        specifier: ^11.2.10
-        version: 11.2.10
+        specifier: ^12.0.3
+        version: 12.0.3
       tailwindcss:
         specifier: ^3.4.19
         version: 3.4.19(yaml@2.8.2)
@@ -2038,8 +2038,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  marked@16.4.2:
-    resolution: {integrity: sha512-TI3V8YYWvkVf3KJe1dRkpnjs68JUPyEa5vjKrp1XEEJUAOaQc+Qj+L1qWbPd0SJuAdQkFU0h73sXXqwDYxsiDA==}
+  marked@17.0.1:
+    resolution: {integrity: sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -2742,8 +2742,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  swiper@11.2.10:
-    resolution: {integrity: sha512-RMeVUUjTQH+6N3ckimK93oxz6Sn5la4aDlgPzB+rBrG/smPdCTicXyhxa+woIpopz+jewEloiEE3lKo1h9w2YQ==}
+  swiper@12.0.3:
+    resolution: {integrity: sha512-BHd6U1VPEIksrXlyXjMmRWO0onmdNPaTAFduzqR3pgjvi7KfmUCAm/0cj49u2D7B0zNjMw02TSeXfinC1hDCXg==}
     engines: {node: '>= 4.7.0'}
 
   tailwindcss@3.4.19:
@@ -5298,7 +5298,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  marked@16.4.2: {}
+  marked@17.0.1: {}
 
   mdast-heading-id@2.0.0: {}
 
@@ -6433,7 +6433,7 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.4.3
 
-  swiper@11.2.10: {}
+  swiper@12.0.3: {}
 
   tailwindcss@3.4.19(yaml@2.8.2):
     dependencies:

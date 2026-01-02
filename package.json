@@ -32,7 +32,7 @@
     "image-dimensions": "^2.5.0",
     "install": "^0.13.0",
     "katex": "^0.16.27",
-    "marked": "^16.4.2",
+    "marked": "^17.0.1",
     "photoswipe": "^5.4.4",
     "popmotion": "^11.0.5",
     "random-shapes": "^0.2.3",
@@ -48,7 +48,7 @@
     "remark-math": "^6.0.0",
     "sass": "^1.97.1",
     "sharp": "^0.34.5",
-    "swiper": "^11.2.10",
+    "swiper": "^12.0.3",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
     "unist-util-visit": "^5.0.0"
