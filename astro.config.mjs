@@ -13,6 +13,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 
 import svgr from "vite-plugin-svgr";
+import tailwindcss from "@tailwindcss/vite";
 
 import {
   transformerNotationDiff,
@@ -64,6 +65,7 @@ export default defineConfig({
     },
     plugins: [
       svgr(),
+      tailwindcss(),
     ],
   },
   image: {

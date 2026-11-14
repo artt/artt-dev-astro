@@ -1,3 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*
+  Tailwind v4 puts preflight and utilities in cascade layers, so any unlayered CSS
+  (global.scss, component styles) would beat them regardless of specificity, e.g.
+  the global `p`/`h2` margins overriding `m-0`/`my-0`. Preflight and utilities are
+  imported unlayered here to keep the v3 cascade. Theme variables stay layered.
+
+  source('..') limits class scanning to src/, like the v3 `content` config did
+  (v4 otherwise scans the whole repo, including content/).
+*/
+@layer theme;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css';
+@import 'tailwindcss/utilities.css' source('..');
+
+/* inline: these reference the site's own CSS variables of the same name */
+@theme inline {
+  --font-heading: var(--font-heading), sans-serif;
+  --font-body: var(--font-body), sans-serif;
+
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-heading: var(--color-heading);
+}
+
+/*
+  The default border color changed to `currentcolor` in Tailwind CSS v4.
+  Keep v3's default (gray-200 = #e5e7eb) so existing borders look the same.
+  To remove this, add an explicit border color utility wherever a border relies on it.
+*/
+*,
+::after,
+::before,
+::backdrop,
+::file-selector-button {
+  border-color: #e5e7eb;
+}

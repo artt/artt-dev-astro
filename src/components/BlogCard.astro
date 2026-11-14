@@ -54,11 +54,11 @@ const { data, mainSlug, priority } = Astro.props
     width="800"
     priority={priority}
   />
-  <div class="bg-[var(--color-background-contrast)] p-3 relative min-h-[95.63px]">
+  <div class="bg-(--color-background-contrast) p-3 relative min-h-[95.63px]">
     <div class="text-xs opacity-70">{formatDate(data.date)}</div>
     <div class="font-heading text-lg leading-tight">{data.title}</div>
     <!-- categories -->
-    <div class="absolute z-10 right-0 top-0 -translate-x-4 -translate-y-[10px] leading-none flex gap-2">
+    <div class="absolute z-10 right-0 top-0 -translate-x-4 translate-y-[-10px] leading-none flex gap-2">
       {data.categories.map((category: string) => (
         <span class={`${category} relative`}>{category}</span>
       ))}
