@@ -7,9 +7,14 @@ import { marked } from 'marked';
 import { getItem } from '@/lib/utils';
 import 'swiper/css';
 import Link from './Link.astro';
+import projectsJson from '../../content/projects.json';
 
 const lang = getLocale(Astro.url)
-const projects = await (getCollection('projects').then(projects => projects.sort((a, b) => a.data.year - b.data.year)))
+// getCollection() doesn't guarantee file order, so break year ties by position in projects.json
+const fileOrder = projectsJson.map((p) => p.id)
+const projects = await (getCollection('projects').then(projects => projects.sort((a, b) =>
+  a.data.year - b.data.year || fileOrder.indexOf(a.id) - fileOrder.indexOf(b.id)
+)))
 
 const markedDescriptions: Record<string, { th: string, en: string }> = {}
 

@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
+import { unified } from "@astrojs/markdown-remark";
 import mdx from '@astrojs/mdx';
 import { i18n, filterSitemapByDefaultLocale } from "astro-i18n-aut/integration";
 import sitemap from "@astrojs/sitemap";
@@ -42,6 +42,8 @@ const defaultLocale = "th"
 export default defineConfig({
   site: "https://artt.dev",
   trailingSlash: "always",
+  // Astro 7 defaults to 'jsx', which strips whitespace between inline elements
+  compressHTML: true,
   build: {
     format: "directory",
   },
@@ -55,6 +57,7 @@ export default defineConfig({
     },
     resolve: {
       alias: {
+        "@": path.resolve(__dirname, "./src"),
         // https://github.com/ngneat/falso/discussions/371
         crypto: path.resolve(__dirname, "./src/emptyModule.ts"),
       },
@@ -68,9 +71,6 @@ export default defineConfig({
     layout: 'constrained',
   },
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     i18n({
       locales,
       defaultLocale,
@@ -90,20 +90,23 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
+    // Astro 7 defaults to the Sätteri processor; keep unified for remark/rehype plugins
+    processor: unified({
+      remarkPlugins: [
+        remarkHeadingId,
+        remarkDirective,
+        remarkMath,
+        remarkAfm,
+        // remarkSomething,
+      ],
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+        rehypeKatex,
+        // rehypeSomething,
+      ],
+    }),
     // syntaxHighlight: true,
-    remarkPlugins: [
-      remarkHeadingId,
-      remarkDirective,
-      remarkMath,
-      remarkAfm,
-      // remarkSomething,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-      rehypeKatex,
-      // rehypeSomething,
-    ],
     shikiConfig: {
       themes: {
         light: 'light-plus',
