@@ -30,7 +30,7 @@
     "highcharts": "^12.6.2",
     "highcharts-react-official": "^3.2.3",
     "image-dimensions": "^2.6.0",
-    "katex": "^0.16.47",
+    "katex": "^0.19.1",
     "marked": "^18.2.0",
     "photoswipe": "^5.4.4",
     "popmotion": "^11.0.5",
