@@ -27,7 +27,7 @@
     "d3": "^7.9.2",
     "deepmerge": "^4.3.1",
     "fast-average-color-node": "^4.0.0",
-    "highcharts": "^12.6.2",
+    "highcharts": "^13.1.1",
     "highcharts-react-official": "^3.2.3",
     "image-dimensions": "^2.6.0",
     "katex": "^0.19.1",

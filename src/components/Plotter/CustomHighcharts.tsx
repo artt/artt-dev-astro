@@ -21,6 +21,11 @@ Highcharts.setOptions({
     months: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
     thousandsSep: ",",
   },
+  xAxis: {
+    // Highcharts 13 formats year-only labels with Intl, which gives Buddhist-era
+    // "พ.ศ. 2563" on Thai pages; v12 used plain "%Y" (2020)
+    dateTimeLabelFormats: { year: '%Y' },
+  },
 })
 
 const commonStyles = {
