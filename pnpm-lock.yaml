@@ -63,8 +63,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1
       fast-average-color-node:
-        specifier: ^3.3.0
-        version: 3.3.0(@types/node@26.6.6)
+        specifier: ^4.0.0
+        version: 4.0.0(@types/node@26.6.6)
       highcharts:
         specifier: ^12.6.2
         version: 12.6.2
@@ -2078,9 +2078,9 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  fast-average-color-node@3.3.0:
-    resolution: {integrity: sha512-vTka3+32Pb50bmOPUtE86fMqDKpzsJlDhGHIYdvhAc2xyV7+la7mq47j2Stqx2ggiJyD7WycVKcFK1pG7mYBLg==}
-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+  fast-average-color-node@4.0.0:
+    resolution: {integrity: sha512-sPryUU4y/IgCQXHA7RC7o4zY8O7HRIIeK2r7Qsizzlo7eZ7FU6aaJzH2T3kKViT98OSpKoR+hNJPx5zM+QrqRQ==}
+    engines: {node: '>=20.9.0'}
 
   fast-average-color@9.6.0:
     resolution: {integrity: sha512-ysLmWrUZb0E7WJ0ikJaXrbo0qEHBS3R6zT8aYlSknpiIzd8hJ+O1Gv3Gi4VNl1pO8YZGREC3vjWK7uqk/49ZuA==}
@@ -5390,7 +5390,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  fast-average-color-node@3.3.0(@types/node@26.6.6):
+  fast-average-color-node@4.0.0(@types/node@26.6.6):
     dependencies:
       fast-average-color: 9.6.0
       sharp: 0.35.5(@types/node@26.6.6)
