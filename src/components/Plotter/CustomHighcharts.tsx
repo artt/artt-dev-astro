@@ -1,5 +1,7 @@
 import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+// Named import: with Vite 8's CJS interop, the default import of this UMD bundle
+// resolves to the module object instead of the component (React error #130)
+import { HighchartsReact } from 'highcharts-react-official'
 import "highcharts/modules/data"
 import "highcharts/highcharts-more"
 import "highcharts/modules/annotations"
