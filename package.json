@@ -59,15 +59,5 @@
     "@shikijs/transformers": "^4.6.0",
     "vite-plugin-svgr": "^4.5.0"
   },
-  "packageManager": "pnpm@10.27.0",
-  "pnpm": {
-    "patchedDependencies": {
-      "astro": "patches/astro.patch"
-    },
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "esbuild",
-      "sharp"
-    ]
-  }
+  "packageManager": "pnpm@10.27.0"
 }
