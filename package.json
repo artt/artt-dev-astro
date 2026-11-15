@@ -24,15 +24,12 @@
     "astro-i18n-aut": "^0.8.1",
     "astro-seo": "^0.8.4",
     "clsx": "^2.1.1",
-    "color2k": "^2.0.4",
     "d3": "^7.9.2",
     "deepmerge": "^4.3.1",
     "fast-average-color-node": "^3.3.0",
-    "fast-glob": "^3.3.3",
     "highcharts": "^12.6.2",
     "highcharts-react-official": "^3.2.3",
     "image-dimensions": "^2.6.0",
-    "install": "^0.13.0",
     "katex": "^0.16.47",
     "marked": "^17.0.6",
     "photoswipe": "^5.4.4",
@@ -49,7 +46,7 @@
     "remark-directive": "^4.0.0",
     "remark-math": "^6.0.0",
     "sass": "^1.108.2",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "swiper": "^12.2.0",
     "tailwindcss": "^4.3.5",
     "typescript": "^5.9.3",
@@ -59,5 +56,5 @@
     "@shikijs/transformers": "^4.6.0",
     "vite-plugin-svgr": "^4.5.0"
   },
-  "packageManager": "pnpm@10.27.0"
+  "packageManager": "pnpm@11.22.0"
 }
