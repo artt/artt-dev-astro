@@ -47,6 +47,7 @@
     "remark-math": "^6.0.0",
     "sass": "^1.108.2",
     "sharp": "^0.35.5",
+    "swiper": "^14.4.0",
     "tailwindcss": "^4.3.5",
     "typescript": "^5.9.3",
     "unist-util-visit": "^5.2.0"

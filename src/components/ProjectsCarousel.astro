@@ -5,6 +5,8 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import { getItem } from '@/lib/utils';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 import Link from './Link.astro';
 import projectsJson from '../../content/projects.json';
 
@@ -30,117 +32,15 @@ const tech = await getCollection('tech')
 
 
 
-<style>
-  /*
-   * Pure-CSS carousel (replaces Swiper):
-   * - scroll-snap centers a card after each swipe/scroll
-   * - inline padding lets the first and last cards reach the center
-   * - scroll-driven animation (view timeline) tilts cards by their position,
-   *   approximating Swiper's coverflow effect; unsupported browsers just get
-   *   a flat carousel
-   */
-  .carousel {
-    --slide-width: min(400px, 90vw);
-    position: relative;
-    @media (min-width: 768px) {
-      --slide-width: 600px;
-    }
-  }
-  .carousel-track {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    padding-inline: calc(50% - var(--slide-width) / 2);
-    padding-block: 1rem;
-    scrollbar-width: none;
-    list-style: none;
-    margin: 0;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .carousel-slide {
-    flex: none;
-    width: var(--slide-width);
-    scroll-snap-align: center;
-  }
-  @supports (animation-timeline: view()) {
-    .carousel-slide {
-      animation: coverflow linear both;
-    }
-    /* Kept in a separate (more specific) rule on purpose: the CSS minifier
-       otherwise merges it into the `animation` shorthand above, which can't
-       carry a timeline, and the browser drops the whole declaration. */
-    .carousel-track > .carousel-slide {
-      animation-timeline: view(inline);
-    }
-  }
-  /* 0% = entering from the right, 50% = centered, 100% = leaving on the left */
-  @keyframes coverflow {
-    0% {
-      transform: perspective(1200px) rotateY(-30deg) scale(0.9);
-      opacity: 0.6;
-    }
-    50% {
-      transform: none;
-      opacity: 1;
-    }
-    100% {
-      transform: perspective(1200px) rotateY(30deg) scale(0.9);
-      opacity: 0.6;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .carousel-slide {
-      animation: none;
-    }
-  }
-  .carousel-button {
-    position: absolute;
-    top: 50%;
-    translate: 0 -50%;
-    z-index: 1;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    display: grid;
-    place-items: center;
-    font-size: 1.25rem;
-    line-height: 1;
-    color: var(--color-text);
-    background-color: color-mix(in srgb, var(--color-background-contrast), transparent 20%);
-    border: 1px solid var(--color-neutral-20);
-    cursor: pointer;
-    transition: opacity var(--time-short);
-    &:hover {
-      opacity: 0.8;
-    }
-    &[data-dir="prev"] {
-      left: 1rem;
-    }
-    &[data-dir="next"] {
-      right: 1rem;
-    }
-    /* touch devices can just swipe */
-    @media (hover: none) {
-      display: none;
-    }
-  }
-</style>
-
-<div class="carousel full-width">
-  <button type="button" class="carousel-button" data-dir="prev" aria-label="Previous project">‹</button>
-  <button type="button" class="carousel-button" data-dir="next" aria-label="Next project">›</button>
-  <ul class="carousel-track">
+<div class="swiper full-width">
+  <div class="swiper-wrapper">
   {
     projects.map((project) => (
-      <li
+      <div
         class={`
-          carousel-slide grid border border-(--color-background) bg-(--color-background-contrast) rounded-2xl overflow-hidden
-          grid-cols-1 grid-rows-[250px_250px] h-[500px]
-          md:grid-cols-2 md:grid-rows-1 md:h-[400px]
+          swiper-slide !grid border border-(--color-background) bg-(--color-background-contrast) rounded-2xl overflow-hidden
+          grid-cols-1 grid-rows-[250px_250px] w-[400px]! max-w-[90vw] h-[500px]!
+          md:grid-cols-2 md:grid-rows-1 md:w-[600px]! md:h-[400px]!
         `}
       >
         <Image
@@ -148,6 +48,7 @@ const tech = await getCollection('tech')
           alt={project.data.title}
           width="400"
           height="400"
+          loading="eager"
           class={`object-cover h-full! w-full`}
           style={{
             objectFit: project.data.imageFit || 'cover'
@@ -198,26 +99,42 @@ const tech = await getCollection('tech')
             </div>
           }
         </div>
-      </li>
+      </div>
     ))
   }
-  </ul>
+  </div>
 </div>
 
 <script>
-  // Prev/next buttons: scroll by one card. Snap points take care of centering.
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll<HTMLElement>('.carousel').forEach((carousel) => {
-      const track = carousel.querySelector<HTMLElement>('.carousel-track')
-      const slide = track?.querySelector<HTMLElement>('.carousel-slide')
-      if (!track || !slide) return
-      carousel.querySelectorAll<HTMLButtonElement>('.carousel-button').forEach((button) => {
-        button.addEventListener('click', () => {
-          const gap = parseFloat(getComputedStyle(track).columnGap) || 0
-          const step = slide.offsetWidth + gap
-          track.scrollBy({ left: button.dataset.dir === 'prev' ? -step : step, behavior: 'smooth' })
-        })
-      })
-    })
-  })
+  // Import only the Swiper modules we use. (Previously `swiper/element/bundle`
+  // was imported just to register these, which pulled in every module.)
+  import Swiper from 'swiper';
+  import { EffectCoverflow, FreeMode, Mousewheel } from 'swiper/modules';
+
+  document.addEventListener(
+    'astro:page-load',
+    () => {
+      if (!document.querySelector('.swiper')) return
+      new Swiper(".swiper", {
+        modules: [EffectCoverflow, FreeMode, Mousewheel],
+        effect: "coverflow",
+        grabCursor: true,
+        loop: true,
+        centeredSlides: true,
+        freeMode: true,
+        slidesPerView: "auto",
+        mousewheel: {
+          forceToAxis: true,
+        },
+        coverflowEffect: {
+          rotate: 30,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          scale: 0.95,
+          slideShadows: true,
+        },
+      });
+    }
+  )
 </script>
