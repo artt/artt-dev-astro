@@ -18,6 +18,8 @@ const colorVariants = {
 
 const switchTheme = (targetTheme, duration) => {
 
+  if (!colorVariants[targetTheme]) return
+
   if (duration === 0) {
     Object.keys(colorVariants[targetTheme]).forEach((key) => {
       document.body.style.setProperty(key, colorVariants[targetTheme][key])

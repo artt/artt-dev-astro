@@ -1,39 +1,34 @@
 // Adapted from https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt
-
-// Insert this script in your index.html right after the <body> tag.
-// This will help to prevent a flash if dark mode is the default.
-
-// Change these if you use something different in your hook.
+// Runs before paint (right after <body>) to avoid a flash of the wrong theme.
+//
+// Only an explicit choice from the day/night toggle is saved to localStorage.
+// Without one, follow the system setting on every visit.
 
 function setRootAttribute(targetTheme) {
   document.documentElement.setAttribute('data-theme', targetTheme)
-  const meta = document.createElement('meta')
-  meta.name = "twitter:widgets:theme"
+  var meta = document.querySelector('meta[name="twitter:widgets:theme"]')
+  if (!meta) {
+    meta = document.createElement('meta')
+    meta.name = 'twitter:widgets:theme'
+    document.head.appendChild(meta)
+  }
   meta.content = targetTheme
-  document.getElementsByTagName('head')[0].appendChild(meta);
 }
 
-var preferDarkQuery = '(prefers-color-scheme: dark)';
-var mql = window.matchMedia(preferDarkQuery);
-var supportsColorSchemeQuery = mql.media === preferDarkQuery;
-var localStorageTheme = null;
+var localStorageTheme = null
 try {
-  localStorageTheme = localStorage.getItem('theme');
+  localStorageTheme = localStorage.getItem('theme')
 } catch (err) {}
-var localStorageThemeExists = localStorageTheme !== null;
-if (localStorageThemeExists) {
-  localStorageTheme = localStorageTheme;
-}
 
-// Determine the source of truth
-if (localStorageThemeExists) {
-  // source of truth from localStorage
-  setRootAttribute(localStorageTheme);
-} else if (supportsColorSchemeQuery) {
-  // source of truth from system
-  setRootAttribute(mql.matches ? 'dark' : 'light');
-  localStorage.setItem('theme', mql.matches);
+if (localStorageTheme === 'dark' || localStorageTheme === 'light') {
+  setRootAttribute(localStorageTheme)
 } else {
-  // source of truth from document
-  localStorage.setItem('theme', document.documentElement.getAttribute('data-theme'));
+  // Clean up invalid values written by older versions of this script ("true"/"false")
+  if (localStorageTheme !== null) {
+    try {
+      localStorage.removeItem('theme')
+    } catch (err) {}
+  }
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  setRootAttribute(prefersDark ? 'dark' : 'light')
 }
