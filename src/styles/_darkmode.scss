@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "sass:map";
+@use "sass:math";
 
 $artt-blue: #077185;
 $artt-orange: #D76D07;
@@ -95,15 +96,32 @@ $themes: (
   ),
 );
 
+// Modern Dart Sass serializes color.scale()/color.mix() results in CSS Color 4
+// syntax, e.g. `rgb(88.7% 54.1% 20.8%)`. Browsers accept that, but popmotion (used
+// by lib/darkmode.js to animate theme changes) misreads the percentages as 0–255
+// values, producing much dimmer colors. Emit legacy hex/rgba() with integer channels.
+@function legacy-color($c) {
+  @return rgba(
+    math.round(color.channel($c, "red", $space: rgb)),
+    math.round(color.channel($c, "green", $space: rgb)),
+    math.round(color.channel($c, "blue", $space: rgb)),
+    color.alpha($c)
+  );
+}
+
+@function theme-color($theme, $prop) {
+  @return legacy-color(map.get(map.get($themes, $theme), $prop));
+}
+
 :root {
  
   @each $prop in $properties {
-    --color-#{$prop}: #{map.get(map.get($themes, "light"), '#{$prop}')};
+    --color-#{$prop}: #{theme-color("light", $prop)};
   }
 
   &[data-theme="dark"] {
     @each $prop in $properties {
-      --color-#{$prop}: #{map.get(map.get($themes, "dark"), '#{$prop}')};
+      --color-#{$prop}: #{theme-color("dark", $prop)};
     }
   }
 
