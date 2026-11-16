@@ -132,7 +132,8 @@ const defaultSeoProps: SeoProps = {
     </script>
 
     <SEO {...defaultSeoProps} />
-    <link rel="icon" href={`https://api.artt.dev/random-shapes/blobs.svg?numBlobs=2&fill=%23077185,%23D76D07cc&stroke=none&v=${Date.now()}`} />
+    <!-- static fallback; swapped for a freshly generated blob once it loads (see script below) -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
@@ -186,3 +187,32 @@ const defaultSeoProps: SeoProps = {
   </body>
 </html>
 <script src="../lib/darkmode.js" />
+<script>
+  import { genHBlobs } from 'random-shapes'
+
+  // Random favicon, generated locally (no network round-trip, so no visible swap).
+  // A new blob on every full page load; /favicon.svg remains the no-JS fallback.
+  const size = 500
+  const fills = ['#077185', '#D76D07cc']
+  const paths = genHBlobs(size, { numBlobs: fills.length })
+    .map((blob: { path: string }, i: number) => `<path d="${blob.path}" fill="${fills[i]}"/>`)
+    .join('')
+  const randomIcon = 'data:image/svg+xml,' + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}">${paths}</svg>`
+  )
+  document.querySelector('link[rel="icon"]')?.setAttribute('href', randomIcon)
+
+  // On client-side navigation, Astro replaces <html> attributes and <head> with the
+  // incoming page's, and only re-runs loadTheme.js/loadLang.js *after* the swap is
+  // painted — causing a flash of light mode, the day/night + language icons
+  // animating, and the favicon resetting. Carry the state over before the swap.
+  document.addEventListener('astro:before-swap', (event) => {
+    const root = document.documentElement
+    const newRoot = event.newDocument.documentElement
+    for (const attr of ['data-theme', 'data-preferred-lang']) {
+      const value = root.getAttribute(attr)
+      if (value) newRoot.setAttribute(attr, value)
+    }
+    event.newDocument.querySelector('link[rel="icon"]')?.setAttribute('href', randomIcon)
+  })
+</script>
