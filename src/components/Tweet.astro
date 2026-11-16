@@ -1,0 +1,41 @@
+---
+// Wraps astro-embed's <Tweet> (which renders a static blockquote at build time)
+// and progressively upgrades it with Twitter's widgets.js. Because the loader is a
+// component script, Astro only ships it on pages that actually contain a tweet.
+import { Tweet as AstroEmbedTweet } from 'astro-embed';
+import type { ComponentProps } from 'astro/types';
+
+type Props = ComponentProps<typeof AstroEmbedTweet>;
+---
+
+<AstroEmbedTweet {...Astro.props} />
+
+<script>
+  const WIDGETS_SRC = 'https://platform.twitter.com/widgets.js'
+
+  function renderTweets() {
+    const quotes = document.querySelectorAll('blockquote.twitter-tweet')
+    if (quotes.length === 0) return
+
+    // astro-embed hardcodes data-theme="light"; match the site theme instead.
+    // (DayNight.astro updates rendered iframes when the theme is toggled.)
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    quotes.forEach((quote) => quote.setAttribute('data-theme', theme))
+
+    // Already loaded (e.g. after a client-side navigation): just re-scan the page.
+    const twttr = (window as any).twttr
+    if (twttr?.widgets) {
+      twttr.widgets.load()
+      return
+    }
+    // First time: load the script; it scans the page for blockquotes on load.
+    if (!document.querySelector(`script[src="${WIDGETS_SRC}"]`)) {
+      const script = document.createElement('script')
+      script.src = WIDGETS_SRC
+      script.async = true
+      document.head.appendChild(script)
+    }
+  }
+
+  document.addEventListener('astro:page-load', renderTweets)
+</script>

@@ -8,7 +8,8 @@ import Album from '@/components/Album/Album.astro';
 import ZoomableImage from '@/components/ZoomableImage.astro';
 import Plotter from '@/components/Plotter/Plotter.astro';
 
-import { Tweet, YouTube } from 'astro-embed';
+import { YouTube } from 'astro-embed';
+import Tweet from '@/components/Tweet.astro';
 import FigNote from '@/components/FigNote.astro';
 
 export async function getStaticPaths() {
@@ -63,4 +64,3 @@ const { Content } = await render(entry)
     }}
   />
 </MarkdownPostLayout>
-<script async is:inline src="https://platform.twitter.com/widgets.js"></script>
