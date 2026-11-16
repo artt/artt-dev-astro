@@ -1,6 +1,4 @@
 import { WaveGroup } from "@/components/Wave"
-import Typewriter from "./Typewriter"
-import clsx from "clsx"
 
 import styles from "./styles.module.scss"
 // const styles = require("./styles.module.scss")
@@ -66,31 +64,20 @@ const waveOptions = {
   angleWindowSize: Math.PI / 6,
 }
 
-export default function Hero() {
-
-  return(
-    <div className={clsx("heroSize", styles.container, "pointer-events-none")}>
-      <div className={clsx("heroSize", styles.positioner)}>
-        <div className={clsx(styles.waves)}>
-          <WaveGroup
-            numWaves={numLines * 2}
-            width={waveWidth}
-            height={waveHeight}
-            options={waveOptions}
-            override={override}
-            duration={[2, 10]}
-            otherAttributes={waveStyles.flat()}
-          />
-        </div>
-        <div className="pointer-events-auto">
-          <div className={styles.top}>
-            Hello!
-          </div>
-          <div className={styles.bottom}>
-            I’m <Typewriter className={styles.typewriter} />
-          </div>
-        </div>
-      </div>
+// Only the animated waves live here; they use Math.random() so they're rendered
+// client-side only. The hero text is static HTML in Hero.astro.
+export default function HeroWaves() {
+  return (
+    <div className={styles.waves}>
+      <WaveGroup
+        numWaves={numLines * 2}
+        width={waveWidth}
+        height={waveHeight}
+        options={waveOptions}
+        override={override}
+        duration={[2, 10]}
+        otherAttributes={waveStyles.flat()}
+      />
     </div>
   )
 }

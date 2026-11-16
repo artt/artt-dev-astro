@@ -1,0 +1,17 @@
+---
+import HeroWaves from './index';
+import Typewriter from './Typewriter';
+import styles from './styles.module.scss';
+---
+
+<div class:list={["heroSize", styles.container, "pointer-events-none"]}>
+  <div class:list={["heroSize", styles.positioner]}>
+    <HeroWaves client:only="react" />
+    <div class="pointer-events-auto">
+      <div class={styles.top}>Hello!</div>
+      <div class={styles.bottom}>
+        I’m <Typewriter client:load className={styles.typewriter} />
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,15 @@
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // waves are client-only, so they appear once JS loads; fade them in instead of popping
+    animation: waves-fade-in 1.2s ease-out both;
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 0.01s;
+    }
+  }
+  @keyframes waves-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
   .top, .bottom {
     font-size: 1.2em;

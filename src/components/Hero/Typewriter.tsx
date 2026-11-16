@@ -27,16 +27,19 @@ export default function Typewriter({ className }: { className?: string }) {
 
   const firstrun = React.useRef(true)
   const ref = React.useRef<HTMLSpanElement>(null)
-  const letterIndex = React.useRef(0)
+  // Start fully typed as "Art" so the server-rendered HTML (and no-JS visitors)
+  // show the name; the first type() call then just holds it before erasing.
+  const firstWord = "Art"
+  const letterIndex = React.useRef(firstWord.length)
   const wordIndex = React.useRef(0)
-  const [finalWord, setFinalWord] = React.useState("")
+  const [finalWord, setFinalWord] = React.useState(firstWord)
   const words = React.useRef<string[]>([])
   // const [words, setWords] = React.useState([])
 
   function shuffleWords() {
     let tmp = artList.slice()
     tmp = shuffle(tmp).slice(0, maxWords)
-    tmp.unshift("Art")
+    tmp.unshift(firstWord)
     words.current = tmp
   }
 

@@ -2,7 +2,7 @@
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getLocale } from "astro-i18n-aut";
-import Hero from '@/components/Hero';
+import Hero from '@/components/Hero/Hero.astro';
 import Section from '@/components/Section.astro';
 import { getAllBlogPosts } from '@/lib/mdxUtils';
 import CardList from '@/components/CardList.astro';
@@ -21,7 +21,7 @@ const sortedBlogs = await getAllBlogPosts(lang)
 <BaseLayout title={title} noCap noSplit noCover noTitle>
   
   <div class="heroSize">
-    <Hero client:only="react" />
+    <Hero />
   </div>
   
   <Section
